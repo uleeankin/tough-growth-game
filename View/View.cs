@@ -11,7 +11,9 @@ namespace View
 
         public View()
         {
-
+    
         }
+
+        public abstract void Draw();
     }
 }
