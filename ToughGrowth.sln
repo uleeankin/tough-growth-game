@@ -17,10 +17,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "View", "View\View.csproj", "{A6428D33-86AC-485F-9AA1-B463AB052C53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleController", "ConsoleController\ConsoleController.csproj", "{77B67686-F876-4093-BB3C-F537DE2F1E84}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewConsole", "ViewConsole\ViewConsole.csproj", "{37534C06-0FAD-4428-A83B-800B909110EC}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,14 +39,6 @@ Global
 		{A6428D33-86AC-485F-9AA1-B463AB052C53}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6428D33-86AC-485F-9AA1-B463AB052C53}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6428D33-86AC-485F-9AA1-B463AB052C53}.Release|Any CPU.Build.0 = Release|Any CPU
-		{77B67686-F876-4093-BB3C-F537DE2F1E84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{77B67686-F876-4093-BB3C-F537DE2F1E84}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{77B67686-F876-4093-BB3C-F537DE2F1E84}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{77B67686-F876-4093-BB3C-F537DE2F1E84}.Release|Any CPU.Build.0 = Release|Any CPU
-		{37534C06-0FAD-4428-A83B-800B909110EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{37534C06-0FAD-4428-A83B-800B909110EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{37534C06-0FAD-4428-A83B-800B909110EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{37534C06-0FAD-4428-A83B-800B909110EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
