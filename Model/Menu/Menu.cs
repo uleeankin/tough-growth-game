@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Model.Enums;
 
 namespace Model.Menu
 {
-    public class Menu : SubMenuItem
+    public class Menu : Model
     {
         public delegate void dRedraw();
-
         public event dRedraw Redraw = null;
 
         private int _focusedItemIndex = -1;
 
         private string _title;
+
+        private Dictionary<int, MenuItem> _items = new Dictionary<int, MenuItem>();
 
         public int FocusedItemIndex
         {
@@ -28,7 +30,23 @@ namespace Model.Menu
             private set { _title = value; }
         }
 
-        public Menu(string parTitle, string parName) : base(0, parName)
+        public MenuItem[] Items
+        {
+            get
+            {
+                return _items.Values.ToArray();
+            }
+        }
+
+        public MenuItem this[int parId]
+        {
+            get
+            {
+                return _items[parId];
+            }
+        }
+
+        public Menu(string parTitle)
         {
             _title = parTitle;
         }
@@ -50,6 +68,7 @@ namespace Model.Menu
 
             Redraw?.Invoke();
         }
+
         public void FocusPrevious()
         {
             int currentFocusedIndex = _focusedItemIndex;
@@ -67,6 +86,7 @@ namespace Model.Menu
 
             Redraw?.Invoke();
         }
+
         public void FocusItemById(int parId)
         {
             int currentFocusedIndex = _focusedItemIndex;
@@ -81,9 +101,15 @@ namespace Model.Menu
             Items[_focusedItemIndex].State = States.Focused;
             Redraw?.Invoke();
         }
+
         public void SelectFocusedItem()
         {
             Items[_focusedItemIndex].State = States.Selected;
+        }
+
+        protected void AddItem(MenuItem parMenuItem)
+        {
+            _items.Add(parMenuItem.ID, parMenuItem);
         }
     }
 }

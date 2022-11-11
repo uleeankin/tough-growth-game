@@ -43,12 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\MenuItemCode.cs" />
+    <Compile Include="Enums\States.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="Menu\Menu.cs" />
     <Compile Include="Menu\MenuItem.cs" />
     <Compile Include="Menu\MainMenu.cs" />
-    <Compile Include="Menu\ModelMenu.cs" />
-    <Compile Include="Menu\SubMenuItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

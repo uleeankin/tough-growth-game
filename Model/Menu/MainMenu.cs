@@ -3,21 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Model.Enums;
 
 namespace Model.Menu
 {
     public class MainMenu : Menu
     {
-        public enum MenuItemCode : int
-        {
-            Game,
-            Records,
-            Info,
-            Exit
-        }
 
-        public MainMenu() : base(Properties.Resources.Title, 
-                                    Properties.Resources.MainMenuName)
+        public MainMenu() : base(Properties.Resources.Title)
         {
             this.AddItem(new MenuItem((int)MenuItemCode.Game, 
                                 Properties.Resources.GameMenuItem));

@@ -9,7 +9,7 @@ namespace Controller.Menu
     public abstract class MenuController : Controller
     {
 
-        public MenuController(Model.Menu.ModelMenu model,
+        public MenuController(Model.Menu.Menu model,
                                     View.Menu.ViewMenu view)
             : base(model, view)
         {

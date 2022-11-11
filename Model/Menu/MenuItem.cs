@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Model.Enums;
 
 namespace Model.Menu
 {
     public class MenuItem
     {
         public delegate void dSelected();
+        public delegate void dRedrawItem();
+
         public event dSelected Selected = null;
-        public enum States : int
-        {
-            Normal,
-            Focused,
-            Selected
-        }
+        public event dRedrawItem RedrawItem = null;
+       
         private States _state = States.Normal;
         public string Name { get; private set; }
         public States State
@@ -28,7 +27,13 @@ namespace Model.Menu
             {
                 _state = value;
                 if (_state == States.Selected)
+                {
                     Selected?.Invoke();
+                } 
+                else
+                {
+                    RedrawItem?.Invoke();
+                }
             }
         }
         public int ID { get; private set; }

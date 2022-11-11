@@ -7,7 +7,7 @@ using Model;
 
 namespace View.Menu
 {
-    public class ViewMenuItem : View
+    public abstract class ViewMenuItem : View
     {
         private Model.Menu.MenuItem _item = null;
 
@@ -27,6 +27,9 @@ namespace View.Menu
         public ViewMenuItem(Model.Menu.MenuItem parItem)
         {
             _item = parItem;
+            _item.RedrawItem += RedrawItem;
         }
+
+        protected abstract void RedrawItem();
     }
 }
