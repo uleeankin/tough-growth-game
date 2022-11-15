@@ -52,9 +52,21 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\ConsoleView\ConsoleView.csproj">
+      <Project>{cdc0c87c-15cf-4936-b49b-d8c113db968f}</Project>
+      <Name>ConsoleView</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Controller\Controller.csproj">
       <Project>{59a96049-4401-4df7-9192-dba49e4ad1d3}</Project>
       <Name>Controller</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{3ec91e66-0aab-4bcc-93a4-41de725dc2c2}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\View\View.csproj">
+      <Project>{a6428d33-86ac-485f-9aa1-b463ab052c53}</Project>
+      <Name>View</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
