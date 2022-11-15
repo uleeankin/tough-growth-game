@@ -14,6 +14,8 @@ namespace ConsoleView.Menu
         public int WIDTH = 120;
         public int HEIGHT = 30;
 
+        private ConsoleView.Utils.CastomOutput _output = new Utils.CastomOutput();
+
         public ConsoleViewMenu(Model.Menu.Menu parMenu) : base(parMenu)
         {
             Init();
@@ -23,6 +25,7 @@ namespace ConsoleView.Menu
         public override void Draw()
         {
             Console.Clear();
+            _output.PrintGameTitle(WIDTH);
             foreach (ViewMenuItem elViewMenuItem in Menu)
             {
                 elViewMenuItem.Draw();

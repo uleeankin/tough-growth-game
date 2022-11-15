@@ -12,6 +12,15 @@ namespace ConsoleView.Utils
         private const int BUTTON_HEIGHT = 3;
         private const int BUTTON_WIDTH = 17;
 
+        private List<List<int>> _titleCoordinates = new List<List<int>>()
+        {
+            new List<int>() {1, 2, 3, 4, 5, 8, 9, 12, 15, 18, 19, 22, 25, 33, 34, 37, 38, 39, 43, 44, 47, 51, 53, 54, 55, 56, 57, 59, 62},
+            new List<int>() {3, 7, 10, 12, 15, 17, 22, 25, 32, 37, 40, 42, 45, 47, 51, 55, 59, 62},
+            new List<int>() {3, 7, 10, 12, 15, 17, 19, 20, 22, 23, 24, 25, 32, 34, 35, 37, 38, 39, 42, 45, 47, 49, 51, 55, 59, 60, 61, 62},
+            new List<int>() {3, 7, 10, 12, 15, 17, 20, 22, 25, 32, 35, 37, 39, 42, 45, 47, 49, 51, 55, 59, 62},
+            new List<int>() {3, 8, 9, 12, 13, 14, 15, 18, 19, 22, 25, 33, 34, 37, 40, 43, 44, 48, 50, 55, 59, 62}
+        };
+
         protected static Dictionary<Model.Enums.States, ConsoleColor> BackgroundColorByState { get; private set; }
         protected static Dictionary<Model.Enums.States, ConsoleColor> FontColorByState { get; private set; }
 
@@ -79,6 +88,38 @@ namespace ConsoleView.Utils
             }
 
             return buttonBorders.ToArray();
+        }
+
+        public void PrintGameTitle(int parConsoleWidth)
+        {
+            int offset = GetOffset(parConsoleWidth);
+            Console.SetCursorPosition(offset, 1);
+
+
+            for (int i = 0; i < _titleCoordinates.Count; i++)
+            {
+                for (int j = 0; j < parConsoleWidth; j++)
+                {
+                    if (_titleCoordinates[i].Contains(Console.CursorLeft - offset))
+                    {
+                        Console.BackgroundColor = ConsoleColor.White;
+                        Console.Write(" ");
+                        Console.BackgroundColor = ConsoleColor.Black;
+                    } else
+                    {
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.Write(" ");
+                    }
+                }
+                Console.CursorLeft = offset;
+            }
+        }
+
+        private int GetOffset(int parConsoleWidth)
+        {
+            int length = _titleCoordinates.Max(x => x.Max());
+
+            return parConsoleWidth / 2 - length / 2;
         }
     }
 }
