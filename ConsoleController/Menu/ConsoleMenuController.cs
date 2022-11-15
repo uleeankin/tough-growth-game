@@ -11,21 +11,13 @@ namespace ConsoleController.Menu
 {
     public class ConsoleMenuController : MenuController
     {
-
-        private static Model.Menu.Menu _menu = null;
-        private static View.Menu.ViewMenu _view = null;
-
         protected bool IsExit { get; set; }
 
-        static ConsoleMenuController()
+        public ConsoleMenuController() : base()
         {
-            _menu = new Model.Menu.MainMenu();
-            _view = new ConsoleView.Menu.ConsoleViewMenu(_menu);
-        }
-
-        public ConsoleMenuController() : base(_menu, _view)
-        {
-            _menu[(int) MenuItemCode.Exit].Selected += () => { IsExit = true; };
+            Menu = new Model.Menu.MainMenu();
+            ViewMenu = new ConsoleView.Menu.ConsoleViewMenu(Menu);
+            Menu[(int) MenuItemCode.Exit].Selected += () => { IsExit = true; };
         }
 
         public override void Start()
@@ -36,13 +28,13 @@ namespace ConsoleController.Menu
                 switch (keyInfo.Key)
                 {
                     case ConsoleKey.UpArrow:
-                        _menu.FocusPrevious();
+                        Menu.FocusPrevious();
                         break;
                     case ConsoleKey.DownArrow:
-                        _menu.FocusNext();
+                        Menu.FocusNext();
                         break;
                     case ConsoleKey.Enter:
-                        _menu.SelectFocusedItem();
+                        Menu.SelectFocusedItem();
                         break;
                 }
 
