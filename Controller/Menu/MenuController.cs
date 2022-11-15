@@ -9,11 +9,13 @@ namespace Controller.Menu
     public abstract class MenuController : Controller
     {
 
-        public MenuController(Model.Menu.Menu model,
-                                    View.Menu.ViewMenu view)
-            : base(model, view)
-        {
+        protected Model.Menu.Menu Menu { get; set; }
+        protected View.Menu.ViewMenu ViewMenu { get; set; }
 
+        public MenuController()
+            : base()
+        {
+            
         }
     }
 }
