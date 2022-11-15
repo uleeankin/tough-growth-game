@@ -10,14 +10,9 @@ namespace Controller
 {
     public abstract class Controller
     {
-
-        protected Model.Model Model { get; set; }
-        protected View.View View { get; set; }
-
-        public Controller(Model.Model parModel, View.View parView)
+        public Controller()
         {
-            this.Model = parModel;
-            this.View = parView;
+            
         }
 
         public abstract void Start();
