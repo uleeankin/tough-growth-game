@@ -45,7 +45,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller.cs" />
+    <Compile Include="ControllersManager.cs" />
+    <Compile Include="Menu\InfoController.cs" />
     <Compile Include="Menu\MenuController.cs" />
+    <Compile Include="Menu\RecordsController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

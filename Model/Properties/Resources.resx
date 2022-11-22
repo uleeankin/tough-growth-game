@@ -123,11 +123,17 @@
   <data name="GameControlItem" xml:space="preserve">
     <value>Начать игру</value>
   </data>
+  <data name="GameRulesFileName" xml:space="preserve">
+    <value>info\\GameRules.txt</value>
+  </data>
   <data name="InfoControlItem" xml:space="preserve">
     <value>Справка</value>
   </data>
   <data name="MainMenuControlItem" xml:space="preserve">
     <value>Главное меню</value>
+  </data>
+  <data name="ManagementRulesFileName" xml:space="preserve">
+    <value>info\\ManagementRules.txt</value>
   </data>
   <data name="RecordsControlItem" xml:space="preserve">
     <value>Рекорды</value>

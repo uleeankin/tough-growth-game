@@ -44,8 +44,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Items\ViewPassiveItem.cs" />
+    <Compile Include="Menu\ViewInfo.cs" />
     <Compile Include="Menu\ViewMenu.cs" />
     <Compile Include="Items\ViewControlItem.cs" />
+    <Compile Include="Menu\ViewRecords.cs" />
     <Compile Include="View.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

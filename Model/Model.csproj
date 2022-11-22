@@ -46,6 +46,8 @@
     <Compile Include="Enums\ControlItemCode.cs" />
     <Compile Include="Enums\States.cs" />
     <Compile Include="Items\PassiveItem.cs" />
+    <Compile Include="Menu\Info.cs" />
+    <Compile Include="Menu\Records.cs" />
     <Compile Include="Screen.cs" />
     <Compile Include="Menu\MenuScreen.cs" />
     <Compile Include="Items\ControlItem.cs" />
@@ -56,6 +58,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Utils\FileIO.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -63,5 +66,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

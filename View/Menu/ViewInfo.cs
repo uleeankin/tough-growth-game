@@ -7,15 +7,15 @@ using View.Items;
 
 namespace View.Menu
 {
-    public abstract class ViewMenu : View
+    public abstract class ViewInfo : View
     {
-        private Model.Menu.MenuScreen _menu = null;
+        private Model.Menu.Info _info = null;
 
         private Dictionary<int, ViewControlItem> _controlItems = null;
         private List<ViewPassiveItem> _passiveItems = null;
 
-        protected ViewControlItem[] Menu => _controlItems.Values.ToArray();
-        protected ViewPassiveItem[] Title => _passiveItems.ToArray();
+        protected ViewControlItem[] BackToMenu => _controlItems.Values.ToArray();
+        protected ViewPassiveItem[] Rules => _passiveItems.ToArray();
 
         public int X { get; set; }
         public int Y { get; set; }
@@ -30,18 +30,18 @@ namespace View.Menu
             }
         }
 
-        public ViewMenu(Model.Menu.MenuScreen parMenu)
+        public ViewInfo(Model.Menu.Info parInfo)
         {
-            _menu = parMenu;
+            _info = parInfo;
             _controlItems = new Dictionary<int, ViewControlItem>();
             _passiveItems = new List<ViewPassiveItem>();
 
-            foreach (Model.Items.PassiveItem elMenuTitle in parMenu.PassiveItems)
+            foreach (Model.Items.PassiveItem elMenuTitle in parInfo.PassiveItems)
             {
                 _passiveItems.Add(CreatePassiveItem(elMenuTitle));
             }
 
-            foreach (Model.Items.ControlItem elMenuItem in parMenu.ControlItems)
+            foreach (Model.Items.ControlItem elMenuItem in parInfo.ControlItems)
             {
                 _controlItems.Add(elMenuItem.ID, CreateControlItem(elMenuItem));
             }
@@ -50,5 +50,6 @@ namespace View.Menu
         protected abstract void Redraw();
         protected abstract ViewControlItem CreateControlItem(Model.Items.ControlItem parMenuItem);
         protected abstract ViewPassiveItem CreatePassiveItem(Model.Items.PassiveItem parMenuTitle);
+
     }
 }

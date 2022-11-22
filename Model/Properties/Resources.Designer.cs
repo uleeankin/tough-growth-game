@@ -79,6 +79,15 @@ namespace Model.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на info\\GameRules.txt.
+        /// </summary>
+        internal static string GameRulesFileName {
+            get {
+                return ResourceManager.GetString("GameRulesFileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Справка.
         /// </summary>
         internal static string InfoControlItem {
@@ -93,6 +102,15 @@ namespace Model.Properties {
         internal static string MainMenuControlItem {
             get {
                 return ResourceManager.GetString("MainMenuControlItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на info\\ManagementRules.txt.
+        /// </summary>
+        internal static string ManagementRulesFileName {
+            get {
+                return ResourceManager.GetString("ManagementRulesFileName", resourceCulture);
             }
         }
         

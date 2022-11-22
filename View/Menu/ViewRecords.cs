@@ -7,15 +7,15 @@ using View.Items;
 
 namespace View.Menu
 {
-    public abstract class ViewMenu : View
+    public abstract class ViewRecords : View
     {
-        private Model.Menu.MenuScreen _menu = null;
+        private Model.Menu.Records _records = null;
 
         private Dictionary<int, ViewControlItem> _controlItems = null;
         private List<ViewPassiveItem> _passiveItems = null;
 
-        protected ViewControlItem[] Menu => _controlItems.Values.ToArray();
-        protected ViewPassiveItem[] Title => _passiveItems.ToArray();
+        protected ViewControlItem[] BackToMenu => _controlItems.Values.ToArray();
+        protected ViewPassiveItem[] Records => _passiveItems.ToArray();
 
         public int X { get; set; }
         public int Y { get; set; }
@@ -30,18 +30,18 @@ namespace View.Menu
             }
         }
 
-        public ViewMenu(Model.Menu.MenuScreen parMenu)
+        public ViewRecords(Model.Menu.Records parRecords)
         {
-            _menu = parMenu;
+            _records = parRecords;
             _controlItems = new Dictionary<int, ViewControlItem>();
             _passiveItems = new List<ViewPassiveItem>();
 
-            foreach (Model.Items.PassiveItem elMenuTitle in parMenu.PassiveItems)
+            foreach (Model.Items.PassiveItem elMenuTitle in parRecords.PassiveItems)
             {
                 _passiveItems.Add(CreatePassiveItem(elMenuTitle));
             }
 
-            foreach (Model.Items.ControlItem elMenuItem in parMenu.ControlItems)
+            foreach (Model.Items.ControlItem elMenuItem in parRecords.ControlItems)
             {
                 _controlItems.Add(elMenuItem.ID, CreateControlItem(elMenuItem));
             }

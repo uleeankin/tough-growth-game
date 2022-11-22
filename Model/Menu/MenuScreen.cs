@@ -38,6 +38,14 @@ namespace Model.Menu
             }
         }
 
+        public PassiveItem[] PassiveItems
+        {
+            get
+            {
+                return _passiveItems.ToArray();
+            }
+        }
+
         public MenuScreen()
         {
 
