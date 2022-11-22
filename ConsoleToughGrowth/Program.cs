@@ -10,7 +10,8 @@ namespace ConsoleToughGrowth
     {
         static void Main(string[] args)
         {
-            new ConsoleController.Menu.ConsoleMenuController().Start();
+            //new ConsoleController.Menu.ConsoleMenuController().Start();
+            new ConsoleController.Menu.
         }
     }
 }

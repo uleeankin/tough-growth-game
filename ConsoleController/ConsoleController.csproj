@@ -46,7 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsoleControllersManager.cs" />
+    <Compile Include="Menu\ConsoleInfoController.cs" />
     <Compile Include="Menu\ConsoleMenuController.cs" />
+    <Compile Include="Menu\ConsoleRecordsController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
