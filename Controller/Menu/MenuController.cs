@@ -9,8 +9,7 @@ namespace Controller.Menu
     public abstract class MenuController : Controller
     {
 
-        protected Model.Menu.Menu Menu { get; set; }
-        protected View.Menu.ViewMenu ViewMenu { get; set; }
+        protected Model.Menu.MenuScreen Menu { get; set; }
 
         public MenuController()
             : base()

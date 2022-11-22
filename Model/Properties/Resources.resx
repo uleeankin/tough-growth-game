@@ -117,22 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ExitMenuItem" xml:space="preserve">
+  <data name="ExitControlItem" xml:space="preserve">
     <value>Выход</value>
   </data>
-  <data name="GameMenuItem" xml:space="preserve">
+  <data name="GameControlItem" xml:space="preserve">
     <value>Начать игру</value>
   </data>
-  <data name="InfoMenuItem" xml:space="preserve">
+  <data name="InfoControlItem" xml:space="preserve">
     <value>Справка</value>
   </data>
-  <data name="MainMenuName" xml:space="preserve">
+  <data name="MainMenuControlItem" xml:space="preserve">
     <value>Главное меню</value>
   </data>
-  <data name="RecordsMenuItem" xml:space="preserve">
+  <data name="RecordsControlItem" xml:space="preserve">
     <value>Рекорды</value>
   </data>
-  <data name="Title" xml:space="preserve">
+  <data name="TitlePassiveItem" xml:space="preserve">
     <value>TOUGH GROWTH</value>
   </data>
 </root>

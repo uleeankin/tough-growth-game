@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Model.Enums
+namespace Model
 {
-    public enum MenuItemCode : int
+    public abstract class Screen
     {
-        Game,
-        Records,
-        Info,
-        Exit
+        public Screen()
+        {
+
+        }
     }
 }

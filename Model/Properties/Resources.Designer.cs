@@ -63,54 +63,54 @@ namespace Model.Properties {
         /// <summary>
         ///   Ищет локализованную строку, похожую на Выход.
         /// </summary>
-        internal static string ExitMenuItem {
+        internal static string ExitControlItem {
             get {
-                return ResourceManager.GetString("ExitMenuItem", resourceCulture);
+                return ResourceManager.GetString("ExitControlItem", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Ищет локализованную строку, похожую на Начать игру.
         /// </summary>
-        internal static string GameMenuItem {
+        internal static string GameControlItem {
             get {
-                return ResourceManager.GetString("GameMenuItem", resourceCulture);
+                return ResourceManager.GetString("GameControlItem", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Ищет локализованную строку, похожую на Справка.
         /// </summary>
-        internal static string InfoMenuItem {
+        internal static string InfoControlItem {
             get {
-                return ResourceManager.GetString("InfoMenuItem", resourceCulture);
+                return ResourceManager.GetString("InfoControlItem", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Ищет локализованную строку, похожую на Главное меню.
         /// </summary>
-        internal static string MainMenuName {
+        internal static string MainMenuControlItem {
             get {
-                return ResourceManager.GetString("MainMenuName", resourceCulture);
+                return ResourceManager.GetString("MainMenuControlItem", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Ищет локализованную строку, похожую на Рекорды.
         /// </summary>
-        internal static string RecordsMenuItem {
+        internal static string RecordsControlItem {
             get {
-                return ResourceManager.GetString("RecordsMenuItem", resourceCulture);
+                return ResourceManager.GetString("RecordsControlItem", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Ищет локализованную строку, похожую на TOUGH GROWTH.
         /// </summary>
-        internal static string Title {
+        internal static string TitlePassiveItem {
             get {
-                return ResourceManager.GetString("Title", resourceCulture);
+                return ResourceManager.GetString("TitlePassiveItem", resourceCulture);
             }
         }
     }

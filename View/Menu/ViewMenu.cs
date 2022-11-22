@@ -3,23 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using View.Items;
 
 namespace View.Menu
 {
     public abstract class ViewMenu : View
     {
-        private Model.Menu.Menu _menu = null;
+        private Model.Menu.MenuScreen _menu = null;
 
-        private Dictionary<int, ViewMenuItem> _items = null;
+        private Dictionary<int, ViewControlItem> _items = null;
 
-        protected ViewMenuItem[] Menu => _items.Values.ToArray();
+        protected ViewControlItem[] Menu => _items.Values.ToArray();
 
         public int X { get; set; }
         public int Y { get; set; }
         public int Width { get; protected set; }
         public int Height { get; protected set; }
 
-        public ViewMenuItem this[int parId]
+        public ViewControlItem this[int parId]
         {
             get
             {
@@ -27,19 +28,18 @@ namespace View.Menu
             }
         }
 
-        public ViewMenu(Model.Menu.Menu parMenu)
+        public ViewMenu(Model.Menu.MenuScreen parMenu)
         {
             _menu = parMenu;
-            _items = new Dictionary<int, ViewMenuItem>();
+            _items = new Dictionary<int, ViewControlItem>();
 
-            foreach (Model.Menu.MenuItem elMenuItem in parMenu.Items)
+            foreach (Model.Items.ControlItem elMenuItem in parMenu.ControlItems)
             {
                 _items.Add(elMenuItem.ID, CreateItem(elMenuItem));
             }
-            _menu.Redraw += Redraw;
         }
 
         protected abstract void Redraw();
-        protected abstract ViewMenuItem CreateItem(Model.Menu.MenuItem parMenuItem);
+        protected abstract ViewControlItem CreateItem(Model.Items.ControlItem parMenuItem);
     }
 }

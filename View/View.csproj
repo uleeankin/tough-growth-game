@@ -43,8 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Items\ViewPassiveItem.cs" />
     <Compile Include="Menu\ViewMenu.cs" />
-    <Compile Include="Menu\ViewMenuItem.cs" />
+    <Compile Include="Items\ViewControlItem.cs" />
     <Compile Include="View.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -54,9 +55,6 @@
       <Project>{3ec91e66-0aab-4bcc-93a4-41de725dc2c2}</Project>
       <Name>Model</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
