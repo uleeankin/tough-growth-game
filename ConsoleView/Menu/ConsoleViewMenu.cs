@@ -37,12 +37,12 @@ namespace ConsoleView.Menu
 
         protected override ViewControlItem CreateControlItem(ControlItem parMenuItem)
         {
-            return new ConsoleViewMenuItem(parMenuItem);
+            return new ConsoleViewControlItem(parMenuItem);
         }
 
         protected override ViewPassiveItem CreatePassiveItem(PassiveItem parMenuTitle)
         {
-            throw new NotImplementedException();
+            return new ConsoleViewPassiveItem(parMenuTitle);
         }
 
         protected override void Redraw()

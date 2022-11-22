@@ -8,14 +8,14 @@ using Model.Items;
 
 namespace ConsoleView.Items
 {
-    public class ConsoleViewMenuItem : ViewControlItem
+    public class ConsoleViewControlItem : ViewControlItem
     {
         public const int HEIGHT = 3;
         public const int WIDTH = 20;
 
         private Utils.CastomOutput _output = new Utils.CastomOutput();
 
-        public ConsoleViewMenuItem(ControlItem parControlItem) : base(parControlItem)
+        public ConsoleViewControlItem(ControlItem parControlItem) : base(parControlItem)
         {
             Height = HEIGHT;
             Width = WIDTH;
