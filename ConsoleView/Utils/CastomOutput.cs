@@ -126,5 +126,14 @@ namespace ConsoleView.Utils
 
             return parConsoleWidth / 2 - length / 2;
         }
+
+        public void OutputString(
+            string parString,
+            int parCursorXPosition,
+            int parCursorYPosition)
+        {
+            Console.SetCursorPosition(parCursorXPosition, parCursorYPosition);
+            Console.Write(parString);
+        }
     }
 }

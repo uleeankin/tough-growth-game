@@ -12,13 +12,16 @@ namespace ConsoleController.Menu
 {
     public class ConsoleMenuController : MenuController
     {
+
+        private static ConsoleMenuController _instance;
+
         protected bool IsExit { get; set; }
 
         private ViewMenu _viewMenu = null;
 
         private ConsoleControllersManager _controllersManager = null;
 
-        public ConsoleMenuController(ConsoleControllersManager parManager) : base()
+        private ConsoleMenuController(ConsoleControllersManager parManager) : base()
         {
             Menu = new Model.Menu.MainMenu();
             _viewMenu = new ConsoleView.Menu.ConsoleViewMenu(Menu);
@@ -29,8 +32,19 @@ namespace ConsoleController.Menu
             }
         }
 
+        public static ConsoleMenuController GetInstance(ConsoleControllersManager parManager)
+        {
+            if (_instance == null)
+            {
+                _instance = new ConsoleMenuController(parManager);
+            }
+            return _instance;
+        }
+
         public override void Start()
         {
+            _viewMenu.Draw();
+            IsExit = false;
             do
             {
                 ConsoleKeyInfo keyInfo = Console.ReadKey();

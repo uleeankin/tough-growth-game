@@ -10,15 +10,27 @@ namespace ConsoleController.Menu
 {
     public class ConsoleRecordsController : RecordsController
     {
+
+        private static ConsoleRecordsController _instance;
+
         private ViewRecords _viewRecords = null;
 
         private ConsoleControllersManager _controllersManager = null;
 
-        public ConsoleRecordsController(ConsoleControllersManager parManager) : base()
+        private ConsoleRecordsController(ConsoleControllersManager parManager) : base()
         {
             Records = new Model.Menu.Records();
             _viewRecords = new ConsoleView.Menu.ConsoleViewRecords(Records);
             _controllersManager = parManager;
+        }
+
+        public static ConsoleRecordsController GetInstance(ConsoleControllersManager parManager)
+        {
+            if (_instance == null)
+            {
+                _instance = new ConsoleRecordsController(parManager);
+            }
+            return _instance;
         }
 
         public override void Start()

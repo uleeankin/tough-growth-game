@@ -19,8 +19,7 @@ namespace ConsoleView.Items
 
         public override void Draw()
         {
-            
-
+            _output.OutputString(Item.Text, X, Y);
         }
     }
 }

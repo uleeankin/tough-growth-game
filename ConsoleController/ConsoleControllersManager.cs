@@ -17,14 +17,14 @@ namespace ConsoleController
 
         }
 
-        public void Start()
+        public override void Start()
         {
-            Menu = new ConsoleMenuController(this);
+            Menu = ConsoleMenuController.GetInstance(this);
             CurrentController = Menu;
             CurrentController.Start();
         }
 
-        new public void GetMove(ControlItemCode parCode)
+        public override void GetMove(ControlItemCode parCode)
         {
             CurrentController.Stop();
             switch (parCode)
@@ -32,24 +32,18 @@ namespace ConsoleController
                 case ControlItemCode.Records:
                     if (Records == null)
                     {
-                        Records = new ConsoleRecordsController(this);
+                        Records = ConsoleRecordsController.GetInstance(this);
                     }
                     CurrentController = Records;
                     Records.Start();
                     break;
                 case ControlItemCode.Info:
-                    if (Info == null)
-                    {
-                        Info = new ConsoleInfoController(this);
-                    }
+                    Info = ConsoleInfoController.GetInstance(this);
                     CurrentController = Info;
                     Info.Start();
                     break;
                 case ControlItemCode.MainMenu:
-                    if (Menu == null)
-                    {
-                        Menu = new ConsoleMenuController(this);
-                    }
+                    Menu = ConsoleMenuController.GetInstance(this);
                     CurrentController = Menu;
                     Menu.Start();
                     break;

@@ -21,12 +21,12 @@ namespace ConsoleView.Menu
 
         public ConsoleViewMenu(MenuScreen parMenu) : base(parMenu)
         {
-            Init();
-            Draw();
+            
         }
 
         public override void Draw()
         {
+            Init();
             Console.Clear();
             _output.PrintGameTitle(WIDTH);
             foreach (ViewControlItem elViewMenuItem in Menu)

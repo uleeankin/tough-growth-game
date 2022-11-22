@@ -20,17 +20,17 @@ namespace ConsoleView.Menu
 
         public ConsoleViewInfo(MenuScreen parInfo) : base(parInfo)
         {
-            Init();
-            Draw();
+            
         }
 
         public override void Draw()
         {
+            Init();
             Console.Clear();
-            /*foreach (ViewPassiveItem elViewPassiveItem in Rules)
+            foreach (ViewPassiveItem elViewPassiveItem in Rules)
             {
                 elViewPassiveItem.Draw();
-            }*/
+            }
             BackToMenu[0].Draw();
         }
 
@@ -57,15 +57,15 @@ namespace ConsoleView.Menu
             Console.CursorVisible = false;
 
             //Init rules
-            /*X = 0;
-            Y = 0;
+            X = 0;
+            Y = 4;
             int y = Y;
             foreach(ViewPassiveItem elViewPassiveItem in Rules)
             {
                 elViewPassiveItem.X = X;
                 elViewPassiveItem.Y = y;
-                y = HEIGHT / 2;
-            } */
+                y = Console.CursorTop + 1;
+            } 
 
             //Init button
             ViewControlItem[] button = BackToMenu;
@@ -73,7 +73,7 @@ namespace ConsoleView.Menu
             Width = button.Max(x => x.Width);
 
             button[0].X = Console.WindowWidth / 2;
-            button[0].Y = Console.WindowHeight - Width - Width / 2;
+            button[0].Y = Console.WindowHeight - Height * 4;
             
         }
     }
