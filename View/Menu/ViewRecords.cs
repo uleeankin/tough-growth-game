@@ -9,7 +9,7 @@ namespace View.Menu
 {
     public abstract class ViewRecords : View
     {
-        private Model.Menu.Records _records = null;
+        private Model.Menu.MenuScreen _records = null;
 
         private Dictionary<int, ViewControlItem> _controlItems = null;
         private List<ViewPassiveItem> _passiveItems = null;
@@ -30,7 +30,7 @@ namespace View.Menu
             }
         }
 
-        public ViewRecords(Model.Menu.Records parRecords)
+        public ViewRecords(Model.Menu.MenuScreen parRecords)
         {
             _records = parRecords;
             _controlItems = new Dictionary<int, ViewControlItem>();
