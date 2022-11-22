@@ -12,9 +12,18 @@ namespace ConsoleController.Menu
     {
         private ViewRecords _viewRecords = null;
 
+        private ConsoleControllersManager _controllersManager = null;
+
+        public ConsoleRecordsController(ConsoleControllersManager parManager) : base()
+        {
+            Records = new Model.Menu.Records();
+            _viewRecords = new ConsoleView.Menu.ConsoleViewRecords(Records);
+            _controllersManager = parManager;
+        }
+
         public override void Start()
         {
-            throw new NotImplementedException();
+            
         }
 
         public override void Stop()

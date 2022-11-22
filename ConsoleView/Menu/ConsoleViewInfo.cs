@@ -18,7 +18,7 @@ namespace ConsoleView.Menu
 
         private ConsoleView.Utils.CastomOutput _output = new Utils.CastomOutput();
 
-        public ConsoleViewInfo(Info parInfo) : base(parInfo)
+        public ConsoleViewInfo(MenuScreen parInfo) : base(parInfo)
         {
             Init();
             Draw();
@@ -27,10 +27,10 @@ namespace ConsoleView.Menu
         public override void Draw()
         {
             Console.Clear();
-            foreach (ViewPassiveItem elViewPassiveItem in Rules)
+            /*foreach (ViewPassiveItem elViewPassiveItem in Rules)
             {
                 elViewPassiveItem.Draw();
-            }
+            }*/
             BackToMenu[0].Draw();
         }
 
@@ -57,7 +57,7 @@ namespace ConsoleView.Menu
             Console.CursorVisible = false;
 
             //Init rules
-            X = 0;
+            /*X = 0;
             Y = 0;
             int y = Y;
             foreach(ViewPassiveItem elViewPassiveItem in Rules)
@@ -65,7 +65,7 @@ namespace ConsoleView.Menu
                 elViewPassiveItem.X = X;
                 elViewPassiveItem.Y = y;
                 y = HEIGHT / 2;
-            } 
+            } */
 
             //Init button
             ViewControlItem[] button = BackToMenu;

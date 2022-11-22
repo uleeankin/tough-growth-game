@@ -16,7 +16,7 @@ namespace ConsoleView.Menu
         public int BUTTON_HEIGHT = 30;
 
         //изменить в базовом классе на MenuScreen
-        public ConsoleViewRecords(Model.Menu.Records parRecords) : base(parRecords)
+        public ConsoleViewRecords(Model.Menu.MenuScreen parRecords) : base(parRecords)
         {
             Init();
             Draw();
@@ -64,7 +64,7 @@ namespace ConsoleView.Menu
             Width = button.Max(x => x.Width);
 
             X = Console.WindowWidth / 2;
-            Y = Console.WindowHeight - Width - Width / 2;
+            Y = Console.WindowHeight - Height - Height / 2;
 
             int y = Y;
 

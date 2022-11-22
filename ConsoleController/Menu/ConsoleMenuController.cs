@@ -16,11 +16,17 @@ namespace ConsoleController.Menu
 
         private ViewMenu _viewMenu = null;
 
-        public ConsoleMenuController() : base()
+        private ConsoleControllersManager _controllersManager = null;
+
+        public ConsoleMenuController(ConsoleControllersManager parManager) : base()
         {
             Menu = new Model.Menu.MainMenu();
             _viewMenu = new ConsoleView.Menu.ConsoleViewMenu(Menu);
-            Menu[(int) ControlItemCode.Exit].Selected += () => { IsExit = true; };
+            _controllersManager = parManager;
+            foreach (Model.Items.ControlItem elItem in Menu.ControlItems)
+            {
+                elItem.Selected += () => { _controllersManager.GetMove((ControlItemCode)elItem.ID); };
+            }
         }
 
         public override void Start()
@@ -47,7 +53,7 @@ namespace ConsoleController.Menu
 
         public override void Stop()
         {
-            throw new NotImplementedException();
+            IsExit = !IsExit;
         }
     }
 }
