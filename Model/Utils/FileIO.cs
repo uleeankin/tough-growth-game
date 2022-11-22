@@ -18,14 +18,23 @@ namespace Model.Utils
         public static List<string> FileReader(string parFileName)
         {
             List<string> fileContent = new List<string>();
-            if (File.Exists(parFileName))
+            try
             {
-                fileContent = File.ReadAllLines(parFileName).ToList();
-
-            } else
-            {
-                File.Create(parFileName).Close();
+                using (StreamReader reader = new StreamReader(parFileName))
+                {
+                    string line;
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        fileContent.Add(line);
+                    }
+                }
+                    
             }
+            catch(FileNotFoundException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            
             return fileContent;
         }
     }

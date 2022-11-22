@@ -8,7 +8,7 @@ using Model.Enums;
 
 namespace Controller
 {
-    public class ControllersManager
+    public abstract class ControllersManager
     {
         protected Controller CurrentController { get; set; }
         protected MenuController Menu { get; set; }
@@ -20,25 +20,9 @@ namespace Controller
             
         }
 
-        public void GetMove(ControlItemCode parCode)
-        {
-            CurrentController.Stop();
-            switch(parCode)
-            {
-                case ControlItemCode.Records:
-                    CurrentController = Records;
-                    Records.Start();
-                    break;
-                case ControlItemCode.Info:
-                    CurrentController = Info;
-                    Info.Start();
-                    break;
-                case ControlItemCode.MainMenu:
-                    CurrentController = Menu;
-                    Menu.Start();
-                    break;
-            }
-        }
+        public abstract void GetMove(ControlItemCode parCode);
+
+        public abstract void Start();
 
     }
 }
