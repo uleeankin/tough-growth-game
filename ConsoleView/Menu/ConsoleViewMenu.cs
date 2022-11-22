@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using View.Menu;
+using View.Items;
+using Model.Items;
+using ConsoleView.Items;
 
 namespace ConsoleView.Menu
 {
@@ -16,7 +19,7 @@ namespace ConsoleView.Menu
 
         private ConsoleView.Utils.CastomOutput _output = new Utils.CastomOutput();
 
-        public ConsoleViewMenu(Model.Menu.Menu parMenu) : base(parMenu)
+        public ConsoleViewMenu(MenuScreen parMenu) : base(parMenu)
         {
             Init();
             Draw();
@@ -26,15 +29,20 @@ namespace ConsoleView.Menu
         {
             Console.Clear();
             _output.PrintGameTitle(WIDTH);
-            foreach (ViewMenuItem elViewMenuItem in Menu)
+            foreach (ViewControlItem elViewMenuItem in Menu)
             {
                 elViewMenuItem.Draw();
             }
         }
 
-        protected override ViewMenuItem CreateItem(MenuItem parMenuItem)
+        protected override ViewControlItem CreateControlItem(ControlItem parMenuItem)
         {
             return new ConsoleViewMenuItem(parMenuItem);
+        }
+
+        protected override ViewPassiveItem CreatePassiveItem(PassiveItem parMenuTitle)
+        {
+            throw new NotImplementedException();
         }
 
         protected override void Redraw()
@@ -51,7 +59,7 @@ namespace ConsoleView.Menu
 
             Console.CursorVisible = false;
 
-            ViewMenuItem[] menu = Menu;
+            ViewControlItem[] menu = Menu;
             Height = menu.Length;
             Width = menu.Max(x => x.Width);
 

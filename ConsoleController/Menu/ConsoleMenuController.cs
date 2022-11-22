@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Controller.Menu;
 using Controller;
 using Model.Enums;
+using View.Menu;
 
 namespace ConsoleController.Menu
 {
@@ -13,11 +14,13 @@ namespace ConsoleController.Menu
     {
         protected bool IsExit { get; set; }
 
+        private ViewMenu _viewMenu = null;
+
         public ConsoleMenuController() : base()
         {
             Menu = new Model.Menu.MainMenu();
-            ViewMenu = new ConsoleView.Menu.ConsoleViewMenu(Menu);
-            Menu[(int) MenuItemCode.Exit].Selected += () => { IsExit = true; };
+            _viewMenu = new ConsoleView.Menu.ConsoleViewMenu(Menu);
+            Menu[(int) ControlItemCode.Exit].Selected += () => { IsExit = true; };
         }
 
         public override void Start()
@@ -40,6 +43,11 @@ namespace ConsoleController.Menu
 
 
             } while (!IsExit);
+        }
+
+        public override void Stop()
+        {
+            throw new NotImplementedException();
         }
     }
 }
