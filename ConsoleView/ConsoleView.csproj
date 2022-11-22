@@ -44,8 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Menu\ConsoleViewMenu.cs" />
-    <Compile Include="Menu\ConsoleViewMenuItem.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Items\ConsoleViewControllItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\CastomOutput.cs" />
   </ItemGroup>

@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using View.Items;
+using Model.Items;
 
-namespace ConsoleView.Menu
+namespace ConsoleView.Items
 {
-    public class ConsoleViewMenuItem : View.Menu.ViewMenuItem
+    public class ConsoleViewMenuItem : ViewControlItem
     {
         public const int HEIGHT = 3;
         public const int WIDTH = 20;
 
         private Utils.CastomOutput _output = new Utils.CastomOutput();
 
-        public ConsoleViewMenuItem(Model.Menu.MenuItem parMenuItem) : base(parMenuItem)
+        public ConsoleViewMenuItem(ControlItem parControlItem) : base(parControlItem)
         {
             Height = HEIGHT;
             Width = WIDTH;
