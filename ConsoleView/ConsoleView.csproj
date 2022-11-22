@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{CDC0C87C-15CF-4936-B49B-D8C113DB968F}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <RootNamespace>ConsoleView</RootNamespace>
     <AssemblyName>ConsoleView</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -43,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Items\ConsoleViewPassiveItem.cs" />
     <Compile Include="Menu\ConsoleViewMenu.cs" />
     <Compile Include="Items\ConsoleViewControllItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -51,7 +55,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{3ec91e66-0aab-4bcc-93a4-41de725dc2c2}</Project>
