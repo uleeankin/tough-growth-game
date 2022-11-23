@@ -4,14 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model;
+using Model.Items;
 
-namespace View.Menu
+namespace View.Items
 {
-    public abstract class ViewMenuItem : View
+    public abstract class ViewControlItem : View
     {
-        private Model.Menu.MenuItem _item = null;
+        private ControlItem _item = null;
 
-        protected Model.Menu.MenuItem Item
+        protected ControlItem Item
         {
             get
             {
@@ -24,7 +25,7 @@ namespace View.Menu
         public int Width { get; protected set; }
         public int Height { get; protected set; }
 
-        public ViewMenuItem(Model.Menu.MenuItem parItem)
+        public ViewControlItem(ControlItem parItem)
         {
             _item = parItem;
             _item.RedrawItem += RedrawItem;

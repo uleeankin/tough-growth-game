@@ -4,24 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model.Enums;
+using Model.Items;
 
 namespace Model.Menu
 {
-    public class MainMenu : Menu
+    public class MainMenu : MenuScreen
     {
 
-        public MainMenu() : base(Properties.Resources.Title)
+        public MainMenu() : base()
         {
-            this.AddItem(new MenuItem((int)MenuItemCode.Game, 
-                                Properties.Resources.GameMenuItem));
-            this.AddItem(new MenuItem((int)MenuItemCode.Records,
-                                Properties.Resources.RecordsMenuItem));
-            this.AddItem(new MenuItem((int)MenuItemCode.Info,
-                                Properties.Resources.InfoMenuItem));
-            this.AddItem(new MenuItem((int)MenuItemCode.Exit,
-                                Properties.Resources.ExitMenuItem));
+            this.AddPassiveItem(new PassiveItem(Properties.Resources.TitlePassiveItem));
+            this.AddControlItem(new ControlItem((int)ControlItemCode.Game, 
+                                Properties.Resources.GameControlItem));
+            this.AddControlItem(new ControlItem((int)ControlItemCode.Records,
+                                Properties.Resources.RecordsControlItem));
+            this.AddControlItem(new ControlItem((int)ControlItemCode.Info,
+                                Properties.Resources.InfoControlItem));
+            this.AddControlItem(new ControlItem((int)ControlItemCode.Exit,
+                                Properties.Resources.ExitControlItem));
 
-            this.FocusItemById((int)MenuItemCode.Game);
+            this.FocusItemById((int)ControlItemCode.Game);
         }
 
     }

@@ -63,54 +63,83 @@ namespace Model.Properties {
         /// <summary>
         ///   Ищет локализованную строку, похожую на Выход.
         /// </summary>
-        internal static string ExitMenuItem {
+        internal static string ExitControlItem {
             get {
-                return ResourceManager.GetString("ExitMenuItem", resourceCulture);
+                return ResourceManager.GetString("ExitControlItem", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Ищет локализованную строку, похожую на Начать игру.
         /// </summary>
-        internal static string GameMenuItem {
+        internal static string GameControlItem {
             get {
-                return ResourceManager.GetString("GameMenuItem", resourceCulture);
+                return ResourceManager.GetString("GameControlItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на В игре есть 10 уровней. Задача игрока – пройти все уровни игры и набрать наименьшее количество «смертей»
+        ///при условии, что на каждом следующем уровне находится всё большее количество препятствий.
+        ///«Смерть» игрового квадрата не завершает игру, а заставляет начать неудачный уровень заново до 8 уровня.
+        ///Как только вы достигнете 8 уровеня, при каждой «смерти» вас будет отбрасывать на 1 уровень назад. 
+        ///Чтобы перейти на следующий уровень игровому квадрату необходимо «съесть» все игровые объекты,
+        ///находящиеся на  [остаток строки не уместился]&quot;;.
+        /// </summary>
+        internal static string GameRules {
+            get {
+                return ResourceManager.GetString("GameRules", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Ищет локализованную строку, похожую на Справка.
         /// </summary>
-        internal static string InfoMenuItem {
+        internal static string InfoControlItem {
             get {
-                return ResourceManager.GetString("InfoMenuItem", resourceCulture);
+                return ResourceManager.GetString("InfoControlItem", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Ищет локализованную строку, похожую на Главное меню.
         /// </summary>
-        internal static string MainMenuName {
+        internal static string MainMenuControlItem {
             get {
-                return ResourceManager.GetString("MainMenuName", resourceCulture);
+                return ResourceManager.GetString("MainMenuControlItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Управление меню осуществляется с помощью стрелок клавиатуры &quot;Вверх&quot;, &quot;Вниз&quot;.
+        ///С помощью этих клавиш происходит переключение фокуса мажду пунктами меню.
+        ///Подтверждение перехода осуществляется с помощью клавиши Enter.
+        ///Во время игры управление происходит с помощью стрелок клавиатуры:
+        ///&quot;Вверх&quot;, &quot;Вниз&quot;, &quot;Вправо&quot;, &quot;Влево&quot;.
+        ///Достаточно нажать и отпутить клавишу и игровой квадрат начнёт двигаться в нужную сторону,
+        ///пока не будет нажата стрелка другого направления..
+        /// </summary>
+        internal static string ManagementRules {
+            get {
+                return ResourceManager.GetString("ManagementRules", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Ищет локализованную строку, похожую на Рекорды.
         /// </summary>
-        internal static string RecordsMenuItem {
+        internal static string RecordsControlItem {
             get {
-                return ResourceManager.GetString("RecordsMenuItem", resourceCulture);
+                return ResourceManager.GetString("RecordsControlItem", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Ищет локализованную строку, похожую на TOUGH GROWTH.
         /// </summary>
-        internal static string Title {
+        internal static string TitlePassiveItem {
             get {
-                return ResourceManager.GetString("Title", resourceCulture);
+                return ResourceManager.GetString("TitlePassiveItem", resourceCulture);
             }
         }
     }

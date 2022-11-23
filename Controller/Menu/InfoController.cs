@@ -6,15 +6,13 @@ using System.Threading.Tasks;
 
 namespace Controller.Menu
 {
-    public abstract class MenuController : Controller
+    public abstract class InfoController : Controller
     {
+        protected Model.Menu.MenuScreen Info { get; set; }
 
-        protected Model.Menu.MenuScreen Menu { get; set; }
-
-        public MenuController()
-            : base()
+        public InfoController() : base()
         {
-            
+
         }
     }
 }

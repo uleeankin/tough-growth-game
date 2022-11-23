@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Model.Enums;
 
-namespace Model.Menu
+namespace Model.Items
 {
-    public class MenuItem
+    public class ControlItem : Item
     {
         public delegate void dSelected();
         public delegate void dRedrawItem();
@@ -16,7 +16,6 @@ namespace Model.Menu
         public event dRedrawItem RedrawItem = null;
        
         private States _state = States.Normal;
-        public string Name { get; private set; }
         public States State
         {
             get
@@ -37,11 +36,10 @@ namespace Model.Menu
             }
         }
         public int ID { get; private set; }
-        public MenuItem(int parId, string parName)
+        public ControlItem(int parId, string parName) : base(parName)
         {
             ID = parId;
             State = States.Normal;
-            Name = parName;
         }
     }
 }

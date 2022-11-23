@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Model
+namespace Model.Items
 {
-    public abstract class Model
+    public class PassiveItem : Item
     {
-        public Model()
+        public PassiveItem(string parText) : base(parText)
         {
 
         }
