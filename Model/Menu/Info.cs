@@ -13,10 +13,8 @@ namespace Model.Menu
     {
         public Info() : base()
         {
-            this.AddPassiveItem(new PassiveItem(
-                String.Join("\n", FileIO.FileReader(Properties.Resources.GameRulesFileName).ToArray())));
-            this.AddPassiveItem(new PassiveItem(
-                String.Join("\n", FileIO.FileReader(Properties.Resources.ManagementRulesFileName).ToArray())));
+            this.AddPassiveItem(new PassiveItem(Properties.Resources.GameRules));
+            this.AddPassiveItem(new PassiveItem(Properties.Resources.ManagementRules));
             this.AddControlItem(new ControlItem((int)ControlItemCode.MainMenu,
                                         Properties.Resources.MainMenuControlItem));
             this.FocusItemById((int)ControlItemCode.MainMenu);
