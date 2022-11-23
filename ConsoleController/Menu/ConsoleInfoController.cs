@@ -19,29 +19,29 @@ namespace ConsoleController.Menu
         private ViewInfo _viewInfo = null;
         private ConsoleControllersManager _controllersManager = null;
 
-        private ConsoleInfoController(ConsoleControllersManager parManager) : base()
+        private ConsoleInfoController() : base()
         {
-            Info = new Info();
-            _viewInfo = new ConsoleView.Menu.ConsoleViewInfo(Info);
-            _controllersManager = parManager;
-            foreach (Model.Items.ControlItem elItem in Info.ControlItems)
-            {
-                elItem.Selected += () => { _controllersManager.GetMove((ControlItemCode)elItem.ID); };
-            }
+            
         }
         
         public static ConsoleInfoController GetInstance(ConsoleControllersManager parManager)
         {
             if (_instance == null)
             {
-                _instance = new ConsoleInfoController(parManager);
+                _instance = new ConsoleInfoController();
+                _instance._controllersManager = parManager;
+            }
+            _instance.Info = new Info();
+            _instance._viewInfo = new ConsoleView.Menu.ConsoleViewInfo(_instance.Info);
+            foreach (Model.Items.ControlItem elItem in _instance.Info.ControlItems)
+            {
+                elItem.Selected += () => { _instance._controllersManager.GetMove((ControlItemCode)elItem.ID); };
             }
             return _instance;
         }
 
         public override void Start()
         {
-            _viewInfo.Draw();
             IsExit = false;
             do
             {

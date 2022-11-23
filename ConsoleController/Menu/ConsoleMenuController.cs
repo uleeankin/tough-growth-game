@@ -21,29 +21,29 @@ namespace ConsoleController.Menu
 
         private ConsoleControllersManager _controllersManager = null;
 
-        private ConsoleMenuController(ConsoleControllersManager parManager) : base()
+        private ConsoleMenuController() : base()
         {
-            Menu = new Model.Menu.MainMenu();
-            _viewMenu = new ConsoleView.Menu.ConsoleViewMenu(Menu);
-            _controllersManager = parManager;
-            foreach (Model.Items.ControlItem elItem in Menu.ControlItems)
-            {
-                elItem.Selected += () => { _controllersManager.GetMove((ControlItemCode)elItem.ID); };
-            }
+            
         }
 
         public static ConsoleMenuController GetInstance(ConsoleControllersManager parManager)
         {
             if (_instance == null)
             {
-                _instance = new ConsoleMenuController(parManager);
+                _instance = new ConsoleMenuController();
+                _instance._controllersManager = parManager;
+            }
+            _instance.Menu = new Model.Menu.MainMenu();
+            _instance._viewMenu = new ConsoleView.Menu.ConsoleViewMenu(_instance.Menu);
+            foreach (Model.Items.ControlItem elItem in _instance.Menu.ControlItems)
+            {
+                elItem.Selected += () => { _instance._controllersManager.GetMove((ControlItemCode)elItem.ID); };
             }
             return _instance;
         }
 
         public override void Start()
         {
-            _viewMenu.Draw();
             IsExit = false;
             do
             {

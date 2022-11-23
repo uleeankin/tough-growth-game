@@ -18,14 +18,14 @@ namespace ConsoleView.Menu
         //изменить в базовом классе на MenuScreen
         public ConsoleViewRecords(Model.Menu.MenuScreen parRecords) : base(parRecords)
         {
-            
+            Init();
+            Draw();
         }
 
         public override void Draw()
         {
-            Init();
+            Console.BackgroundColor = ConsoleColor.Black;
             Console.Clear();
-
             foreach (ViewPassiveItem elViewPassiveItem in Records)
             {
                 elViewPassiveItem.Draw();
