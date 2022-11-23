@@ -30,10 +30,7 @@ namespace ConsoleController
             switch (parCode)
             {
                 case ControlItemCode.Records:
-                    if (Records == null)
-                    {
-                        Records = ConsoleRecordsController.GetInstance(this);
-                    }
+                    Records = ConsoleRecordsController.GetInstance(this);
                     CurrentController = Records;
                     Records.Start();
                     break;

@@ -18,7 +18,7 @@ namespace ConsoleController.Menu
 
         private ViewRecords _viewRecords = null;
 
-        private ConsoleControllersManager _controllersManager = null;
+        //private ConsoleControllersManager _controllersManager = null;
 
         private ConsoleRecordsController() : base()
         {
@@ -30,13 +30,13 @@ namespace ConsoleController.Menu
             if (_instance == null)
             {
                 _instance = new ConsoleRecordsController();
-                _instance._controllersManager = parManager;
+                //_instance._controllersManager = parManager;
             }
             _instance.Records = new Model.Menu.Records();
             _instance._viewRecords = new ConsoleView.Menu.ConsoleViewRecords(_instance.Records);
             foreach (Model.Items.ControlItem elItem in _instance.Records.ControlItems)
             {
-                elItem.Selected += () => { _instance._controllersManager.GetMove((ControlItemCode)elItem.ID); };
+                elItem.Selected += () => { parManager.GetMove((ControlItemCode)elItem.ID); };
             }
             return _instance;
         }

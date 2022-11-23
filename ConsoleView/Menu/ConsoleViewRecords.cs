@@ -31,10 +31,7 @@ namespace ConsoleView.Menu
                 elViewPassiveItem.Draw();
             }*/
 
-            foreach (ViewControlItem elViewControlItem in BackToMenu)
-            {
-                elViewControlItem.Draw();
-            }
+            BackToMenu[0].Draw();
         }
 
         protected override ViewControlItem CreateControlItem(ControlItem parMenuItem)

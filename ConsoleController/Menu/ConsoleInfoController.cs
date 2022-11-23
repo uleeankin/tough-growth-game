@@ -17,7 +17,7 @@ namespace ConsoleController.Menu
         protected bool IsExit { get; set; }
 
         private ViewInfo _viewInfo = null;
-        private ConsoleControllersManager _controllersManager = null;
+        //private ConsoleControllersManager _controllersManager = null;
 
         private ConsoleInfoController() : base()
         {
@@ -29,13 +29,13 @@ namespace ConsoleController.Menu
             if (_instance == null)
             {
                 _instance = new ConsoleInfoController();
-                _instance._controllersManager = parManager;
+                //_instance._controllersManager = parManager;
             }
             _instance.Info = new Info();
             _instance._viewInfo = new ConsoleView.Menu.ConsoleViewInfo(_instance.Info);
             foreach (Model.Items.ControlItem elItem in _instance.Info.ControlItems)
             {
-                elItem.Selected += () => { _instance._controllersManager.GetMove((ControlItemCode)elItem.ID); };
+                elItem.Selected += () => { parManager.GetMove((ControlItemCode)elItem.ID); };
             }
             return _instance;
         }

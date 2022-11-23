@@ -19,7 +19,7 @@ namespace ConsoleController.Menu
 
         private ViewMenu _viewMenu = null;
 
-        private ConsoleControllersManager _controllersManager = null;
+        //private ConsoleControllersManager _controllersManager = null;
 
         private ConsoleMenuController() : base()
         {
@@ -31,13 +31,13 @@ namespace ConsoleController.Menu
             if (_instance == null)
             {
                 _instance = new ConsoleMenuController();
-                _instance._controllersManager = parManager;
+                //_instance._controllersManager = parManager;
             }
             _instance.Menu = new Model.Menu.MainMenu();
             _instance._viewMenu = new ConsoleView.Menu.ConsoleViewMenu(_instance.Menu);
             foreach (Model.Items.ControlItem elItem in _instance.Menu.ControlItems)
             {
-                elItem.Selected += () => { _instance._controllersManager.GetMove((ControlItemCode)elItem.ID); };
+                elItem.Selected += () => { parManager.GetMove((ControlItemCode)elItem.ID); };
             }
             return _instance;
         }
