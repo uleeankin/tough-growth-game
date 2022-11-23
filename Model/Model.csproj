@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Enums\ControlItemCode.cs" />
     <Compile Include="Enums\States.cs" />
+    <Compile Include="Items\Item.cs" />
     <Compile Include="Items\PassiveItem.cs" />
     <Compile Include="Menu\Info.cs" />
     <Compile Include="Menu\Records.cs" />

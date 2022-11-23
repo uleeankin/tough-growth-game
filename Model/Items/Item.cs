@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace Model.Items
 {
-    public class PassiveItem : Item
+    public abstract class Item
     {
-        public PassiveItem(string parText) : base(parText)
-        {
 
+        public string Text { get; private set; }
+
+        public Item(string parText)
+        {
+            Text = parText;
         }
     }
 }
