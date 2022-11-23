@@ -16,8 +16,6 @@ namespace ConsoleView.Menu
         public int WIDTH = 120;
         public int HEIGHT = 30;
 
-        private ConsoleView.Utils.CastomOutput _output = new Utils.CastomOutput();
-
         public ConsoleViewInfo(MenuScreen parInfo) : base(parInfo)
         {
             Init();

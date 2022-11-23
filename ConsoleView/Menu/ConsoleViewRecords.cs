@@ -26,10 +26,10 @@ namespace ConsoleView.Menu
         {
             Console.BackgroundColor = ConsoleColor.Black;
             Console.Clear();
-            foreach (ViewPassiveItem elViewPassiveItem in Records)
+            /*foreach (ViewPassiveItem elViewPassiveItem in Records)
             {
                 elViewPassiveItem.Draw();
-            }
+            }*/
 
             foreach (ViewControlItem elViewControlItem in BackToMenu)
             {
@@ -59,21 +59,13 @@ namespace ConsoleView.Menu
 
             Console.CursorVisible = false;
 
+            //Init button
             ViewControlItem[] button = BackToMenu;
             Height = button.Length;
             Width = button.Max(x => x.Width);
 
-            X = Console.WindowWidth / 2;
-            Y = Console.WindowHeight - Height - Height / 2;
-
-            int y = Y;
-
-            for (int i = 0; i < button.Length; i++)
-            {
-                button[i].X = X;
-                button[i].Y = y + (3 * i);
-                y++;
-            }
+            button[0].X = Console.WindowWidth / 2;
+            button[0].Y = Console.WindowHeight - Height * 4;
         }
     }
 }
