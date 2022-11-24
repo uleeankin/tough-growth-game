@@ -19,7 +19,6 @@ namespace ConsoleView.Menu
         public ConsoleViewInfo(MenuScreen parInfo) : base(parInfo)
         {
             Init();
-            Draw();
         }
 
         public override void Draw()

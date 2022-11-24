@@ -17,31 +17,29 @@ namespace ConsoleController.Menu
         protected bool IsExit { get; set; }
 
         private ViewInfo _viewInfo = null;
-        //private ConsoleControllersManager _controllersManager = null;
 
         private ConsoleInfoController() : base()
         {
-            
+            Info = new Info();
+            _viewInfo = new ConsoleView.Menu.ConsoleViewInfo(Info);
+            foreach (Model.Items.ControlItem elItem in Info.ControlItems)
+            {
+                elItem.Selected += () => { elItem.State = States.Focused; };
+            }
         }
         
-        public static ConsoleInfoController GetInstance(ConsoleControllersManager parManager)
+        public static ConsoleInfoController GetInstance()
         {
             if (_instance == null)
             {
                 _instance = new ConsoleInfoController();
-                //_instance._controllersManager = parManager;
-            }
-            _instance.Info = new Info();
-            _instance._viewInfo = new ConsoleView.Menu.ConsoleViewInfo(_instance.Info);
-            foreach (Model.Items.ControlItem elItem in _instance.Info.ControlItems)
-            {
-                elItem.Selected += () => { parManager.GetMove((ControlItemCode)elItem.ID); };
             }
             return _instance;
         }
 
         public override void Start()
         {
+            _viewInfo.Draw();
             IsExit = false;
             do
             {
@@ -50,6 +48,7 @@ namespace ConsoleController.Menu
                 {
                     case ConsoleKey.Enter:
                         Info.SelectFocusedItem();
+                        //ChangeController?.Invoke((ControlItemCode)elItem.ID);
                         break;
                 }
             } while (!IsExit);

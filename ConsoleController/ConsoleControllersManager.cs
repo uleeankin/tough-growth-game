@@ -17,36 +17,19 @@ namespace ConsoleController
 
         }
 
-        public override void Start()
+        protected override InfoController GetInfoController()
         {
-            Menu = ConsoleMenuController.GetInstance(this);
-            CurrentController = Menu;
-            CurrentController.Start();
+            return ConsoleInfoController.GetInstance();
         }
 
-        public override void GetMove(ControlItemCode parCode)
+        protected override MenuController GetMenuController()
         {
-            CurrentController.Stop();
-            switch (parCode)
-            {
-                case ControlItemCode.Records:
-                    Records = ConsoleRecordsController.GetInstance(this);
-                    CurrentController = Records;
-                    Records.Start();
-                    break;
-                case ControlItemCode.Info:
-                    Info = ConsoleInfoController.GetInstance(this);
-                    CurrentController = Info;
-                    Info.Start();
-                    break;
-                case ControlItemCode.MainMenu:
-                    Menu = ConsoleMenuController.GetInstance(this);
-                    CurrentController = Menu;
-                    Menu.Start();
-                    break;
-            }
+            return ConsoleMenuController.GetInstance();
         }
 
-
+        protected override RecordsController GetRecordsController()
+        {
+            return ConsoleRecordsController.GetInstance();
+        }
     }
 }

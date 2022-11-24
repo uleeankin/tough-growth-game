@@ -22,7 +22,6 @@ namespace ConsoleView.Menu
         public ConsoleViewMenu(MenuScreen parMenu) : base(parMenu)
         {
             Init();
-            Draw();
         }
 
         public override void Draw()

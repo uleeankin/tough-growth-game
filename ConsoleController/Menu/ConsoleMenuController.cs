@@ -19,31 +19,29 @@ namespace ConsoleController.Menu
 
         private ViewMenu _viewMenu = null;
 
-        //private ConsoleControllersManager _controllersManager = null;
-
         private ConsoleMenuController() : base()
         {
-            
-        }
-
-        public static ConsoleMenuController GetInstance(ConsoleControllersManager parManager)
-        {
-            if (_instance == null)
-            {
-                _instance = new ConsoleMenuController();
-                //_instance._controllersManager = parManager;
-            }
             _instance.Menu = new Model.Menu.MainMenu();
             _instance._viewMenu = new ConsoleView.Menu.ConsoleViewMenu(_instance.Menu);
             foreach (Model.Items.ControlItem elItem in _instance.Menu.ControlItems)
             {
-                elItem.Selected += () => { parManager.GetMove((ControlItemCode)elItem.ID); };
+                elItem.Selected += () => { elItem.State = States.Focused; };
             }
+        }
+
+        public static ConsoleMenuController GetInstance()
+        {
+            if (_instance == null)
+            {
+                _instance = new ConsoleMenuController();
+            }
+           
             return _instance;
         }
 
         public override void Start()
         {
+            _viewMenu.Draw();
             IsExit = false;
             do
             {

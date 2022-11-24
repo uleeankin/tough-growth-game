@@ -19,7 +19,6 @@ namespace ConsoleView.Menu
         public ConsoleViewRecords(Model.Menu.MenuScreen parRecords) : base(parRecords)
         {
             Init();
-            Draw();
         }
 
         public override void Draw()
