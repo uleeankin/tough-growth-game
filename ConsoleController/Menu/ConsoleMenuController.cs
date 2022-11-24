@@ -21,9 +21,9 @@ namespace ConsoleController.Menu
 
         private ConsoleMenuController() : base()
         {
-            _instance.Menu = new Model.Menu.MainMenu();
-            _instance._viewMenu = new ConsoleView.Menu.ConsoleViewMenu(_instance.Menu);
-            foreach (Model.Items.ControlItem elItem in _instance.Menu.ControlItems)
+            Menu = new Model.Menu.MainMenu();
+            _viewMenu = new ConsoleView.Menu.ConsoleViewMenu(Menu);
+            foreach (Model.Items.ControlItem elItem in Menu.ControlItems)
             {
                 elItem.Selected += () => { elItem.State = States.Focused; };
             }
@@ -56,6 +56,7 @@ namespace ConsoleController.Menu
                         break;
                     case ConsoleKey.Enter:
                         Menu.SelectFocusedItem();
+                        SwitchController((ControlItemCode)Menu.ControlItems[Menu.FocusedItemIndex].ID);
                         break;
                 }
 

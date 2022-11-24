@@ -48,7 +48,7 @@ namespace ConsoleController.Menu
                 {
                     case ConsoleKey.Enter:
                         Info.SelectFocusedItem();
-                        //ChangeController?.Invoke((ControlItemCode)elItem.ID);
+                        SwitchController((ControlItemCode)Info.ControlItems[Info.FocusedItemIndex].ID);
                         break;
                 }
             } while (!IsExit);

@@ -23,8 +23,8 @@ namespace ConsoleView.Items
 
         public override void Draw()
         {
-            _output.OutputButton(Item.Name,
-                X - Item.Name.Length / 2,
+            _output.OutputButton(Item.Text,
+                X - Item.Text.Length / 2,
                 Y, Item.State);
             
         }

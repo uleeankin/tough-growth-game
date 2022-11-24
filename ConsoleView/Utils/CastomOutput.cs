@@ -133,6 +133,7 @@ namespace ConsoleView.Utils
             int parCursorYPosition)
         {
             Console.SetCursorPosition(parCursorXPosition, parCursorYPosition);
+            Console.ForegroundColor = ConsoleColor.White;
             Console.Write(parString);
         }
     }

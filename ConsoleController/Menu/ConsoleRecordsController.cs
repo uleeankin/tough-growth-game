@@ -20,9 +20,9 @@ namespace ConsoleController.Menu
 
         private ConsoleRecordsController() : base()
         {
-            _instance.Records = new Model.Menu.Records();
-            _instance._viewRecords = new ConsoleView.Menu.ConsoleViewRecords(_instance.Records);
-            foreach (Model.Items.ControlItem elItem in _instance.Records.ControlItems)
+            Records = new Model.Menu.Records();
+            _viewRecords = new ConsoleView.Menu.ConsoleViewRecords(Records);
+            foreach (Model.Items.ControlItem elItem in Records.ControlItems)
             {
                 elItem.Selected += () => { elItem.State = States.Focused; };
             }
@@ -49,6 +49,7 @@ namespace ConsoleController.Menu
                 {
                     case ConsoleKey.Enter:
                         Records.SelectFocusedItem();
+                        SwitchController((ControlItemCode)Records.ControlItems[Records.FocusedItemIndex].ID);
                         break;
                 }
             } while (!IsExit);

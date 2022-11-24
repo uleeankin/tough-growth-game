@@ -56,13 +56,13 @@ namespace ConsoleView.Menu
 
             //Init rules
             X = 0;
-            Y = 4;
+            Y = 2;
             int y = Y;
             foreach(ViewPassiveItem elViewPassiveItem in Rules)
             {
                 elViewPassiveItem.X = X;
                 elViewPassiveItem.Y = y;
-                y = Console.CursorTop + 1;
+                y = Console.CursorTop + (Y + 1) * 4;
             } 
 
             //Init button
