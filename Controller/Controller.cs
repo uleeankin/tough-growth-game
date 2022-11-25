@@ -19,6 +19,11 @@ namespace Controller
             
         }
 
+        public void SwitchController(ControlItemCode parItemCode)
+        {
+            ChangeController?.Invoke(parItemCode);
+        }
+
         public abstract void Start();
         public abstract void Stop();
     }
