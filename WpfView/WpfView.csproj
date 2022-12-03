@@ -48,9 +48,13 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Items\WpfViewControlItem.cs" />
+    <Compile Include="Items\WpfViewPassiveItem.cs" />
+    <Compile Include="MainScreen.cs" />
+    <Compile Include="Menu\WpfViewInfo.cs" />
     <Compile Include="Menu\WpfViewMenu.cs" />
+    <Compile Include="Menu\WpfViewRecords.cs" />
     <Compile Include="Utils\CastomOutput.cs" />
-    <Compile Include="Menu\WpfViewMenuItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

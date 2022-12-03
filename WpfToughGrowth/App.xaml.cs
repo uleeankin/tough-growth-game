@@ -5,7 +5,6 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using WpfController.Menu;
 
 namespace WpfToughGrowth
 {
@@ -16,7 +15,9 @@ namespace WpfToughGrowth
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            new WpfMenuController();
+            Controller.ControllersManager manager = new WpfController.WpfControllersManager();
+            manager.Start();
         }
+
     }
 }

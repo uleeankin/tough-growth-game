@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D6A7F6CE-BD3C-40A5-9A9B-57D1F88A316C}</ProjectGuid>
+    <ProjectGuid>{2FDEE9C1-3FEE-4A7C-9DDE-497D54C357AF}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>WpfToughGrowth</RootNamespace>
     <AssemblyName>WpfToughGrowth</AssemblyName>
@@ -87,6 +87,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Controller\Controller.csproj">
+      <Project>{59a96049-4401-4df7-9192-dba49e4ad1d3}</Project>
+      <Name>Controller</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WpfController\WpfController.csproj">
       <Project>{df32cdda-b964-4dd3-af61-6829dcab5590}</Project>
       <Name>WpfController</Name>
