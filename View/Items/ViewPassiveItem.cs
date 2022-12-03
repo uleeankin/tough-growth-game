@@ -22,8 +22,8 @@ namespace View.Items
 
         public int X { get; set; }
         public int Y { get; set; }
-        public int Width { get; protected set; }
-        public int Height { get; protected set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
 
         public ViewPassiveItem(PassiveItem parPassiveItem)
         {
