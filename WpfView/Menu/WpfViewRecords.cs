@@ -43,12 +43,19 @@ namespace WpfView.Menu
             foreach (ViewPassiveItem elPassiveItem in Records)
             {
                 elPassiveItem.Y = 30;
-                elPassiveItem.X = TEXT_FONT_SIZE;
+                elPassiveItem.Height = TEXT_FONT_SIZE;
+                elPassiveItem.X = 0;
             }
 
             foreach (ViewControlItem elMenuItem in BackToMenu)
             {
-                elMenuItem.Y = elMenuItem.Height * 2;
+                if (Records.Length == 0)
+                {
+                    elMenuItem.Y = (int)_screen.Height - (int)(elMenuItem.Height * 2.5);
+                } else
+                {
+                    elMenuItem.Y = elMenuItem.Height * 2 - elMenuItem.Height / 2;
+                }
             }
         }
 

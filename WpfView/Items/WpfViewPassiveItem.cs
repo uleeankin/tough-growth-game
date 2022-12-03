@@ -24,7 +24,7 @@ namespace WpfView.Items
 
         public override void Draw()
         {
-            _text = _output.InitTextBlock(Item.Text, X, new Thickness(X * 2.7, Y, 0, 0));
+            _text = _output.InitTextBlock(Item.Text, Height, new Thickness(X, Y, 0, Y));
         }
 
         public void SetParentControl(FrameworkElement parControl)

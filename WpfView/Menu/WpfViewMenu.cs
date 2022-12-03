@@ -70,8 +70,9 @@ namespace WpfView.Menu
         {
             foreach (ViewPassiveItem elPassiveItem in Title)
             {
-                elPassiveItem.Y = 30;
-                elPassiveItem.X = 80;
+                elPassiveItem.Y = (int)_screen.Height % 100 / 2;
+                elPassiveItem.Height = (int)_screen.Width / 10 - ((int)_screen.Width / 40);
+                elPassiveItem.X = (int)_screen.Width / 4;
             }
 
             foreach (ViewControlItem elMenuItem in Menu)
