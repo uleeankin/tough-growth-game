@@ -27,6 +27,7 @@ namespace Model.Items
                 _state = value;
                 if (_state == States.Selected)
                 {
+                    _state = States.Focused;
                     Selected?.Invoke();
                 } 
                 else
