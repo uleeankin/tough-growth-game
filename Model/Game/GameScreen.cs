@@ -13,6 +13,8 @@ namespace Model.Game
         private Dictionary<int, GameObject> _gameObjects 
             = new Dictionary<int, GameObject>();
 
+
+        public bool HasMoving = false;
         public double ScreenHeight { get; set; }
         public double ScreenWidth { get; set; }
         public int Level { get; set; }
@@ -36,28 +38,31 @@ namespace Model.Game
         public GameScreen() : base()
         {
             _gameObjects.Add((int)GameObjectTypes.GAME_SQUARE, 
-                new GameSquare(GameObjectTypes.GAME_SQUARE, "ИК", 20, 20, 25));
+                new GameSquare(GameObjectTypes.GAME_SQUARE, "ИК", (int)ScreenWidth / 2, (int)ScreenHeight / 2, 625));
         }
 
         public void MoveUp()
         {
-            if (_gameObjects[(int)GameObjectTypes.GAME_SQUARE].Y < ScreenHeight)
-            {
-                _gameObjects[(int)GameObjectTypes.GAME_SQUARE].Y++;
-            }
-        }
-
-        public void MoveDown()
-        {
-            if (_gameObjects[(int)GameObjectTypes.GAME_SQUARE].Y > 0)
+            HasMoving = true;
+            while (_gameObjects[(int)GameObjectTypes.GAME_SQUARE].Y > 0 && HasMoving)
             {
                 _gameObjects[(int)GameObjectTypes.GAME_SQUARE].Y--;
             }
         }
 
+        public void MoveDown()
+        {
+            HasMoving = true;
+            while (_gameObjects[(int)GameObjectTypes.GAME_SQUARE].Y < ScreenHeight && HasMoving)
+            {
+                _gameObjects[(int)GameObjectTypes.GAME_SQUARE].Y++;
+            }
+        }
+
         public void MoveLeft()
         {
-            if (_gameObjects[(int)GameObjectTypes.GAME_SQUARE].X > 0)
+            HasMoving = true;
+            while (_gameObjects[(int)GameObjectTypes.GAME_SQUARE].X > 0 && HasMoving)
             {
                 _gameObjects[(int)GameObjectTypes.GAME_SQUARE].X--;
             }
@@ -65,7 +70,8 @@ namespace Model.Game
 
         public void MoveRight()
         {
-            if (_gameObjects[(int)GameObjectTypes.GAME_SQUARE].X < ScreenWidth)
+            HasMoving = true;
+            while (_gameObjects[(int)GameObjectTypes.GAME_SQUARE].X < ScreenWidth && HasMoving)
             {
                 _gameObjects[(int)GameObjectTypes.GAME_SQUARE].X++;
             }
