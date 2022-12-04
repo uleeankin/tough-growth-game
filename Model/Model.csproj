@@ -43,8 +43,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\BarrierType.cs" />
     <Compile Include="Enums\ControlItemCode.cs" />
+    <Compile Include="Enums\GameObjectsStates.cs" />
+    <Compile Include="Enums\GameObjectTypes.cs" />
     <Compile Include="Enums\States.cs" />
+    <Compile Include="Game\GameObjects\Circle.cs" />
+    <Compile Include="Game\GameObjects\GameObject.cs" />
+    <Compile Include="Game\GameObjects\GameSquare.cs" />
+    <Compile Include="Game\GameObjects\Hexagon.cs" />
+    <Compile Include="Game\GameObjects\Barrier.cs" />
+    <Compile Include="Game\GameObjects\PermanentSquare.cs" />
+    <Compile Include="Game\GameObjects\Rectangle.cs" />
+    <Compile Include="Game\GameObjects\Square.cs" />
+    <Compile Include="Game\GameObjects\Triangle.cs" />
+    <Compile Include="Game\GameScreen.cs" />
     <Compile Include="Items\Item.cs" />
     <Compile Include="Items\PassiveItem.cs" />
     <Compile Include="Menu\Info.cs" />
