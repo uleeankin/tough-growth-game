@@ -24,5 +24,23 @@ namespace Model.Game.GameObjects
         {
             Width = (int)Math.Sqrt(Area);
         }
+
+        public void MoveUp(int parStep)
+        {
+            Y -= parStep;
+        }
+
+        public void MoveDown(int parStep)
+        {
+            Y += parStep;
+        }
+        public void MoveLeft(int parStep)
+        {
+            X -= parStep;
+        }
+        public void MoveRight(int parStep)
+        {
+            X += parStep;
+        }
     }
 }
