@@ -49,13 +49,8 @@ namespace WpfView.Menu
 
             foreach (ViewControlItem elMenuItem in BackToMenu)
             {
-                if (Records.Length == 0)
-                {
-                    elMenuItem.Y = (int)_screen.Height - (int)(elMenuItem.Height * 2.5);
-                } else
-                {
-                    elMenuItem.Y = elMenuItem.Height * 2 - elMenuItem.Height / 2;
-                }
+                elMenuItem.Y = (int)_screen.Height - (int)(elMenuItem.Height * 2.5);
+                elMenuItem.X = (int)_screen.Width / 2 - (int)(elMenuItem.Width / 2);
             }
         }
 

@@ -48,6 +48,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Game\WpfGameController.cs" />
     <Compile Include="Menu\WpfInfoController.cs" />
     <Compile Include="Menu\WpfMenuController.cs" />
     <Compile Include="Menu\WpfRecordsController.cs" />
@@ -92,5 +93,6 @@
       <Name>WpfView</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

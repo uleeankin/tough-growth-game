@@ -19,19 +19,20 @@ namespace WpfView.Utils
 
         }
 
-        public Button InitButton(int parHeight, int parWidth, Thickness parThickness)
+        public Button InitButton(int parX, int parY, int parHeight, int parWidth)
         {
             Button button = new Button();   
             button.Height = parHeight;
             button.Width = parWidth;
-            button.Margin = parThickness;
             button.BorderBrush = Brushes.White;
             button.BorderThickness = new Thickness(BUTTON_BORDER_WIDTH);
             button.VerticalAlignment = VerticalAlignment.Bottom;
+            Canvas.SetTop(button, parY);
+            Canvas.SetLeft(button, parX);
             return button;
         }
 
-        public TextBlock InitTextBlock(string parText, int parFontSize, Thickness parMargin)
+        public TextBlock InitTextBlock(string parText, int parFontSize, int parX, int parY)
         {
             TextBlock textBlock = new TextBlock();
             textBlock.Text = parText;
@@ -40,7 +41,8 @@ namespace WpfView.Utils
             textBlock.HorizontalAlignment = HorizontalAlignment.Stretch;
             textBlock.FontFamily = new FontFamily(Properties.Resources.FontFamily);
             textBlock.VerticalAlignment = VerticalAlignment.Center;
-            textBlock.Margin = parMargin;
+            Canvas.SetTop(textBlock, parY);
+            Canvas.SetLeft(textBlock, parX);
             return textBlock;
         }
     }

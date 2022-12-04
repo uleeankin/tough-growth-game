@@ -48,6 +48,9 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Game\GameObjects\WpfViewGameObject.cs" />
+    <Compile Include="Game\GameObjects\WpfViewGameSquare.cs" />
+    <Compile Include="Game\WpfViewGame.cs" />
     <Compile Include="Items\WpfViewControlItem.cs" />
     <Compile Include="Items\WpfViewPassiveItem.cs" />
     <Compile Include="MainScreen.cs" />
@@ -55,6 +58,8 @@
     <Compile Include="Menu\WpfViewMenu.cs" />
     <Compile Include="Menu\WpfViewRecords.cs" />
     <Compile Include="Utils\CastomOutput.cs" />
+    <Compile Include="Utils\WpfCoordinatesConverter.cs" />
+    <Compile Include="Utils\WpfShapesCreator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -89,5 +94,6 @@
       <Name>View</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

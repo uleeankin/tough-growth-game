@@ -31,10 +31,9 @@ namespace WpfView.Items
 
         private void Init()
         {
-            _button = _output.InitButton(HEIGHT, WIDTH,
-                                        new Thickness(0, Y, 0, 0));
+            _button = _output.InitButton(X, Y, HEIGHT, WIDTH);
             _text = _output.InitTextBlock(Item.Text, FONT_SIZE,
-                                           new Thickness(0));
+                                           X, Y);
 
             _button.Content = _text;
         }

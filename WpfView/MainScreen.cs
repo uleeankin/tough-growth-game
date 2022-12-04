@@ -16,14 +16,14 @@ namespace WpfView
         private const int WIDTH = 1000;
 
         private static MainScreen _instance;
-        public StackPanel Screen { get; }
+        public Canvas Screen { get; }
 
         private MainScreen()
         {
             Width = WIDTH;
             Height = HEIGHT;
             ResizeMode = ResizeMode.NoResize;
-            Screen = new StackPanel();
+            Screen = new Canvas();
             Screen.Width = WIDTH;
             Screen.Height = HEIGHT;
             Screen.Background = new SolidColorBrush(Colors.Black);

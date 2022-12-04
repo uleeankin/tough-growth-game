@@ -75,9 +75,13 @@ namespace WpfView.Menu
                 elPassiveItem.X = (int)_screen.Width / 4;
             }
 
+            int y = (int)_screen.Height / 2 - Menu.Length * Menu[0].Height / 2; ;
+
             foreach (ViewControlItem elMenuItem in Menu)
             {
-                elMenuItem.Y = 15;
+                elMenuItem.Y = y;
+                elMenuItem.X = (int)_screen.Width / 2 - elMenuItem.Width / 2;
+                y += elMenuItem.Height + elMenuItem.Height / 2;
             }
         }
     }
