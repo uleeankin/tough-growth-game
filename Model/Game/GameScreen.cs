@@ -36,22 +36,22 @@ namespace Model.Game
         public GameScreen() : base()
         {
             _gameObjects.Add((int)GameObjectTypes.GAME_SQUARE, 
-                new GameSquare(GameObjectTypes.GAME_SQUARE, "ИК", 20, 20, 25));
+                new GameSquare(GameObjectTypes.GAME_SQUARE, "ИК", (int)ScreenWidth / 2, (int)ScreenHeight / 2, 625));
         }
 
         public void MoveUp()
         {
-            if (_gameObjects[(int)GameObjectTypes.GAME_SQUARE].Y < ScreenHeight)
+            if (_gameObjects[(int)GameObjectTypes.GAME_SQUARE].Y > 0)
             {
-                _gameObjects[(int)GameObjectTypes.GAME_SQUARE].Y++;
+                _gameObjects[(int)GameObjectTypes.GAME_SQUARE].Y--;
             }
         }
 
         public void MoveDown()
         {
-            if (_gameObjects[(int)GameObjectTypes.GAME_SQUARE].Y > 0)
+            if (_gameObjects[(int)GameObjectTypes.GAME_SQUARE].Y < ScreenHeight)
             {
-                _gameObjects[(int)GameObjectTypes.GAME_SQUARE].Y--;
+                _gameObjects[(int)GameObjectTypes.GAME_SQUARE].Y++;
             }
         }
 
