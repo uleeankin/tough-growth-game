@@ -12,6 +12,10 @@ namespace WpfView.Utils
 {
     public class WpfShapesCreator
     {
+        private static readonly Brush GAME_SQUARE_COLOR = Brushes.Magenta;
+        private static readonly Brush GAME_OBJECT_BOUNDS_COLOR = Brushes.White;
+        private static readonly int BOUNDS_THICKNESS = 3;
+
         public static Shape CreateGameObjectView(GameObjectTypes parGameObjectType,
                                                     int parHeight, int parWidth,
                                                     int parX, int parY)
@@ -20,23 +24,38 @@ namespace WpfView.Utils
             switch(parGameObjectType)
             {
                 case GameObjectTypes.GAME_SQUARE:
-                    shape = CreateGameSquare(parWidth, parX, parY);
+                    shape = CreateRectangleGroup(parHeight, parWidth, parX, parY, GAME_SQUARE_COLOR, GAME_OBJECT_BOUNDS_COLOR);
                     break;
             }
             return shape;
         }
 
-        private static Shape CreateGameSquare(int parWidth, int parX, int parY)
+        private static Shape CreateRectangleGroup(int parWidth, int parHeight, 
+                                                    int parX, int parY, 
+                                                    Brush parShapeColor, 
+                                                    Brush parShapeBoundsColor)
         {
             Shape rectangle = new Rectangle();
             rectangle.Width = parWidth;
-            rectangle.Height = parWidth;
-            rectangle.Fill = Brushes.Magenta;
-            rectangle.Stroke = Brushes.White;
-            rectangle.StrokeThickness = 3;
+            rectangle.Height = parHeight;
+            rectangle.Fill = parShapeColor;
+            rectangle.Stroke = parShapeBoundsColor;
+            rectangle.StrokeThickness = BOUNDS_THICKNESS;
             Canvas.SetTop(rectangle, parY);
             Canvas.SetLeft(rectangle, parX);
             return rectangle;
+        }
+
+        private static Shape CreatePolygonGroup()
+        {
+            Shape polygon = new Polygon();
+            return polygon;
+        }
+
+        private static Shape CreateEllipseGroup()
+        {
+            Shape ellipse = new Ellipse();
+            return ellipse;
         }
     }
 }

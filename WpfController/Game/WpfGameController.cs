@@ -9,6 +9,7 @@ using View.Game;
 using WpfView;
 using Model.Game;
 using Model.Enums;
+using Model.Game.GameObjects;
 
 namespace WpfController.Game
 {
@@ -43,16 +44,16 @@ namespace WpfController.Game
             switch (e.Key)
             {
                 case Key.Up:
-                    Game.MoveUp();
+                    Game.MoveUp((GameSquare)Game.GameObjects[(int)GameObjectTypes.GAME_SQUARE]);
                     break;
                 case Key.Down:
-                    Game.MoveDown();
+                    Game.MoveDown((GameSquare)Game.GameObjects[(int)GameObjectTypes.GAME_SQUARE]);
                     break;
                 case Key.Left:
-                    Game.MoveLeft();
+                    Game.MoveLeft((GameSquare)Game.GameObjects[(int)GameObjectTypes.GAME_SQUARE]);
                     break;
                 case Key.Right:
-                    Game.MoveRight();
+                    Game.MoveRight((GameSquare)Game.GameObjects[(int)GameObjectTypes.GAME_SQUARE]);
                     break;
                 case Key.Escape:
                     SwitchController(ControlItemCode.MainMenu);
@@ -64,11 +65,14 @@ namespace WpfController.Game
         {
             _screen.KeyDown += OnKeyDownHandler;
             _viewGame.Draw();
+            ((GameSquare)Game.GameObjects[(int)GameObjectTypes.GAME_SQUARE])
+                .StartMotion(10, (int)Game.ScreenHeight, (int)Game.ScreenWidth);
         }
 
         public override void Stop()
         {
             _screen.KeyDown -= OnKeyDownHandler;
+            ((GameSquare)Game.GameObjects[(int)GameObjectTypes.GAME_SQUARE]).StopMotion();
         }
     }
 }
