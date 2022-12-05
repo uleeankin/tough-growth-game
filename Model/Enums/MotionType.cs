@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Model.Enums
 {
-    public enum GameObjectsStates : int
+    public enum MotionType : int
     {
-        INACTIVE,
-        BARRIER,
-        FOOD,
-        EATEN,
-        NO_STATE
+        UP,
+        DOWN,
+        LEFT,
+        RIGHT,
+        NO_MOTION
     }
 }

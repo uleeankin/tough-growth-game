@@ -9,6 +9,12 @@ namespace Model.Enums
 {
     public enum GameObjectTypes : int
     {
-        GAME_SQUARE
+        GAME_SQUARE,
+        PERMANENT_SQUARE,
+        SQUARE,
+        CIRCLE,
+        RECTANGLE,
+        TRIANGLE,
+        HEXAGON
     }
 }

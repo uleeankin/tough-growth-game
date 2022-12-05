@@ -47,6 +47,7 @@
     <Compile Include="Enums\ControlItemCode.cs" />
     <Compile Include="Enums\GameObjectsStates.cs" />
     <Compile Include="Enums\GameObjectTypes.cs" />
+    <Compile Include="Enums\MotionType.cs" />
     <Compile Include="Enums\States.cs" />
     <Compile Include="Game\GameObjects\Circle.cs" />
     <Compile Include="Game\GameObjects\GameObject.cs" />

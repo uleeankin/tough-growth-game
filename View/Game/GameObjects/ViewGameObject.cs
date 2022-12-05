@@ -19,10 +19,10 @@ namespace View.Game.GameObjects
             }
         }
 
-        public int X { get; set; }
-        public int Y { get; set; }
-        public int Width { get; protected set; }
-        public int Height { get; protected set; }
+        public double X { get; set; }
+        public double Y { get; set; }
+        public double Width { get; protected set; }
+        public double Height { get; protected set; }
 
         public ViewGameObject(GameObject parGameObject)
         {

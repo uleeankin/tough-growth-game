@@ -37,44 +37,96 @@ namespace Model.Game
 
         public GameScreen() : base()
         {
-            _gameObjects.Add((int)GameObjectTypes.GAME_SQUARE, 
+            _gameObjects.Add((int)GameObjectTypes.GAME_SQUARE,
                 new GameSquare(GameObjectTypes.GAME_SQUARE, "ИК", 500, 275, 625));
+            PermanentSquare permanentSquare = new PermanentSquare(GameObjectTypes.PERMANENT_SQUARE, "ПСК", 275, 275, 400);
+            permanentSquare.NeedNewPosition += SetPermanentSquareCoordinates;
+            _gameObjects.Add((int)GameObjectTypes.PERMANENT_SQUARE, permanentSquare);
         }
 
-        public void MoveUp()
+        private void SetPermanentSquareCoordinates()
         {
-            if (_gameObjects[(int)GameObjectTypes.GAME_SQUARE].Y > 0)
+            Random random = new Random();
+            GameObjects[(int)GameObjectTypes.PERMANENT_SQUARE].X =
+                random.NextDouble() * (ScreenWidth - GameObjects[(int)GameObjectTypes.PERMANENT_SQUARE].Width * 3);
+            GameObjects[(int)GameObjectTypes.PERMANENT_SQUARE].Y =
+                random.NextDouble() * (ScreenHeight - GameObjects[(int)GameObjectTypes.PERMANENT_SQUARE].Height * 3);
+
+        }
+
+        private void Move(GameSquare parGameSquare, MotionType parMotionType)
+        {
+            //parGameSquare.ChangeDirection(parMotionType);
+            if (parMotionType == MotionType.UP)
             {
-                ((GameSquare)_gameObjects[(int)GameObjectTypes.GAME_SQUARE]).MoveUp(
-                    _gameObjects[(int)GameObjectTypes.GAME_SQUARE].Height / 2);
+                parGameSquare.Y -= parGameSquare.Height / 2;
+            }
+            if (parMotionType == MotionType.DOWN)
+            {
+                parGameSquare.Y += parGameSquare.Height / 2;
+            }
+            if (parMotionType == MotionType.LEFT)
+            {
+                parGameSquare.X -= parGameSquare.Height / 2;
+            }
+            if (parMotionType == MotionType.RIGHT)
+            {
+                parGameSquare.X += parGameSquare.Height / 2;
+            }
+            CheckIntersections();
+        }
+
+        private void CheckIntersections()
+        {
+            GameObject gameSquare = GameObjects[(int)GameObjectTypes.GAME_SQUARE];
+            foreach (GameObject elGameObject in GameObjects)
+            {
+                if (elGameObject.ID != GameObjectTypes.GAME_SQUARE)
+                {
+                    if (GetXIntersection(elGameObject.X, gameSquare.X, gameSquare.Width / 2)
+                        && GetYIntersection(elGameObject.Y, gameSquare.Y, gameSquare.Height / 2))
+                    {
+                        if (gameSquare.Area >= elGameObject.Area)
+                        {
+                            if (elGameObject.State == GameObjectsStates.FOOD)
+                            {
+                                gameSquare.Area += elGameObject.Area;
+                                elGameObject.State = GameObjectsStates.EATEN;
+                            }
+                        }
+                    }
+                }
             }
         }
 
-        public void MoveDown()
+        private bool GetXIntersection(double parObjectX, double parGameSquareX, double parDelta)
         {
-            if (_gameObjects[(int)GameObjectTypes.GAME_SQUARE].Y < ScreenHeight)
-            {
-                ((GameSquare)_gameObjects[(int)GameObjectTypes.GAME_SQUARE]).MoveDown(
-                    _gameObjects[(int)GameObjectTypes.GAME_SQUARE].Height / 2);
-            }
+            return (parGameSquareX <= parObjectX && parObjectX <= (parGameSquareX + parDelta))
+                || ((parGameSquareX - parDelta) <= parObjectX && parObjectX <= parGameSquareX);
         }
 
-        public void MoveLeft()
+        private bool GetYIntersection(double parObjectY, double parGameSquareY, double parDelta)
         {
-            if (_gameObjects[(int)GameObjectTypes.GAME_SQUARE].X > 0)
-            {
-                ((GameSquare)_gameObjects[(int)GameObjectTypes.GAME_SQUARE]).MoveLeft(
-                    _gameObjects[(int)GameObjectTypes.GAME_SQUARE].Height / 2);
-            }
+            return (parGameSquareY <= parObjectY && parObjectY <= (parGameSquareY + parDelta))
+                || ((parGameSquareY - parDelta) <= parObjectY && parObjectY <= parGameSquareY);
         }
 
-        public void MoveRight()
+        public void MoveUp(GameSquare parGameSquare)
         {
-            if (_gameObjects[(int)GameObjectTypes.GAME_SQUARE].X < ScreenWidth)
-            {
-                ((GameSquare)_gameObjects[(int)GameObjectTypes.GAME_SQUARE]).MoveRight(
-                    _gameObjects[(int)GameObjectTypes.GAME_SQUARE].Height / 2);
-            }
+            Move(parGameSquare, MotionType.UP);
+        }
+
+        public void MoveDown(GameSquare parGameSquare)
+        {
+            Move(parGameSquare, MotionType.DOWN);
+        }
+        public void MoveLeft(GameSquare parGameSquare)
+        {
+            Move(parGameSquare, MotionType.LEFT);
+        }
+        public void MoveRight(GameSquare parGameSquare)
+        {
+            Move(parGameSquare, MotionType.RIGHT);
         }
     }
 }
