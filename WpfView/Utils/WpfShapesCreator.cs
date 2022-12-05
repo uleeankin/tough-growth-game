@@ -13,25 +13,31 @@ namespace WpfView.Utils
     public class WpfShapesCreator
     {
         private static readonly Brush GAME_SQUARE_COLOR = Brushes.Magenta;
-        private static readonly Brush GAME_OBJECT_BOUNDS_COLOR = Brushes.White;
+        private static readonly Brush BOUNDS_COLOR = Brushes.White;
+        private static readonly Brush FOOD_STATE_COLOR = Brushes.Yellow;
         private static readonly int BOUNDS_THICKNESS = 3;
 
         public static Shape CreateGameObjectView(GameObjectTypes parGameObjectType,
-                                                    int parHeight, int parWidth,
-                                                    int parX, int parY)
+                                                    double parHeight, double parWidth,
+                                                    double parX, double parY)
         {
             Shape shape = null;
             switch(parGameObjectType)
             {
                 case GameObjectTypes.GAME_SQUARE:
-                    shape = CreateRectangleGroup(parHeight, parWidth, parX, parY, GAME_SQUARE_COLOR, GAME_OBJECT_BOUNDS_COLOR);
+                    shape = CreateRectangleGroup(parHeight, parWidth, parX, parY,
+                        GAME_SQUARE_COLOR, BOUNDS_COLOR);
+                    break;
+                case GameObjectTypes.PERMANENT_SQUARE:
+                    shape = CreateRectangleGroup(parHeight, parWidth, parX, parY,
+                        FOOD_STATE_COLOR, BOUNDS_COLOR);
                     break;
             }
             return shape;
         }
 
-        private static Shape CreateRectangleGroup(int parWidth, int parHeight, 
-                                                    int parX, int parY, 
+        private static Shape CreateRectangleGroup(double parWidth, double parHeight, 
+                                                    double parX, double parY, 
                                                     Brush parShapeColor, 
                                                     Brush parShapeBoundsColor)
         {

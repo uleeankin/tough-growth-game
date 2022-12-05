@@ -26,9 +26,9 @@ namespace WpfView.Game
         public override void Draw()
         {
             _screen.Screen.Children.Clear();
-            foreach (ViewGameObject elGameObjects in Objects)
+            foreach (ViewGameObject elGameObject in Objects)
             {
-                elGameObjects.Draw();
+                elGameObject.Draw();
             }
             this.SetParentControl(_screen.Screen);
         }
@@ -45,9 +45,9 @@ namespace WpfView.Game
 
         private void SetParentControl(FrameworkElement parParent)
         {
-            foreach (ViewGameObject elGameObjects in Objects)
+            foreach (ViewGameObject elGameObject in Objects)
             {
-                ((WpfViewGameObject)elGameObjects).SetParentControl(parParent);
+                ((WpfViewGameObject)elGameObject).SetParentControl(parParent);
             }
         }
     }

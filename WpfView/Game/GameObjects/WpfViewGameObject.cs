@@ -41,6 +41,10 @@ namespace WpfView.Game.GameObjects
         {
             X = Object.X;
             Y = Object.Y;
+            Height = Object.Height;
+            Width = Object.Width;
+            _shape.Width = Width;
+            _shape.Height = Height;
             Canvas.SetLeft(_shape, X);
             Canvas.SetTop(_shape, Y);
         }
