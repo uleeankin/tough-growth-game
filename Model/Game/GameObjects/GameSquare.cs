@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Model.Enums;
 
@@ -9,38 +10,100 @@ namespace Model.Game.GameObjects
 {
     public class GameSquare : GameObject
     {
-        public GameSquare(GameObjectTypes parID, string parIDName, int parX, 
-            int parY, int parArea) : base(parID, parIDName, parX, parY, parArea)
+        //private bool _isNeedStop = false;
+        private MotionType _motionDirection = MotionType.NO_MOTION;
+        public MotionType MotionDirection
         {
-            
+            get
+            {
+                return _motionDirection;
+            }
+            set
+            {
+                _motionDirection = value;
+            }
+        }
+
+        public GameSquare(GameObjectTypes parID, string parIDName, double parX,
+            double parY, double parArea) : base(parID, parIDName, parX, parY, parArea)
+        {
+
         }
 
         public override void SetHeight()
         {
-            Height = (int)Math.Sqrt(Area);
+            Height = Math.Sqrt(Area);
         }
 
         public override void SetWidth()
         {
-            Width = (int)Math.Sqrt(Area);
+            Width = Math.Sqrt(Area);
         }
 
-        public void MoveUp(int parStep)
+        /*public void StartMotion(double parStep, double parScreenYBound, double parScreenXBound)
+        {
+            _isNeedStop = false;
+            new Thread(() =>
+            {
+                while (!_isNeedStop)
+                {
+                    if (this.Y - parStep > 0
+                            && this.Y + parStep < parScreenYBound
+                            && this.X - parStep > 0
+                            && this.X + parStep < parScreenXBound)
+                    {
+                        if (MotionDirection == MotionType.UP)
+                        {
+                            MoveUp(parStep);
+                        }
+                        if (MotionDirection == MotionType.DOWN)
+                        {
+                            MoveDown(parStep);
+                        }
+                        if (MotionDirection == MotionType.LEFT)
+                        {
+                            MoveLeft(parStep);
+                        }
+                        if (MotionDirection == MotionType.RIGHT)
+                        {
+                            MoveRight(parStep);
+                        }
+                    }
+
+                    Console.WriteLine($"{X};{Y}");
+                    Thread.Sleep(1000);
+                }
+            }
+            ).Start();
+
+        }*/
+
+        /*public void ChangeDirection(MotionType parMotionType)
+        {
+            MotionDirection = parMotionType;
+        }
+
+        public void StopMotion()
+        {
+            _isNeedStop = true;
+        }
+
+        private void MoveUp(int parStep)
         {
             Y -= parStep;
         }
 
-        public void MoveDown(int parStep)
+        private void MoveDown(int parStep)
         {
             Y += parStep;
         }
-        public void MoveLeft(int parStep)
+        private void MoveLeft(int parStep)
         {
             X -= parStep;
         }
-        public void MoveRight(int parStep)
+        private void MoveRight(int parStep)
         {
             X += parStep;
-        }
+        }*/
     }
 }

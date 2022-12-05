@@ -13,14 +13,14 @@ namespace Model.Game.GameObjects
         public delegate void dRedraw();
         public event dRedraw Redraw = null;
 
-        private int _x;
-        private int _y;
-        private int _area;
+        private double _x;
+        private double _y;
+        private double _area;
 
         public GameObjectTypes ID { get; set; }
         public string IDName { get; set; }
 
-        public int X
+        public double X
         {
             get
             {
@@ -32,7 +32,7 @@ namespace Model.Game.GameObjects
                 Redraw?.Invoke();
             }
         }
-        public int Y
+        public double Y
         {
             get
             {
@@ -45,7 +45,7 @@ namespace Model.Game.GameObjects
             }
         }
 
-        public int Area
+        public double Area
         {
             get
             {
@@ -60,10 +60,11 @@ namespace Model.Game.GameObjects
             }
         }
 
-        public int Height { get; protected set; }
-        public int Width { get; protected set; }
+        public virtual GameObjectsStates State { get; set; }
+        public double Height { get; protected set; }
+        public double Width { get; protected set; }
         
-        public GameObject(GameObjectTypes parID, string parIDName, int parX, int parY, int parArea)
+        public GameObject(GameObjectTypes parID, string parIDName, double parX, double parY, double parArea)
         {
             ID = parID;
             IDName = parIDName;
