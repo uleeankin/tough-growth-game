@@ -11,8 +11,8 @@ namespace Model.Game
     public class GameScreen : Screen
     {
 
-        private Dictionary<int, GameObject> _gameObjects 
-            = new Dictionary<int, GameObject>();
+        private List<GameObject> _gameObjects 
+            = new List<GameObject>();
 
 
         public double ScreenHeight { get; set; }
@@ -23,7 +23,7 @@ namespace Model.Game
         {
             get
             {
-                return _gameObjects.Values.ToArray();
+                return _gameObjects.ToArray();
             }
         }
 
@@ -31,17 +31,18 @@ namespace Model.Game
         {
             get
             {
-                return _gameObjects[parId];
+                return _gameObjects.Find((x) => (int)x.ID == parId);
             }
         }
 
         public GameScreen() : base()
         {
-            _gameObjects.Add((int)GameObjectTypes.GAME_SQUARE,
-                new GameSquare(GameObjectTypes.GAME_SQUARE, "ИК", 500, 275, 625));
-            PermanentSquare permanentSquare = new PermanentSquare(GameObjectTypes.PERMANENT_SQUARE, "ПСК", 275, 275, 400);
+            _gameObjects.Add(new GameSquare(GameObjectTypes.GAME_SQUARE, "ИК", 50, 450, 625));
+            PermanentSquare permanentSquare = new PermanentSquare(GameObjectTypes.PERMANENT_SQUARE, "ПСК", 900, 70, 400);
             permanentSquare.NeedNewPosition += SetPermanentSquareCoordinates;
-            _gameObjects.Add((int)GameObjectTypes.PERMANENT_SQUARE, permanentSquare);
+            _gameObjects.Add(permanentSquare);
+            _gameObjects.Add(new Square(GameObjectTypes.SQUARE, "КВ", 600, 150, 2500));
+            _gameObjects.Add(new Square(GameObjectTypes.SQUARE, "КВ", 300, 250, 1600));
         }
 
         private void SetPermanentSquareCoordinates()

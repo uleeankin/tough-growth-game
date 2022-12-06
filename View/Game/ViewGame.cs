@@ -11,9 +11,9 @@ namespace View.Game
     {
         private Model.Game.GameScreen _gameScreen = null;
 
-        private Dictionary<int, ViewGameObject> _gameObjects = null;
+        private List<ViewGameObject> _gameObjects = null;
 
-        protected ViewGameObject[] Objects => _gameObjects.Values.ToArray();
+        protected ViewGameObject[] Objects => _gameObjects.ToArray();
 
         public int X { get; set; }
         public int Y { get; set; }
@@ -24,18 +24,18 @@ namespace View.Game
         {
             get
             {
-                return _gameObjects[parId];
+                return _gameObjects.Find((x) => (int)x.Object.ID == parId);
             }
         }
 
         public ViewGame(Model.Game.GameScreen parGameScreen)
         {
             _gameScreen = parGameScreen;
-            _gameObjects = new Dictionary<int, ViewGameObject>();
+            _gameObjects = new List<ViewGameObject>();
 
             foreach (Model.Game.GameObjects.GameObject elGameObject in parGameScreen.GameObjects)
             {
-                _gameObjects.Add((int)elGameObject.ID, CreateGameObject(elGameObject));
+                _gameObjects.Add(CreateGameObject(elGameObject));
             }
         }
 
