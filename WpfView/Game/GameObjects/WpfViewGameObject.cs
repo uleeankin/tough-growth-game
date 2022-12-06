@@ -25,11 +25,7 @@ namespace WpfView.Game.GameObjects
 
         private void Init()
         {
-            Height = Object.Height;
-            Width = Object.Width;
-            X = Object.X;
-            Y = Object.Y;
-            _shape = WpfShapesCreator.CreateGameObjectView(Object.ID, Height, Width, X, Y);
+            _shape = WpfShapesCreator.CreateGameObjectView(Object);
         }
 
         public override void Draw()
@@ -45,6 +41,7 @@ namespace WpfView.Game.GameObjects
             Width = Object.Width;
             _shape.Width = Width;
             _shape.Height = Height;
+            WpfShapesCreator.SetColorByState(Object.ID, Object.State, _shape);
             Canvas.SetLeft(_shape, X);
             Canvas.SetTop(_shape, Y);
         }
