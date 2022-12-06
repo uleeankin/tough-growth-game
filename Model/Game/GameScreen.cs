@@ -42,6 +42,7 @@ namespace Model.Game
             PermanentSquare permanentSquare = new PermanentSquare(GameObjectTypes.PERMANENT_SQUARE, "ПСК", 275, 275, 400);
             permanentSquare.NeedNewPosition += SetPermanentSquareCoordinates;
             _gameObjects.Add((int)GameObjectTypes.PERMANENT_SQUARE, permanentSquare);
+            _gameObjects.Add((int)GameObjectTypes.SQUARE, new Square(GameObjectTypes.SQUARE, "КВ", 600, 150, 2500));
         }
 
         private void SetPermanentSquareCoordinates()

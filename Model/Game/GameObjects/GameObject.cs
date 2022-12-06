@@ -16,6 +16,7 @@ namespace Model.Game.GameObjects
         private double _x;
         private double _y;
         private double _area;
+        private GameObjectsStates _state = GameObjectsStates.INACTIVE;
 
         public GameObjectTypes ID { get; set; }
         public string IDName { get; set; }
@@ -60,7 +61,18 @@ namespace Model.Game.GameObjects
             }
         }
 
-        public virtual GameObjectsStates State { get; set; }
+        public virtual GameObjectsStates State
+        {
+            get
+            {
+                return _state;
+            }
+            set
+            {
+                _state = value;
+                Redraw?.Invoke();
+            }
+        }
         public double Height { get; protected set; }
         public double Width { get; protected set; }
         
