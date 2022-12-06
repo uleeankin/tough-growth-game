@@ -11,7 +11,7 @@ namespace View.Game.GameObjects
     {
         private GameObject _gameObject = null;
 
-        protected GameObject Object
+        public GameObject Object
         {
             get
             {
