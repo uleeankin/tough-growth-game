@@ -12,6 +12,7 @@ namespace Model.Game.GameObjects
     {
         //private bool _isNeedStop = false;
         private MotionType _motionDirection = MotionType.NO_MOTION;
+        private GameObjectsStates _state = GameObjectsStates.NO_STATE;
         public MotionType MotionDirection
         {
             get
@@ -21,6 +22,17 @@ namespace Model.Game.GameObjects
             set
             {
                 _motionDirection = value;
+            }
+        }
+        public override GameObjectsStates State
+        {
+            get
+            {
+                return _state;
+            }
+            set
+            {
+                _state = value;
             }
         }
 
