@@ -40,7 +40,7 @@ namespace WpfView.Game
 
         protected override void Redraw()
         {
-            
+            Draw();
         }
 
         private void SetParentControl(FrameworkElement parParent)
