@@ -31,6 +31,7 @@ namespace View.Game
         public ViewGame(Model.Game.GameScreen parGameScreen)
         {
             _gameScreen = parGameScreen;
+            _gameScreen.NeedRedraw += Redraw;
             _gameObjects = new List<ViewGameObject>();
 
             foreach (Model.Game.GameObjects.GameObject elGameObject in parGameScreen.GameObjects)

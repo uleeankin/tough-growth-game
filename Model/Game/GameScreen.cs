@@ -5,14 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 using Model.Game.GameObjects;
 using Model.Enums;
+using Model.Utils;
 
 namespace Model.Game
 {
     public class GameScreen : Screen
     {
+        public delegate void dNeedRedraw();
+        public event dNeedRedraw NeedRedraw = null;
 
         private List<GameObject> _gameObjects 
             = new List<GameObject>();
+
+        private Dictionary<int, List<GameObject>> _levelObjects
+            = new Dictionary<int, List<GameObject>>();
 
 
         public double ScreenHeight { get; set; }
@@ -37,12 +43,15 @@ namespace Model.Game
 
         public GameScreen() : base()
         {
-            _gameObjects.Add(new GameSquare(GameObjectTypes.GAME_SQUARE, "ИК", 50, 450, 625));
-            PermanentSquare permanentSquare = new PermanentSquare(GameObjectTypes.PERMANENT_SQUARE, "ПСК", 900, 70, 400);
-            permanentSquare.NeedNewPosition += SetPermanentSquareCoordinates;
-            _gameObjects.Add(permanentSquare);
-            _gameObjects.Add(new Square(GameObjectTypes.SQUARE, "КВ", 600, 150, 2500));
-            _gameObjects.Add(new Square(GameObjectTypes.SQUARE, "КВ", 300, 250, 1600));
+            Init();
+        }
+
+        private void Init()
+        {
+            _levelObjects = LevelsParser.GetLevels(1);
+            _gameObjects = _levelObjects[Level];
+            ((PermanentSquare)_gameObjects[(int)GameObjectTypes.PERMANENT_SQUARE])
+                                .NeedNewPosition += SetPermanentSquareCoordinates;
         }
 
         private void SetPermanentSquareCoordinates()
@@ -84,16 +93,32 @@ namespace Model.Game
             {
                 if (elGameObject.ID != GameObjectTypes.GAME_SQUARE)
                 {
-                    if (GetXIntersection(elGameObject.X, gameSquare.X, gameSquare.Width / 2)
-                        && GetYIntersection(elGameObject.Y, gameSquare.Y, gameSquare.Height / 2))
+                    if (gameSquare.Area >= elGameObject.Area)
                     {
-                        if (gameSquare.Area >= elGameObject.Area)
+                        if (GetXIntersection(elGameObject.X, gameSquare.X, gameSquare.Width / 2)
+                        && GetYIntersection(elGameObject.Y, gameSquare.Y, gameSquare.Height / 2))
                         {
                             if (elGameObject.State == GameObjectsStates.FOOD)
                             {
                                 gameSquare.Area += elGameObject.Area;
                                 elGameObject.State = GameObjectsStates.EATEN;
+                                if (_gameObjects.FindAll(
+                                    (x) => x.State == GameObjectsStates.INACTIVE)
+                                    .Count == GameObjects.Length - 2)
+                                {
+                                    _gameObjects.ForEach((x) => {
+                                        if (x.State == GameObjectsStates.INACTIVE)
+                                        {
+                                            x.State = GameObjectsStates.BARRIER;
+                                        }
+                                    });
+                                }
                             }
+
+                        }
+                        if (elGameObject.State == GameObjectsStates.BARRIER)
+                        {
+                            elGameObject.State = GameObjectsStates.FOOD;
                         }
                     }
                 }
