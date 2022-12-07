@@ -136,6 +136,9 @@
   <data name="InfoControlItem" xml:space="preserve">
     <value>Справка</value>
   </data>
+  <data name="LevelsFilesPath" xml:space="preserve">
+    <value>../../../Model/Properties/Level</value>
+  </data>
   <data name="MainMenuControlItem" xml:space="preserve">
     <value>Главное меню</value>
   </data>

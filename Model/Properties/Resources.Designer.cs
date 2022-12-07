@@ -102,6 +102,15 @@ namespace Model.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на ../../../Model/Properties/Level.
+        /// </summary>
+        internal static string LevelsFilesPath {
+            get {
+                return ResourceManager.GetString("LevelsFilesPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Главное меню.
         /// </summary>
         internal static string MainMenuControlItem {
