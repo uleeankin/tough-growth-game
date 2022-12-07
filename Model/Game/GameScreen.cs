@@ -20,10 +20,22 @@ namespace Model.Game
         private Dictionary<int, List<GameObject>> _levelObjects
             = new Dictionary<int, List<GameObject>>();
 
+        private int _level = 1;
 
         public double ScreenHeight { get; set; }
         public double ScreenWidth { get; set; }
-        public int Level { get; set; }
+        public int Level
+        {
+            get
+            {
+                return _level;
+            }
+            set
+            {
+                _level = value;
+                NeedRedraw?.Invoke();
+            }
+        }
 
         public GameObject[] GameObjects
         {
