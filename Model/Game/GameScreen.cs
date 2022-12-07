@@ -91,6 +91,11 @@ namespace Model.Game
             }).Start();
         }
 
+        public void StopGame()
+        {
+            _isNeedStop = true;
+        }
+
         private void Move(GameSquare parGameSquare)
         {
             //parGameSquare.ChangeDirection(parMotionType);
