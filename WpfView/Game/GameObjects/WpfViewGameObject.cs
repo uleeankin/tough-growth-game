@@ -39,11 +39,14 @@ namespace WpfView.Game.GameObjects
             Y = Object.Y;
             Height = Object.Height;
             Width = Object.Width;
-            _shape.Width = Width;
-            _shape.Height = Height;
-            WpfShapesCreator.SetColorByState(Object.ID, Object.State, _shape);
-            Canvas.SetLeft(_shape, X);
-            Canvas.SetTop(_shape, Y);
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                _shape.Width = Width;
+                _shape.Height = Height;
+                WpfShapesCreator.SetColorByState(Object.ID, Object.State, _shape);
+                Canvas.SetLeft(_shape, X);
+                Canvas.SetTop(_shape, Y);
+            });
         }
 
         public void SetParentControl(FrameworkElement parControl)
