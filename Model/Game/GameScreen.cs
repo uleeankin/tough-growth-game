@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Model.Game.GameObjects;
 using Model.Enums;
 using Model.Utils;
+using System.Threading;
 
 namespace Model.Game
 {
@@ -14,6 +15,7 @@ namespace Model.Game
         public delegate void dNeedRedraw();
         public event dNeedRedraw NeedRedraw = null;
 
+        private bool _isNeedStop = false;
         private List<GameObject> _gameObjects 
             = new List<GameObject>();
 
@@ -76,24 +78,37 @@ namespace Model.Game
 
         }
 
-        private void Move(GameSquare parGameSquare, MotionType parMotionType)
+        public void StartGame()
+        {
+
+            new Thread(() =>
+            {
+                while (!_isNeedStop)
+                {
+                    Move((GameSquare)_gameObjects[(int)GameObjectTypes.GAME_SQUARE]);
+                    Thread.Sleep(5);
+                }
+            }).Start();
+        }
+
+        private void Move(GameSquare parGameSquare)
         {
             //parGameSquare.ChangeDirection(parMotionType);
-            if (parMotionType == MotionType.UP)
+            if (parGameSquare.MotionDirection == MotionType.UP)
             {
-                parGameSquare.Y -= parGameSquare.Height / 2;
+                parGameSquare.Y -= 1;
             }
-            if (parMotionType == MotionType.DOWN)
+            if (parGameSquare.MotionDirection == MotionType.DOWN)
             {
-                parGameSquare.Y += parGameSquare.Height / 2;
+                parGameSquare.Y += 1;
             }
-            if (parMotionType == MotionType.LEFT)
+            if (parGameSquare.MotionDirection == MotionType.LEFT)
             {
-                parGameSquare.X -= parGameSquare.Height / 2;
+                parGameSquare.X -= 1;
             }
-            if (parMotionType == MotionType.RIGHT)
+            if (parGameSquare.MotionDirection == MotionType.RIGHT)
             {
-                parGameSquare.X += parGameSquare.Height / 2;
+                parGameSquare.X += 1;
             }
             CheckIntersections();
         }
@@ -151,20 +166,24 @@ namespace Model.Game
 
         public void MoveUp(GameSquare parGameSquare)
         {
-            Move(parGameSquare, MotionType.UP);
+            //Move(parGameSquare, MotionType.UP);
+            parGameSquare.MotionDirection = MotionType.UP;
         }
 
         public void MoveDown(GameSquare parGameSquare)
         {
-            Move(parGameSquare, MotionType.DOWN);
+            //Move(parGameSquare, MotionType.DOWN);
+            parGameSquare.MotionDirection = MotionType.DOWN;
         }
         public void MoveLeft(GameSquare parGameSquare)
         {
-            Move(parGameSquare, MotionType.LEFT);
+            //Move(parGameSquare, MotionType.LEFT);
+            parGameSquare.MotionDirection = MotionType.LEFT;
         }
         public void MoveRight(GameSquare parGameSquare)
         {
-            Move(parGameSquare, MotionType.RIGHT);
+            //Move(parGameSquare, MotionType.RIGHT);
+            parGameSquare.MotionDirection = MotionType.RIGHT;
         }
     }
 }
