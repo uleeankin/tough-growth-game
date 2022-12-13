@@ -12,7 +12,7 @@ namespace View.Game
 
         private List<ViewGameObject> _gameObjects = null;
 
-        protected ViewGameObject[] Objects => _gameObjects.ToArray();
+        protected List<ViewGameObject> Objects => _gameObjects;
 
         public int X { get; set; }
         public int Y { get; set; }
