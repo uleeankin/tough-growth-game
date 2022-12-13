@@ -16,10 +16,10 @@ namespace WpfView.Utils
     {
         private static readonly Brush GAME_SQUARE_COLOR = Brushes.Magenta;
         private static readonly Brush SQUARE_COLOR = Brushes.Red;
-        private static readonly Brush HEXAGON_COLOR = Brushes.Green;
+        private static readonly Brush HEXAGON_COLOR = Brushes.LightGreen;
         private static readonly Brush TRIANGLE_COLOR = Brushes.Orange;
-        private static readonly Brush CIRCLE_COLOR = Brushes.Blue;
-        private static readonly Brush RECTANGLE_COLOR = Brushes.Purple;
+        private static readonly Brush CIRCLE_COLOR = Brushes.LightSkyBlue;
+        private static readonly Brush RECTANGLE_COLOR = Brushes.BlueViolet;
         private static readonly Brush BOUNDS_COLOR = Brushes.White;
         private static readonly Brush INACTIVE_EATEN_COLOR = Brushes.Black;
         private static readonly Brush EATEN_BOUNDS_COLOR = Brushes.Black;
@@ -56,15 +56,15 @@ namespace WpfView.Utils
 
             if (parGameObject.ID == GameObjectTypes.TRIANGLE)
             {
-                shape = CreatePolygonGroup(parGameObject.X, parGameObject.Y,
-                    GetTriangleVerticesCoordinates(parGameObject.X, parGameObject.Y,
+                shape = CreatePolygonGroup(GetTriangleVerticesCoordinates(
+                    parGameObject.X, parGameObject.Y,
                     parGameObject.Height, parGameObject.Width));
             }
 
             if (parGameObject.ID == GameObjectTypes.HEXAGON)
             {
-                shape = CreatePolygonGroup(parGameObject.X, parGameObject.Y,
-                    GetHexagonVerticesCoordinates(parGameObject.X, parGameObject.Y,
+                shape = CreatePolygonGroup(GetHexagonVerticesCoordinates(
+                    parGameObject.X, parGameObject.Y,
                     parGameObject.Height, parGameObject.Width));
             }
 
@@ -84,14 +84,11 @@ namespace WpfView.Utils
             return rectangle;
         }
 
-        private static Shape CreatePolygonGroup(double parCenterX, double parCenterY,
-            PointCollection parAnglesCoordinates)
+        private static Shape CreatePolygonGroup(PointCollection parAnglesCoordinates)
         {
             Polygon polygon = new Polygon();
             polygon.Points = parAnglesCoordinates;
             polygon.StrokeThickness = BOUNDS_THICKNESS;
-            Canvas.SetTop(polygon, parCenterY);
-            Canvas.SetLeft(polygon, parCenterX);
             return polygon;
         }
 

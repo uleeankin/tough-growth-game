@@ -40,7 +40,19 @@ namespace WpfView.Game
 
         protected override void Redraw()
         {
-            Draw();
+            Application.Current.Dispatcher.Invoke(() => {
+                _screen.Screen.Children.Clear();
+                ClearObjects();
+                foreach (GameObject elGameObject in Screen.GameObjects)
+                {
+                    Objects.Add(CreateGameObject(elGameObject));
+                }
+                foreach (ViewGameObject elGameObject in Objects)
+                {
+                    elGameObject.Draw();
+                }
+                this.SetParentControl(_screen.Screen);
+            });
         }
 
         private void SetParentControl(FrameworkElement parParent)

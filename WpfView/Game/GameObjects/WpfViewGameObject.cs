@@ -35,18 +35,30 @@ namespace WpfView.Game.GameObjects
 
         protected override void RedrawGameObject()
         {
-            X = Object.X;
-            Y = Object.Y;
-            Height = Object.Height;
-            Width = Object.Width;
-            Application.Current.Dispatcher.Invoke(() =>
+            if (Object.ID != Model.Enums.GameObjectTypes.HEXAGON
+                && Object.ID != Model.Enums.GameObjectTypes.TRIANGLE)
             {
-                _shape.Width = Width;
-                _shape.Height = Height;
-                WpfShapesCreator.SetColorByState(Object.ID, Object.State, _shape);
-                Canvas.SetLeft(_shape, X);
-                Canvas.SetTop(_shape, Y);
-            });
+                X = Object.X;
+                Y = Object.Y;
+                Height = Object.Height;
+                Width = Object.Width;
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+                    _shape.Width = Width;
+                    _shape.Height = Height;
+                    WpfShapesCreator.SetColorByState(Object.ID, Object.State, _shape);
+                    Canvas.SetLeft(_shape, X);
+                    Canvas.SetTop(_shape, Y);
+                });
+            }
+            else
+            {
+                Application.Current.Dispatcher.Invoke(() =>
+                {
+
+                    WpfShapesCreator.SetColorByState(Object.ID, Object.State, _shape);
+                });
+            }
         }
 
         public void SetParentControl(FrameworkElement parControl)
