@@ -7,6 +7,7 @@ using Model.Game.GameObjects;
 using Model.Enums;
 using Model.Utils;
 using System.Threading;
+using System.Diagnostics;
 
 namespace Model.Game
 {
@@ -16,6 +17,9 @@ namespace Model.Game
         public event dNeedRedraw NeedRedraw = null;
 
         private bool _isNeedStop = false;
+        private double _objectsSpeed = 200;
+        private double _timeCoefficient = 0;
+
         private List<GameObject> _gameObjects 
             = new List<GameObject>();
 
@@ -35,7 +39,6 @@ namespace Model.Game
             set
             {
                 _level = value;
-                NeedRedraw?.Invoke();
             }
         }
 
@@ -57,13 +60,16 @@ namespace Model.Game
 
         public GameScreen() : base()
         {
+            _levelObjects = LevelsParser.GetLevels(10);
             Init();
         }
 
         private void Init()
         {
-            _levelObjects = LevelsParser.GetLevels(1);
-            _gameObjects = _levelObjects[Level];
+            _gameObjects.Clear();
+            _levelObjects[Level].ForEach((elObject) => {
+                _gameObjects.Add(elObject.Clone());
+            });
             ((PermanentSquare)_gameObjects[(int)GameObjectTypes.PERMANENT_SQUARE])
                                 .NeedNewPosition += SetPermanentSquareCoordinates;
         }
@@ -83,10 +89,14 @@ namespace Model.Game
 
             new Thread(() =>
             {
+                Stopwatch timer = new Stopwatch();
+                timer.Start();
                 while (!_isNeedStop)
                 {
-                    Move((GameSquare)_gameObjects[(int)GameObjectTypes.GAME_SQUARE]);
-                    Thread.Sleep(5);
+                    double start = timer.ElapsedMilliseconds;
+                    Move();
+                    double end = timer.ElapsedMilliseconds;
+                    _timeCoefficient = (end - start) / 1000;
                 }
             }).Start();
         }
@@ -96,25 +106,10 @@ namespace Model.Game
             _isNeedStop = true;
         }
 
-        private void Move(GameSquare parGameSquare)
+        private void Move()
         {
-            //parGameSquare.ChangeDirection(parMotionType);
-            if (parGameSquare.MotionDirection == MotionType.UP)
-            {
-                parGameSquare.Y -= 1;
-            }
-            if (parGameSquare.MotionDirection == MotionType.DOWN)
-            {
-                parGameSquare.Y += 1;
-            }
-            if (parGameSquare.MotionDirection == MotionType.LEFT)
-            {
-                parGameSquare.X -= 1;
-            }
-            if (parGameSquare.MotionDirection == MotionType.RIGHT)
-            {
-                parGameSquare.X += 1;
-            }
+            ((GameSquare)_gameObjects[(int)GameObjectTypes.GAME_SQUARE])
+                .MoveByStep(_objectsSpeed * _timeCoefficient, ScreenHeight, ScreenWidth);
             CheckIntersections();
         }
 
@@ -127,67 +122,109 @@ namespace Model.Game
                 {
                     if (gameSquare.Area >= elGameObject.Area)
                     {
-                        if (GetXIntersection(elGameObject.X, gameSquare.X, gameSquare.Width / 2)
-                        && GetYIntersection(elGameObject.Y, gameSquare.Y, gameSquare.Height / 2))
+                        if (IsIntersection(elGameObject, gameSquare))
                         {
                             if (elGameObject.State == GameObjectsStates.FOOD)
                             {
-                                gameSquare.Area += elGameObject.Area;
+                                if (_gameObjects.FindAll(
+                                    (x) => x.State == GameObjectsStates.EATEN)
+                                    .Count == GameObjects.Length - 2)
+                                {
+                                    Level++;
+                                    StartNewLevel();
+                                    break;
+                                }
+
+                                gameSquare.Area += (elGameObject.Area / (GameObjects.Length - 2));
                                 elGameObject.State = GameObjectsStates.EATEN;
+
                                 if (_gameObjects.FindAll(
                                     (x) => x.State == GameObjectsStates.INACTIVE)
                                     .Count == GameObjects.Length - 2)
                                 {
-                                    _gameObjects.ForEach((x) => {
-                                        if (x.State == GameObjectsStates.INACTIVE)
-                                        {
-                                            x.State = GameObjectsStates.BARRIER;
-                                        }
+                                    _gameObjects.ForEach((x) =>
+                                    {
+                                        SetNewState(x,
+                                            GameObjectsStates.INACTIVE, GameObjectsStates.BARRIER);
                                     });
                                 }
+
                             }
 
                         }
-                        if (elGameObject.State == GameObjectsStates.BARRIER)
+                        SetNewState(elGameObject,
+                            GameObjectsStates.BARRIER, GameObjectsStates.FOOD);
+                    }
+                    else
+                    {
+                        if (IsIntersection(elGameObject, gameSquare))
                         {
-                            elGameObject.State = GameObjectsStates.FOOD;
+                            if (elGameObject.State == GameObjectsStates.BARRIER)
+                            {
+                                Level = Level < 8 ? Level : Level - 1;
+                                StartNewLevel();
+                            }
                         }
                     }
                 }
             }
         }
 
-        private bool GetXIntersection(double parObjectX, double parGameSquareX, double parDelta)
+        private void SetNewState(GameObject parObject,
+                                GameObjectsStates parCurrentState,
+                                GameObjectsStates parNewState)
         {
-            return (parGameSquareX <= parObjectX && parObjectX <= (parGameSquareX + parDelta))
-                || ((parGameSquareX - parDelta) <= parObjectX && parObjectX <= parGameSquareX);
+            if (parObject.State == parCurrentState)
+            {
+                parObject.State = parNewState;
+            }
         }
 
-        private bool GetYIntersection(double parObjectY, double parGameSquareY, double parDelta)
+        private bool IsIntersection(GameObject parGameObject, GameObject parGameSquare)
         {
-            return (parGameSquareY <= parObjectY && parObjectY <= (parGameSquareY + parDelta))
-                || ((parGameSquareY - parDelta) <= parObjectY && parObjectY <= parGameSquareY);
+            return GetXIntersection(parGameObject.X, parGameSquare.X,
+                            parGameSquare.Width / 2, parGameObject.Width / 2)
+                        && GetYIntersection(parGameObject.Y, parGameSquare.Y,
+                            parGameSquare.Height / 2, parGameObject.Height / 2);
+        }
+
+        private void StartNewLevel()
+        {
+            ((PermanentSquare)_gameObjects[(int)GameObjectTypes.PERMANENT_SQUARE])
+                                .NeedNewPosition -= SetPermanentSquareCoordinates;
+            Init();
+            NeedRedraw?.Invoke();
+        }
+
+        private bool GetXIntersection(double parObjectX, double parGameSquareX,
+            double parGameSquareDelta, double parObjectDelta)
+        {
+            return ((parGameSquareX - parGameSquareDelta) < (parObjectX + parObjectDelta)
+                && (parObjectX - parObjectDelta) < (parGameSquareX + parGameSquareDelta));
+        }
+
+        private bool GetYIntersection(double parObjectY, double parGameSquareY,
+            double parGameSquareDelta, double parObjectDelta)
+        {
+            return ((parGameSquareY - parGameSquareDelta) < (parObjectY + parObjectDelta)
+                && (parObjectY - parObjectDelta) < (parGameSquareY + parGameSquareDelta));
         }
 
         public void MoveUp(GameSquare parGameSquare)
         {
-            //Move(parGameSquare, MotionType.UP);
             parGameSquare.MotionDirection = MotionType.UP;
         }
 
         public void MoveDown(GameSquare parGameSquare)
         {
-            //Move(parGameSquare, MotionType.DOWN);
             parGameSquare.MotionDirection = MotionType.DOWN;
         }
         public void MoveLeft(GameSquare parGameSquare)
         {
-            //Move(parGameSquare, MotionType.LEFT);
             parGameSquare.MotionDirection = MotionType.LEFT;
         }
         public void MoveRight(GameSquare parGameSquare)
         {
-            //Move(parGameSquare, MotionType.RIGHT);
             parGameSquare.MotionDirection = MotionType.RIGHT;
         }
     }

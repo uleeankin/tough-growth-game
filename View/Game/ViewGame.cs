@@ -9,7 +9,6 @@ namespace View.Game
 {
     public abstract class ViewGame : View
     {
-        private Model.Game.GameScreen _gameScreen = null;
 
         private List<ViewGameObject> _gameObjects = null;
 
@@ -19,6 +18,8 @@ namespace View.Game
         public int Y { get; set; }
         public int Width { get; protected set; }
         public int Height { get; protected set; }
+
+        protected Model.Game.GameScreen Screen { get; set; }
 
         public ViewGameObject this[int parId]
         {
@@ -30,8 +31,8 @@ namespace View.Game
 
         public ViewGame(Model.Game.GameScreen parGameScreen)
         {
-            _gameScreen = parGameScreen;
-            _gameScreen.NeedRedraw += Redraw;
+            Screen = parGameScreen;
+            Screen.NeedRedraw += Redraw;
             _gameObjects = new List<ViewGameObject>();
 
             foreach (Model.Game.GameObjects.GameObject elGameObject in parGameScreen.GameObjects)
@@ -42,5 +43,10 @@ namespace View.Game
 
         protected abstract void Redraw();
         protected abstract ViewGameObject CreateGameObject(Model.Game.GameObjects.GameObject parGameObject);
+
+        protected void ClearObjects()
+        {
+            _gameObjects = new List<ViewGameObject>();
+        }
     }
 }

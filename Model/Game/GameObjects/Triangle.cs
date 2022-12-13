@@ -14,6 +14,13 @@ namespace Model.Game.GameObjects
         {
 
         }
+
+        public override GameObject Clone()
+        {
+            Triangle triangle = new Triangle(ID, IDName, X, Y, Area);
+            return triangle;
+        }
+
         public override void SetHeight()
         {
             double a = Math.Sqrt((4 * Area) / Math.Sqrt(3));

@@ -76,6 +76,7 @@ namespace Model.Utils
                     rectangle.StartY = startCoordinates.Item2;
                     rectangle.EndX = endCoordinates.Item1;
                     rectangle.EndY = endCoordinates.Item2;
+                    rectangle.Orientation = int.Parse(data[5]);
                     return rectangle;
                 case GameObjectTypes.TRIANGLE:
                     return new Triangle(

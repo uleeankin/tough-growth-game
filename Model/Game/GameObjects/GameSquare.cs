@@ -52,70 +52,43 @@ namespace Model.Game.GameObjects
             Width = Math.Sqrt(Area);
         }
 
-        /*public void StartMotion(double parStep, double parScreenYBound, double parScreenXBound)
+        public void MoveByStep(double parSpeed, double parScreenHeight, double parScreenWidth)
         {
-            _isNeedStop = false;
-            new Thread(() =>
+            if (MotionDirection == MotionType.UP)
             {
-                while (!_isNeedStop)
+                if (Y >= 0)
                 {
-                    if (this.Y - parStep > 0
-                            && this.Y + parStep < parScreenYBound
-                            && this.X - parStep > 0
-                            && this.X + parStep < parScreenXBound)
-                    {
-                        if (MotionDirection == MotionType.UP)
-                        {
-                            MoveUp(parStep);
-                        }
-                        if (MotionDirection == MotionType.DOWN)
-                        {
-                            MoveDown(parStep);
-                        }
-                        if (MotionDirection == MotionType.LEFT)
-                        {
-                            MoveLeft(parStep);
-                        }
-                        if (MotionDirection == MotionType.RIGHT)
-                        {
-                            MoveRight(parStep);
-                        }
-                    }
-
-                    Console.WriteLine($"{X};{Y}");
-                    Thread.Sleep(1000);
+                    Y -= parSpeed;
                 }
             }
-            ).Start();
-
-        }*/
-
-        /*public void ChangeDirection(MotionType parMotionType)
-        {
-            MotionDirection = parMotionType;
+            if (MotionDirection == MotionType.DOWN)
+            {
+                if (Y <= parScreenHeight - 60)
+                {
+                    Y += parSpeed;
+                }
+            }
+            if (MotionDirection == MotionType.LEFT)
+            {
+                if (X >= 0)
+                {
+                    X -= parSpeed;
+                }
+            }
+            if (MotionDirection == MotionType.RIGHT)
+            {
+                if (X <= parScreenWidth - 30)
+                {
+                    X += parSpeed;
+                }
+            }
         }
 
-        public void StopMotion()
+        public override GameObject Clone()
         {
-            _isNeedStop = true;
+            GameSquare gameSquare = new GameSquare(ID, IDName, X, Y, Area);
+            return gameSquare;
         }
-
-        private void MoveUp(int parStep)
-        {
-            Y -= parStep;
-        }
-
-        private void MoveDown(int parStep)
-        {
-            Y += parStep;
-        }
-        private void MoveLeft(int parStep)
-        {
-            X -= parStep;
-        }
-        private void MoveRight(int parStep)
-        {
-            X += parStep;
-        }*/
+    
     }
 }
