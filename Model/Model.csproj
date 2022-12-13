@@ -87,6 +87,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\Level1.txt" />
+    <Content Include="Properties\Level10.txt" />
+    <Content Include="Properties\Level2.txt" />
+    <Content Include="Properties\Level3.txt" />
+    <Content Include="Properties\Level4.txt" />
+    <Content Include="Properties\Level5.txt" />
+    <Content Include="Properties\Level6.txt" />
+    <Content Include="Properties\Level7.txt" />
+    <Content Include="Properties\Level8.txt" />
+    <Content Include="Properties\Level9.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -14,6 +14,7 @@ namespace Model.Game.GameObjects
         public double StartY { get; set; }
         public double EndX { get; set; }
         public double EndY { get; set; }
+        public int Orientation { get; set; }
 
         public Rectangle(GameObjectTypes parID, string parIDName, double parX,
             double parY, double parArea) : base(parID, parIDName, parX, parY, parArea)
@@ -23,12 +24,39 @@ namespace Model.Game.GameObjects
 
         public override void SetHeight()
         {
-            Height = Math.Sqrt(Area);
+            if (Orientation == 1)
+            {
+                Height = Math.Sqrt(Area);
+            }
+            else
+            {
+                Height = Math.Sqrt(Area) * 4;
+            }
+
         }
 
         public override void SetWidth()
         {
-            Width = Math.Sqrt(Area);
+            if (Orientation == 1)
+            {
+                Width = Math.Sqrt(Area) * 4;
+            }
+            else
+            {
+                Width = Math.Sqrt(Area);
+            }
+        }
+
+        public override GameObject Clone()
+        {
+            Rectangle rectangle = new Rectangle(ID, IDName, X, Y, Area);
+            rectangle.StartX = StartX;
+            rectangle.StartY = StartY;
+            rectangle.EndY = EndY;
+            rectangle.EndX = EndX;
+            rectangle.Orientation = Orientation;
+            rectangle.Area = Area;
+            return rectangle;
         }
     }
 }

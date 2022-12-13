@@ -16,6 +16,12 @@ namespace Model.Game.GameObjects
 
         }
 
+        public override GameObject Clone()
+        {
+            Hexagon hexagon = new Hexagon(ID, IDName, X, Y, Area);
+            return hexagon;
+        }
+
         /// <summary>
         /// Вычисление высоты шестиугольника с помощью формул площадей многоугольников
         /// </summary>

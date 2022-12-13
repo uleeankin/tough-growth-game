@@ -14,6 +14,11 @@ namespace Model.Game.GameObjects
         {
 
         }
+        public override GameObject Clone()
+        {
+            Circle circle = new Circle(ID, IDName, X, Y, Area);
+            return circle;
+        }
         public override void SetHeight()
         {
             Height = 2 * Math.Sqrt(Area / Math.PI);

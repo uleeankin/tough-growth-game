@@ -16,6 +16,12 @@ namespace Model.Game.GameObjects
 
         }
 
+        public override GameObject Clone()
+        {
+            Square square = new Square(ID, IDName, X, Y, Area);
+            return square;
+        }
+
         public override void SetHeight()
         {
             Height = Math.Sqrt(Area);

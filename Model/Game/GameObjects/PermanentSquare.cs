@@ -32,6 +32,13 @@ namespace Model.Game.GameObjects
 
         }
 
+        public override GameObject Clone()
+        {
+            PermanentSquare permanentSquare = new PermanentSquare(ID, IDName, X, Y, Area);
+            permanentSquare.State = State;
+            return permanentSquare;
+        }
+
         public override void SetHeight()
         {
             Height = Math.Sqrt(Area);

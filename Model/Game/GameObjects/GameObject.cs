@@ -85,6 +85,7 @@ namespace Model.Game.GameObjects
             Area = parArea;
         }
 
+        public abstract GameObject Clone();
         public abstract void SetHeight();
         public abstract void SetWidth();
     }
