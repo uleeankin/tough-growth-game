@@ -13,20 +13,19 @@ namespace Model.Utils
         public static Dictionary<int, List<GameObject>> GetLevels(int parLevelsNumber)
         {
             Dictionary<int, List<GameObject>> levels = new Dictionary<int, List<GameObject>>();
+            Dictionary<int, string> levelsDescription = GetLevelsDescription();
 
             for (int i = 1; i <= parLevelsNumber; i++)
             {
-                levels.Add(i, GetLevelFromFile(i));
+                levels.Add(i, GetLevel(levelsDescription[i]));
             }
 
             return levels;
         }
 
-        private static List<GameObject> GetLevelFromFile(int parLevelNumber)
+        private static List<GameObject> GetLevel(string parLevelString)
         {
-            List<string> fileContent = FileIO.FileReader(
-                Properties.Resources.LevelsFilesPath
-                + parLevelNumber + ".txt");
+            List<string> fileContent = parLevelString.Split('\n').ToList();
 
             List<GameObject> gameObjects = new List<GameObject>();
 
@@ -121,6 +120,24 @@ namespace Model.Utils
 
             return new Tuple<double, double>(Double.Parse(coordinatesList[0]),
                                             Double.Parse(coordinatesList[1]));
+        }
+
+        private static Dictionary<int, string> GetLevelsDescription()
+        {
+            Dictionary<int, string> levels = new Dictionary<int, string>();
+
+            levels.Add(1, Properties.Resources.Level1);
+            levels.Add(2, Properties.Resources.Level2);
+            levels.Add(3, Properties.Resources.Level3);
+            levels.Add(4, Properties.Resources.Level4);
+            levels.Add(5, Properties.Resources.Level5);
+            levels.Add(6, Properties.Resources.Level6);
+            levels.Add(7, Properties.Resources.Level7);
+            levels.Add(8, Properties.Resources.Level8);
+            levels.Add(9, Properties.Resources.Level9);
+            levels.Add(10, Properties.Resources.Level10);
+
+            return levels;
         }
     }
 }

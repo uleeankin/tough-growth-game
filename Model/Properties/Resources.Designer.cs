@@ -103,6 +103,145 @@ namespace Model.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на ИК (50;450) 625
+        ///ПСК (900;70) 400
+        ///КВ (300;250) 1600
+        ///КВ (600;150) 2500.
+        /// </summary>
+        internal static string Level1 {
+            get {
+                return ResourceManager.GetString("Level1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на ИК (475;250) 625
+        ///ПСК (800;50) 400
+        ///П (507;100) 900 (330;100) (507;100) 1
+        ///П (330;383) 900 (330;383) (507;383) 1
+        ///П (300;100) 800 (300;100) (300;300) -1
+        ///П (630;300) 800 (630;100) (630;300) -1.
+        /// </summary>
+        internal static string Level10 {
+            get {
+                return ResourceManager.GetString("Level10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на ИК (50;450) 625
+        ///ПСК (900;70) 400
+        ///Ш (500;230) 900.
+        /// </summary>
+        internal static string Level2 {
+            get {
+                return ResourceManager.GetString("Level2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на ИК (50;450) 625
+        ///ПСК (900;70) 400
+        ///КР (460;230) 2500.
+        /// </summary>
+        internal static string Level3 {
+            get {
+                return ResourceManager.GetString("Level3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на ИК (900;450) 625
+        ///ПСК (50;50) 400
+        ///Ш (500;230) 900
+        ///Ш (690;150) 900
+        ///Ш (310;300) 900.
+        /// </summary>
+        internal static string Level4 {
+            get {
+                return ResourceManager.GetString("Level4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на ИК (900;450) 625
+        ///ПСК (50;50) 400
+        ///КР (900;50) 2500
+        ///Ш (600;200) 400
+        ///КВ (575;110) 2500
+        ///КВ (575;240) 2500
+        ///КВ (510;180) 2500
+        ///КВ (640;180) 2500
+        ///Ш (230;295) 400
+        ///КВ (140;275) 2500
+        ///КВ (270;275) 2500
+        ///КВ (205;210) 2500
+        ///КВ (205;340) 2500.
+        /// </summary>
+        internal static string Level5 {
+            get {
+                return ResourceManager.GetString("Level5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на ИК (475;250) 625
+        ///ПСК (50;50) 400
+        ///КР (475;30) 2500
+        ///КР (900;210) 2500
+        ///КР (475;410) 2500
+        ///КР (30;210) 2500.
+        /// </summary>
+        internal static string Level6 {
+            get {
+                return ResourceManager.GetString("Level6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на ИК (900;450) 625
+        ///ПСК (50;50) 400
+        ///Ш (500;230) 900
+        ///Т (690;150) 1600
+        ///Т (310;300) 1600.
+        /// </summary>
+        internal static string Level7 {
+            get {
+                return ResourceManager.GetString("Level7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на ИК (900;450) 625
+        ///ПСК (50;50) 400
+        ///Ш (300;400) 900
+        ///Т (300;200) 1600
+        ///Т (700;300) 1600
+        ///КР (675;90) 2500.
+        /// </summary>
+        internal static string Level8 {
+            get {
+                return ResourceManager.GetString("Level8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на ИК (50;450) 625
+        ///ПСК (900;70) 400
+        ///КР (460;230) 2500
+        ///Ш (180;150) 800
+        ///Т (70;70) 900
+        ///П (30;245) 900 (30;245) (300;245) 1
+        ///П (820;245) 900 (540;245) (820;245) 1
+        ///П (475;100) 800 (475;20) (475;100) -1.
+        /// </summary>
+        internal static string Level9 {
+            get {
+                return ResourceManager.GetString("Level9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на ../../../Model/Properties/Level.
         /// </summary>
         internal static string LevelsFilesPath {
