@@ -34,8 +34,8 @@ namespace WpfView.Utils
                 || parGameObject.ID == GameObjectTypes.SQUARE
                 || parGameObject.ID == GameObjectTypes.RECTANGLE)
             {
-                shape = CreateRectangleGroup(parGameObject.Height,
-                                                parGameObject.Width,
+                shape = CreateRectangleGroup(parGameObject.Width,
+                                                parGameObject.Height,
                                                 parGameObject.X,
                                                 parGameObject.Y);
                 if (parGameObject.ID == GameObjectTypes.GAME_SQUARE)
@@ -48,8 +48,8 @@ namespace WpfView.Utils
 
             if (parGameObject.ID == GameObjectTypes.CIRCLE)
             {
-                shape = CreateEllipseGroup(parGameObject.Height,
-                                                parGameObject.Width,
+                shape = CreateEllipseGroup(parGameObject.Width,
+                                                parGameObject.Height,
                                                 parGameObject.X,
                                                 parGameObject.Y);
             }
