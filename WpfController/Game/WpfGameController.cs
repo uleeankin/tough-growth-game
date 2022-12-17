@@ -10,6 +10,7 @@ using WpfView;
 using Model.Game;
 using Model.Enums;
 using Model.Game.GameObjects;
+using System.Threading;
 
 namespace WpfController.Game
 {
@@ -25,6 +26,7 @@ namespace WpfController.Game
         {
             _screen = MainScreen.GetInstance();
             Game = new GameScreen();
+            Game.EndGame += EndGame;
             Game.ScreenHeight = _screen.Height;
             Game.ScreenWidth = _screen.Width;
             _viewGame = new WpfView.Game.WpfViewGame(Game);
@@ -72,6 +74,11 @@ namespace WpfController.Game
         {
             _screen.KeyDown -= OnKeyDownHandler;
             Game.StopGame();
+        }
+
+        private void EndGame()
+        {
+            SwitchController(ControlItemCode.MainMenu);
         }
     }
 }

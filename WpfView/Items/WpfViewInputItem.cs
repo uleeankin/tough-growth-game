@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Markup;
 using View.Items;
 
 namespace WpfView.Items
@@ -19,6 +21,11 @@ namespace WpfView.Items
         public override void Draw()
         {
             
+        }
+
+        public void SetParentControl(FrameworkElement parControl)
+        {
+            //((IAddChild)parControl).AddChild(_button);
         }
     }
 }

@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Game\GameObjects\WpfViewGameObject.cs" />
     <Compile Include="Game\GameObjects\WpfViewGameSquare.cs" />
+    <Compile Include="Game\WpfViewEndGame.cs" />
     <Compile Include="Game\WpfViewGame.cs" />
     <Compile Include="Items\WpfViewControlItem.cs" />
     <Compile Include="Items\WpfViewInputItem.cs" />
