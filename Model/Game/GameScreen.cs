@@ -74,6 +74,7 @@ namespace Model.Game
         {
             if (Level > 10)
             {
+                Level = 1;
                 EndGame?.Invoke();
             }
             else
@@ -141,7 +142,6 @@ namespace Model.Game
                     double end = timer.ElapsedMilliseconds;
                     _timeCoefficient = (end - start) / 1000;
                 }
-                Thread.CurrentThread.Interrupt();
             }).Start();
         }
 
