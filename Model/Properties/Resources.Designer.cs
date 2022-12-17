@@ -242,15 +242,6 @@ namespace Model.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на ../../../Model/Properties/Level.
-        /// </summary>
-        internal static string LevelsFilesPath {
-            get {
-                return ResourceManager.GetString("LevelsFilesPath", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Ищет локализованную строку, похожую на Главное меню.
         /// </summary>
         internal static string MainMenuControlItem {
@@ -280,6 +271,15 @@ namespace Model.Properties {
         internal static string RecordsControlItem {
             get {
                 return ResourceManager.GetString("RecordsControlItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на records.txt.
+        /// </summary>
+        internal static string RecordsFileName {
+            get {
+                return ResourceManager.GetString("RecordsFileName", resourceCulture);
             }
         }
         
