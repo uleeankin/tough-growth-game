@@ -28,17 +28,13 @@ namespace WpfView.Game
 
         public override void Draw()
         {
-            
+
             Application.Current.Dispatcher.Invoke(() => {
                 _screen.Screen.Children.Clear();
-                _screen.Screen.Background = Brushes.Black;
-                Console.WriteLine(_screen.Screen.Children.Count);
-                //Thread.Sleep(2000);
                 foreach (ViewPassiveItem elPassiveItem in Info)
                 {
                     elPassiveItem.Draw();
                 }
-                //Thread.Sleep(2000);
                 foreach (ViewControlItem elViewControlItem in BackToMenu)
                 {
                     elViewControlItem.Draw();
@@ -50,7 +46,6 @@ namespace WpfView.Game
                 }*/
                 this.SetParentControl(_screen.Screen);
             });
-            
         }
 
         private void Init()

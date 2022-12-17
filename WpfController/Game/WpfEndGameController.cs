@@ -54,7 +54,6 @@ namespace WpfController.Game
         public override void Start()
         {
             _viewEndGame.Draw();
-            //Thread.Sleep(5000);
             _screen.KeyDown += OnKeyDownHandler;
             
         }
