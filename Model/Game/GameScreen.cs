@@ -74,7 +74,6 @@ namespace Model.Game
         {
             if (Level > 10)
             {
-                Level = 1;
                 EndGame?.Invoke();
             }
             else
@@ -130,7 +129,7 @@ namespace Model.Game
 
         public void StartGame()
         {
-
+            Level = 1;
             new Thread(() =>
             {
                 Stopwatch timer = new Stopwatch();
@@ -148,6 +147,7 @@ namespace Model.Game
         public void StopGame()
         {
             _isNeedStop = true;
+            Thread.CurrentThread.Interrupt();
         }
 
         private void Move()
