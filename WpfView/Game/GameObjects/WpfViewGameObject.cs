@@ -38,8 +38,8 @@ namespace WpfView.Game.GameObjects
             if (Object.ID != Model.Enums.GameObjectTypes.HEXAGON
                 && Object.ID != Model.Enums.GameObjectTypes.TRIANGLE)
             {
-                X = Object.X;
-                Y = Object.Y;
+                X = Object.X - Object.Width / 2;
+                Y = Object.Y - Object.Height / 2;
                 Height = Object.Height;
                 Width = Object.Width;
                 Application.Current.Dispatcher.Invoke(() =>

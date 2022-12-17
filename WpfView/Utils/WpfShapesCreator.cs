@@ -79,8 +79,8 @@ namespace WpfView.Utils
             rectangle.Width = parWidth;
             rectangle.Height = parHeight;
             rectangle.StrokeThickness = BOUNDS_THICKNESS;
-            Canvas.SetTop(rectangle, parY);
-            Canvas.SetLeft(rectangle, parX);
+            Canvas.SetTop(rectangle, parY - parHeight / 2);
+            Canvas.SetLeft(rectangle, parX - parWidth / 2);
             return rectangle;
         }
 
@@ -122,8 +122,8 @@ namespace WpfView.Utils
             ellipse.Width = parWidth;
             ellipse.Height = parHeight;
             ellipse.StrokeThickness = BOUNDS_THICKNESS;
-            Canvas.SetTop(ellipse, parY);
-            Canvas.SetLeft(ellipse, parX);
+            Canvas.SetTop(ellipse, parY - parHeight / 2);
+            Canvas.SetLeft(ellipse, parX - parWidth / 2);
             return ellipse;
         }
 
