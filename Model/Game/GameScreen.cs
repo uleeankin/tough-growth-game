@@ -147,7 +147,6 @@ namespace Model.Game
         public void StopGame()
         {
             _isNeedStop = true;
-            Thread.CurrentThread.Interrupt();
         }
 
         private void Move()
