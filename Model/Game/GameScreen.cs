@@ -238,7 +238,10 @@ namespace Model.Game
             ((PermanentSquare)_gameObjects[(int)GameObjectTypes.PERMANENT_SQUARE])
                                 .NeedNewPosition -= SetPermanentSquareCoordinates;
             Init();
-            NeedRedraw?.Invoke();
+            if (Level <= 10)
+            {
+                NeedRedraw?.Invoke();
+            }
         }
 
         private bool GetXIntersection(double parObjectX, double parGameSquareX,
