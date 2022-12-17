@@ -217,9 +217,6 @@
 П (820;245) 900 (540;245) (820;245) 1
 П (475;100) 800 (475;20) (475;100) -1</value>
   </data>
-  <data name="LevelsFilesPath" xml:space="preserve">
-    <value>../../../Model/Properties/Level</value>
-  </data>
   <data name="MainMenuControlItem" xml:space="preserve">
     <value>Главное меню</value>
   </data>
@@ -234,6 +231,9 @@
   </data>
   <data name="RecordsControlItem" xml:space="preserve">
     <value>Рекорды</value>
+  </data>
+  <data name="RecordsFileName" xml:space="preserve">
+    <value>records.txt</value>
   </data>
   <data name="TitlePassiveItem" xml:space="preserve">
     <value>TOUGH GROWTH</value>

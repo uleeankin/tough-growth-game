@@ -16,6 +16,9 @@ namespace Model.Game
         public delegate void dNeedRedraw();
         public event dNeedRedraw NeedRedraw = null;
 
+        public delegate void dEndGame();
+        public event dEndGame EndGame = null;
+
         private bool _isNeedStop = false;
         private double _objectsSpeed = 200;
         private double _timeCoefficient = 0;
@@ -58,29 +61,65 @@ namespace Model.Game
             }
         }
 
+        public int Deaths { get; set; }
+
         public GameScreen() : base()
         {
+            Deaths = 0;
             _levelObjects = LevelsParser.GetLevels(10);
             Init();
         }
 
         private void Init()
         {
-            _gameObjects.Clear();
-            _levelObjects[Level].ForEach((elObject) => {
-                _gameObjects.Add(elObject.Clone());
-            });
-            ((PermanentSquare)_gameObjects[(int)GameObjectTypes.PERMANENT_SQUARE])
-                                .NeedNewPosition += SetPermanentSquareCoordinates;
+            if (Level > 10)
+            {
+                EndGame?.Invoke();
+            }
+            else
+            {
+                _gameObjects.Clear();
+                _levelObjects[Level].ForEach((elObject) => {
+                    _gameObjects.Add(elObject.Clone());
+                });
+                ((PermanentSquare)_gameObjects[(int)GameObjectTypes.PERMANENT_SQUARE])
+                                    .NeedNewPosition += SetPermanentSquareCoordinates;
+            }
+            
         }
 
         private void SetPermanentSquareCoordinates()
         {
-            Random random = new Random();
-            GameObjects[(int)GameObjectTypes.PERMANENT_SQUARE].X =
-                random.NextDouble() * (ScreenWidth - GameObjects[(int)GameObjectTypes.PERMANENT_SQUARE].Width * 3);
-            GameObjects[(int)GameObjectTypes.PERMANENT_SQUARE].Y =
-                random.NextDouble() * (ScreenHeight - GameObjects[(int)GameObjectTypes.PERMANENT_SQUARE].Height * 3);
+            double x;
+            double y;
+
+            bool isIntersection = false;
+            GameObject permanentSquare = GameObjects[(int)GameObjectTypes.PERMANENT_SQUARE];
+
+            do
+            {
+                Random random = new Random();
+                x = random.NextDouble() *
+                (ScreenWidth - GameObjects[(int)GameObjectTypes.PERMANENT_SQUARE].Width * 3);
+                y = random.NextDouble()
+                    * (ScreenHeight - GameObjects[(int)GameObjectTypes.PERMANENT_SQUARE].Height * 3);
+
+                foreach (GameObject elGameObject in GameObjects)
+                {
+                    if (elGameObject.ID != GameObjectTypes.PERMANENT_SQUARE)
+                    {
+                        isIntersection = isIntersection 
+                            && GetXIntersection(elGameObject.X, permanentSquare.X,
+                            permanentSquare.Width / 2 + 3, elGameObject.Width / 2)
+                        && GetYIntersection(elGameObject.Y, permanentSquare.Y,
+                            permanentSquare.Height / 2 + 3, elGameObject.Height / 2);
+                    }
+                }
+            } while (isIntersection);
+
+
+            GameObjects[(int)GameObjectTypes.PERMANENT_SQUARE].X = x;
+            GameObjects[(int)GameObjectTypes.PERMANENT_SQUARE].Y = y;
 
         }
 
@@ -161,6 +200,7 @@ namespace Model.Game
                         {
                             if (elGameObject.State == GameObjectsStates.BARRIER)
                             {
+                                Deaths++;
                                 Level = Level < 8 ? Level : Level - 1;
                                 StartNewLevel();
                             }
