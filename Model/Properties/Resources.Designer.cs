@@ -61,6 +61,15 @@ namespace Model.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Спасибо за игру.
+        /// </summary>
+        internal static string EndGame {
+            get {
+                return ResourceManager.GetString("EndGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Выход.
         /// </summary>
         internal static string ExitControlItem {
@@ -99,6 +108,15 @@ namespace Model.Properties {
         internal static string InfoControlItem {
             get {
                 return ResourceManager.GetString("InfoControlItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Введите своё имя для сохранения рекорда.
+        /// </summary>
+        internal static string InputPhrase {
+            get {
+                return ResourceManager.GetString("InputPhrase", resourceCulture);
             }
         }
         
@@ -280,6 +298,15 @@ namespace Model.Properties {
         internal static string RecordsFileName {
             get {
                 return ResourceManager.GetString("RecordsFileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Финальное количество смертей - .
+        /// </summary>
+        internal static string Score {
+            get {
+                return ResourceManager.GetString("Score", resourceCulture);
             }
         }
         

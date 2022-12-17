@@ -16,6 +16,7 @@ namespace Controller
         protected InfoController Info { get; set; }
         protected RecordsController Records { get; set; }
         protected GameController Game { get; set; }
+        protected EndGameController EndGame { get; set; }
 
         public ControllersManager()
         {
@@ -43,7 +44,10 @@ namespace Controller
                     CurrentController = Menu;
                     Menu.Start();
                     break;
-
+                case ControlItemCode.EndGame:
+                    CurrentController = EndGame;
+                    EndGame.Start();
+                    break;
             }
         }
 
@@ -61,6 +65,7 @@ namespace Controller
             Records.ChangeController += GetMove;
             Info.ChangeController += GetMove;
             Game.ChangeController += GetMove;
+            EndGame.ChangeController += GetMove;
         }
 
         private void InitControllers()
@@ -69,6 +74,7 @@ namespace Controller
             Records = this.GetRecordsController();
             Info = this.GetInfoController();
             Game = this.GetGameController();
+            EndGame = this.GetEndGameController();
         }
 
         protected abstract MenuController GetMenuController();
@@ -78,5 +84,7 @@ namespace Controller
         protected abstract RecordsController GetRecordsController();
 
         protected abstract GameController GetGameController();
+
+        protected abstract EndGameController GetEndGameController();
     }
 }

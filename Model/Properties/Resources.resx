@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EndGame" xml:space="preserve">
+    <value>Спасибо за игру</value>
+  </data>
   <data name="ExitControlItem" xml:space="preserve">
     <value>Выход</value>
   </data>
@@ -137,6 +140,9 @@
   </data>
   <data name="InfoControlItem" xml:space="preserve">
     <value>Справка</value>
+  </data>
+  <data name="InputPhrase" xml:space="preserve">
+    <value>Введите своё имя для сохранения рекорда</value>
   </data>
   <data name="Level1" xml:space="preserve">
     <value>ИК (50;450) 625
@@ -234,6 +240,9 @@
   </data>
   <data name="RecordsFileName" xml:space="preserve">
     <value>records.txt</value>
+  </data>
+  <data name="Score" xml:space="preserve">
+    <value>Финальное количество смертей - </value>
   </data>
   <data name="TitlePassiveItem" xml:space="preserve">
     <value>TOUGH GROWTH</value>

@@ -45,7 +45,9 @@
   <ItemGroup>
     <Compile Include="Game\GameObjects\ViewGameObject.cs" />
     <Compile Include="Game\GameObjects\ViewGameSquare.cs" />
+    <Compile Include="Game\ViewEndGame.cs" />
     <Compile Include="Game\ViewGame.cs" />
+    <Compile Include="Items\ViewInputItem.cs" />
     <Compile Include="Items\ViewPassiveItem.cs" />
     <Compile Include="Menu\ViewInfo.cs" />
     <Compile Include="Menu\ViewMenu.cs" />

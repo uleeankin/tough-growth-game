@@ -141,6 +141,7 @@ namespace Model.Game
                     double end = timer.ElapsedMilliseconds;
                     _timeCoefficient = (end - start) / 1000;
                 }
+                Thread.CurrentThread.Interrupt();
             }).Start();
         }
 
