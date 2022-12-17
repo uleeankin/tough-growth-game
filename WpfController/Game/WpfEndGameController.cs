@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using View.Game;
@@ -52,8 +53,10 @@ namespace WpfController.Game
 
         public override void Start()
         {
-            _screen.KeyDown += OnKeyDownHandler;
             _viewEndGame.Draw();
+            //Thread.Sleep(5000);
+            _screen.KeyDown += OnKeyDownHandler;
+            
         }
 
         public override void Stop()

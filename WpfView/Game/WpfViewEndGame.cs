@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
@@ -32,10 +33,12 @@ namespace WpfView.Game
                 _screen.Screen.Children.Clear();
                 _screen.Screen.Background = Brushes.Black;
                 Console.WriteLine(_screen.Screen.Children.Count);
+                //Thread.Sleep(2000);
                 foreach (ViewPassiveItem elPassiveItem in Info)
                 {
                     elPassiveItem.Draw();
                 }
+                //Thread.Sleep(2000);
                 foreach (ViewControlItem elViewControlItem in BackToMenu)
                 {
                     elViewControlItem.Draw();
@@ -100,7 +103,7 @@ namespace WpfView.Game
 
         protected override void Redraw()
         {
-
+            
         }
 
         protected override ViewInputItem CreateInputItem(InputItem parInputItem)

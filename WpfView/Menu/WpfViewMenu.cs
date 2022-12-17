@@ -39,16 +39,20 @@ namespace WpfView.Menu
 
         public override void Draw()
         {
-            _screen.Screen.Children.Clear();
-            foreach (ViewPassiveItem elPassiveItem in Title)
-            {
-                elPassiveItem.Draw();
-            }
-            foreach (ViewControlItem elViewControlItem in Menu)
-            {
-                elViewControlItem.Draw();
-            }
-            this.SetParentControl(_screen.Screen);
+            Application.Current.Dispatcher.Invoke(() => {
+                _screen.Screen.Children.Clear();
+                Console.WriteLine("i'm here");
+                foreach (ViewPassiveItem elPassiveItem in Title)
+                {
+                    elPassiveItem.Draw();
+                }
+                foreach (ViewControlItem elViewControlItem in Menu)
+                {
+                    elViewControlItem.Draw();
+                }
+                this.SetParentControl(_screen.Screen);
+            });
+            
         }
 
         protected override void Redraw()
