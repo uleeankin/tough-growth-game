@@ -38,5 +38,10 @@ namespace WpfController
         {
             return WpfRecordsController.GetInstance();
         }
+
+        protected override EndGameController GetEndGameController()
+        {
+            return WpfEndGameController.GetInstance();
+        }
     }
 }

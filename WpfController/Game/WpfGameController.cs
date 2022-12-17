@@ -66,15 +66,12 @@ namespace WpfController.Game
             _screen.KeyDown += OnKeyDownHandler;
             _viewGame.Draw();
             Game.StartGame();
-            /*((GameSquare)Game.GameObjects[(int)GameObjectTypes.GAME_SQUARE])
-                .StartMotion(10, (int)Game.ScreenHeight, (int)Game.ScreenWidth);*/
         }
 
         public override void Stop()
         {
             _screen.KeyDown -= OnKeyDownHandler;
             Game.StopGame();
-            /*((GameSquare)Game.GameObjects[(int)GameObjectTypes.GAME_SQUARE]).StopMotion();*/
         }
     }
 }

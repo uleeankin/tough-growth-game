@@ -52,6 +52,7 @@
     <Compile Include="Game\GameObjects\WpfViewGameSquare.cs" />
     <Compile Include="Game\WpfViewGame.cs" />
     <Compile Include="Items\WpfViewControlItem.cs" />
+    <Compile Include="Items\WpfViewInputItem.cs" />
     <Compile Include="Items\WpfViewPassiveItem.cs" />
     <Compile Include="MainScreen.cs" />
     <Compile Include="Menu\WpfViewInfo.cs" />

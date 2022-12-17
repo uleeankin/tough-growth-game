@@ -48,6 +48,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Game\WpfEndGameController.cs" />
     <Compile Include="Game\WpfGameController.cs" />
     <Compile Include="Menu\WpfInfoController.cs" />
     <Compile Include="Menu\WpfMenuController.cs" />
