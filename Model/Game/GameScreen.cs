@@ -93,26 +93,30 @@ namespace Model.Game
             double x;
             double y;
 
-            bool isIntersection = false;
+            bool isIntersection;
             GameObject permanentSquare = GameObjects[(int)GameObjectTypes.PERMANENT_SQUARE];
 
             do
             {
+                isIntersection = false;
                 Random random = new Random();
-                x = random.NextDouble() *
-                (ScreenWidth - GameObjects[(int)GameObjectTypes.PERMANENT_SQUARE].Width * 3);
+                x = random.NextDouble()
+                    * ((ScreenWidth - permanentSquare.Width * 3)
+                    - permanentSquare.Width * 3) + permanentSquare.Width * 3;
                 y = random.NextDouble()
-                    * (ScreenHeight - GameObjects[(int)GameObjectTypes.PERMANENT_SQUARE].Height * 3);
+                    * ((ScreenHeight - permanentSquare.Height * 3)
+                    - permanentSquare.Height * 3) + permanentSquare.Height * 3;
 
                 foreach (GameObject elGameObject in GameObjects)
                 {
-                    if (elGameObject.ID != GameObjectTypes.PERMANENT_SQUARE)
+                    if (elGameObject.ID != GameObjectTypes.PERMANENT_SQUARE
+                        && elGameObject.ID != GameObjectTypes.GAME_SQUARE)
                     {
-                        isIntersection = isIntersection 
-                            && GetXIntersection(elGameObject.X, permanentSquare.X,
-                            permanentSquare.Width / 2 + 3, elGameObject.Width / 2)
-                        && GetYIntersection(elGameObject.Y, permanentSquare.Y,
-                            permanentSquare.Height / 2 + 3, elGameObject.Height / 2);
+                        isIntersection = isIntersection
+                            || (GetXIntersection(elGameObject.X, x,
+                                    permanentSquare.Width, elGameObject.Width)
+                                && GetYIntersection(elGameObject.Y, y,
+                                    permanentSquare.Height, elGameObject.Height));
                     }
                 }
             } while (isIntersection);

@@ -10,7 +10,7 @@ namespace Model.Game.GameObjects
 {
     public class GameSquare : GameObject
     {
-        //private bool _isNeedStop = false;
+        
         private MotionType _motionDirection = MotionType.NO_MOTION;
         private GameObjectsStates _state = GameObjectsStates.NO_STATE;
         public MotionType MotionDirection
@@ -56,31 +56,35 @@ namespace Model.Game.GameObjects
         {
             if (MotionDirection == MotionType.UP)
             {
-                if (Y >= 0)
+                if (Y <= 0)
                 {
-                    Y -= parSpeed;
+                    Y = parScreenHeight;
                 }
+                Y -= parSpeed;
             }
             if (MotionDirection == MotionType.DOWN)
             {
-                if (Y <= parScreenHeight - 60)
+                if (Y >= parScreenHeight)
                 {
-                    Y += parSpeed;
+                    Y = 0;
                 }
+                Y += parSpeed;
             }
             if (MotionDirection == MotionType.LEFT)
             {
-                if (X >= 0)
+                if (X <= 0)
                 {
-                    X -= parSpeed;
+                    X = parScreenWidth;
                 }
+                X -= parSpeed;
             }
             if (MotionDirection == MotionType.RIGHT)
             {
-                if (X <= parScreenWidth - 30)
+                if (X >= parScreenWidth)
                 {
-                    X += parSpeed;
+                    X = 0;
                 }
+                X += parSpeed;
             }
         }
 
