@@ -11,7 +11,7 @@ namespace View.Items
     {
         private InputItem _item = null;
 
-        protected InputItem Item
+        public InputItem Item
         {
             get
             {
