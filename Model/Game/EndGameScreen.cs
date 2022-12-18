@@ -1,6 +1,7 @@
 ﻿using Model.Enums;
 using Model.Items;
 using Model.Menu;
+using Model.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,6 @@ namespace Model.Game
 {
     public class EndGameScreen : MenuScreen
     {
-
         public string PlayerName { get; set; }
         public int Score { get; set; }
 
@@ -35,6 +35,20 @@ namespace Model.Game
         public void AddSymbol(int parLetterCode)
         {
             this.InputItems[0].ChangeText(this.InputItems[0].Text += (char)parLetterCode);
+        }
+
+        public void SaveRecord()
+        {
+            if (PlayerName.Length == 0)
+            {
+                PlayerName = "Player";
+            } else
+            {
+                PlayerName = this.InputItems[0].Text;
+            }
+
+            string record = $"{PlayerName} {Score}";
+            FileIO.FileWriter(Properties.Resources.RecordsFileName, record);
         }
 
     }
