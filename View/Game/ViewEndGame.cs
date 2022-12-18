@@ -18,6 +18,7 @@ namespace View.Game
         protected ViewControlItem[] BackToMenu => _controlItems.Values.ToArray();
         protected ViewPassiveItem[] Info => _passiveItems.ToArray();
         protected ViewInputItem[] Input => _inputItems.ToArray();
+        protected Model.Game.EndGameScreen EndScreen { get; }
 
         public int X { get; set; }
         public int Y { get; set; }
