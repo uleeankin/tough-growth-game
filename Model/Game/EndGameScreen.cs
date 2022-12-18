@@ -12,6 +12,9 @@ namespace Model.Game
 {
     public class EndGameScreen : MenuScreen
     {
+
+        private int _playersNumber = 0;
+
         public string PlayerName { get; set; }
         public int Score { get; set; }
 
@@ -39,15 +42,16 @@ namespace Model.Game
 
         public void SaveRecord()
         {
+            _playersNumber++;
             if (this.InputItems[0].Text.Length == 0)
             {
-                PlayerName = "Player";
+                PlayerName = $"Player{_playersNumber}";
             } else
             {
                 PlayerName = this.InputItems[0].Text;
             }
 
-            string record = $"{PlayerName} {Score}";
+            string record = $"{PlayerName} {Score}\n";
             FileIO.FileWriter(Properties.Resources.RecordsFileName, record);
         }
 
