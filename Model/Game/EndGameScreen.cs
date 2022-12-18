@@ -39,7 +39,7 @@ namespace Model.Game
 
         public void SaveRecord()
         {
-            if (PlayerName.Length == 0)
+            if (this.InputItems[0].Text.Length == 0)
             {
                 PlayerName = "Player";
             } else
