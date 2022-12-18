@@ -49,6 +49,7 @@ namespace WpfController.Game
             switch (e.Key)
             {
                 case Key.Enter:
+                    End.SaveRecord();
                     End.SelectFocusedItem();
                     break;
                 case Key.Back:
