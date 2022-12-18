@@ -29,12 +29,12 @@ namespace Model.Game
 
         public void RemoveLastSymbol()
         {
-            this.InputItems[0].Text.Remove(this.InputItems[0].Text.Length - 1);
+            this.InputItems[0].ChangeText(this.InputItems[0].Text.Remove(this.InputItems[0].Text.Length - 1));
         }
 
         public void AddSymbol(int parLetterCode)
         {
-            this.InputItems[0].Text += (char)parLetterCode;
+            this.InputItems[0].ChangeText(this.InputItems[0].Text += (char)parLetterCode);
         }
 
     }
