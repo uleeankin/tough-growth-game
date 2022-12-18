@@ -9,7 +9,6 @@ namespace View.Game
 {
     public abstract class ViewEndGame : View
     {
-        private Model.Game.EndGameScreen _screen = null;
 
         private Dictionary<int, ViewControlItem> _controlItems = null;
         private List<ViewPassiveItem> _passiveItems = null;
@@ -18,7 +17,7 @@ namespace View.Game
         protected ViewControlItem[] BackToMenu => _controlItems.Values.ToArray();
         protected ViewPassiveItem[] Info => _passiveItems.ToArray();
         protected ViewInputItem[] Input => _inputItems.ToArray();
-        protected Model.Game.EndGameScreen EndScreen { get; }
+        protected Model.Game.EndGameScreen EndScreen { get; set; }
 
         public int X { get; set; }
         public int Y { get; set; }
@@ -35,7 +34,7 @@ namespace View.Game
 
         public ViewEndGame(Model.Game.EndGameScreen parEndGame)
         {
-            _screen = parEndGame;
+            EndScreen = parEndGame;
             _controlItems = new Dictionary<int, ViewControlItem>();
             _passiveItems = new List<ViewPassiveItem>();
             _inputItems = new List<ViewInputItem>();
