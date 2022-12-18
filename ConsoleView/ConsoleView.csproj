@@ -46,6 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Game\ConsoleViewEndGame.cs" />
+    <Compile Include="Game\ConsoleViewGame.cs" />
+    <Compile Include="Game\GameObjects\ConsoleViewGameObject.cs" />
+    <Compile Include="Items\ConsoleViewInputItem.cs" />
     <Compile Include="Items\ConsoleViewPassiveItem.cs" />
     <Compile Include="Menu\ConsoleViewInfo.cs" />
     <Compile Include="Menu\ConsoleViewMenu.cs" />
@@ -67,5 +71,6 @@
       <Name>View</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

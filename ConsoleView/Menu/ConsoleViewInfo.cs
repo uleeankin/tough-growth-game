@@ -62,7 +62,7 @@ namespace ConsoleView.Menu
             {
                 elViewPassiveItem.X = X;
                 elViewPassiveItem.Y = y;
-                y = Console.CursorTop + (Y + 1) * 4;
+                y = Console.CursorTop + (Y + 1) * 5;
             } 
 
             //Init button

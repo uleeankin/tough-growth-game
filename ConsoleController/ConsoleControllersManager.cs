@@ -7,6 +7,8 @@ using Controller;
 using ConsoleController.Menu;
 using Controller.Menu;
 using Model.Enums;
+using Controller.Game;
+using ConsoleController.Game;
 
 namespace ConsoleController
 {
@@ -15,6 +17,16 @@ namespace ConsoleController
         public ConsoleControllersManager()
         {
 
+        }
+
+        protected override EndGameController GetEndGameController()
+        {
+            return ConsoleEndGameController.GetInstance();
+        }
+
+        protected override GameController GetGameController()
+        {
+            return ConsoleGameController.GetInstance();
         }
 
         protected override InfoController GetInfoController()
