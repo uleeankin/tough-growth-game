@@ -178,7 +178,7 @@ namespace Model.Game
                                     break;
                                 }
 
-                                gameSquare.Area += (elGameObject.Area / (GameObjects.Length - 2));
+                                gameSquare.Area += (elGameObject.Area / (Level * 1.5));
                                 elGameObject.State = GameObjectsStates.EATEN;
 
                                 if (_gameObjects.FindAll(

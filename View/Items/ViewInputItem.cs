@@ -27,6 +27,9 @@ namespace View.Items
         public ViewInputItem(InputItem parItem)
         {
             _item = parItem;
+            _item.RedrawItem += RedrawItem;
         }
+
+        protected abstract void RedrawItem();
     }
 }
