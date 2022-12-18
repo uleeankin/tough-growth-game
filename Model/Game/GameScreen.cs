@@ -29,7 +29,7 @@ namespace Model.Game
         private Dictionary<int, List<GameObject>> _levelObjects
             = new Dictionary<int, List<GameObject>>();
 
-        private int _level = 1;
+        private int _level = 10;
 
         public double ScreenHeight { get; set; }
         public double ScreenWidth { get; set; }
