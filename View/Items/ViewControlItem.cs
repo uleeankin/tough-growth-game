@@ -12,7 +12,7 @@ namespace View.Items
     {
         private ControlItem _item = null;
 
-        protected ControlItem Item
+        public ControlItem Item
         {
             get
             {

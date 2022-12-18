@@ -12,7 +12,7 @@ namespace View.Items
 
         private PassiveItem _item = null;
 
-        protected PassiveItem Item
+        public PassiveItem Item
         {
             get
             {
