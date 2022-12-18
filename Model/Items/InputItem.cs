@@ -15,5 +15,11 @@ namespace Model.Items
         {
 
         }
+
+        public void ChangeText(string parNewString)
+        {
+            Text = parNewString;
+            RedrawItem?.Invoke();
+        }
     }
 }
