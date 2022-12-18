@@ -126,5 +126,10 @@ namespace Model.Menu
         {
             _inputItems.Add(parInputItem);
         }
+
+        protected void DeletePassiveItems()
+        {
+            _passiveItems.Clear();
+        }
     }
 }

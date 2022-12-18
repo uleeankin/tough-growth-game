@@ -132,10 +132,9 @@ namespace Model.Game
             {
                 Level = 1;
                 Deaths = 0;
-            } else
-            {
-                Level = _level;
             }
+
+            Init();
             
             new Thread(() =>
             {
