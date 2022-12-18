@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EndGame" xml:space="preserve">
+    <value>Спасибо за игру</value>
+  </data>
   <data name="ExitControlItem" xml:space="preserve">
     <value>Выход</value>
   </data>
@@ -138,8 +141,87 @@
   <data name="InfoControlItem" xml:space="preserve">
     <value>Справка</value>
   </data>
-  <data name="LevelsFilesPath" xml:space="preserve">
-    <value>../../../Model/Properties/Level</value>
+  <data name="InputPhrase" xml:space="preserve">
+    <value>Введите своё имя для сохранения рекорда</value>
+  </data>
+  <data name="Level1" xml:space="preserve">
+    <value>ИК (50;450) 625
+ПСК (900;70) 400
+КВ (320;270) 1600
+КВ (612;162) 2500</value>
+  </data>
+  <data name="Level10" xml:space="preserve">
+    <value>ИК (475;250) 625
+ПСК (800;50) 400
+П (567;115) 900 (390;115) (567;115) 1
+П (390;398) 900 (390;398) (567;398) 1
+П (344;195) 800 (344;195) (356;315) -1
+П (613;315) 800 (613;195) (613;315) -1</value>
+  </data>
+  <data name="Level2" xml:space="preserve">
+    <value>ИК (50;450) 625
+ПСК (900;70) 400
+Ш (500;230) 900</value>
+  </data>
+  <data name="Level3" xml:space="preserve">
+    <value>ИК (50;450) 625
+ПСК (900;70) 400
+КР (470;240) 2500</value>
+  </data>
+  <data name="Level4" xml:space="preserve">
+    <value>ИК (900;450) 625
+ПСК (50;50) 400
+Ш (500;230) 900
+Ш (690;150) 900
+Ш (310;300) 900</value>
+  </data>
+  <data name="Level5" xml:space="preserve">
+    <value>ИК (900;450) 625
+ПСК (50;50) 400
+КР (912;60) 2500
+Ш (600;200) 400
+КВ (600;135) 2500
+КВ (600;265) 2500
+КВ (535;205) 2500
+КВ (665;205) 2500
+Ш (230;295) 400
+КВ (165;300) 2500
+КВ (295;300) 2500
+КВ (230;235) 2500
+КВ (230;365) 2500</value>
+  </data>
+  <data name="Level6" xml:space="preserve">
+    <value>ИК (500;235) 625
+ПСК (50;50) 400
+КР (500;55) 2500
+КР (925;235) 2500
+КР (500;435) 2500
+КР (55;235) 2500</value>
+  </data>
+  <data name="Level7" xml:space="preserve">
+    <value>ИК (900;450) 625
+ПСК (50;50) 400
+Ш (500;230) 900
+Т (690;150) 1600
+Т (310;300) 1600</value>
+  </data>
+  <data name="Level8" xml:space="preserve">
+    <value>ИК (900;450) 625
+ПСК (50;50) 400
+Ш (300;400) 900
+Т (300;200) 1600
+Т (700;300) 1600
+КР (700;115) 2500</value>
+  </data>
+  <data name="Level9" xml:space="preserve">
+    <value>ИК (50;450) 625
+ПСК (900;70) 400
+КР (500;255) 2500
+Ш (180;150) 800
+Т (70;70) 900
+П (70;255) 900 (70;255) (400;255) 1
+П (915;255) 900 (600;255) (915;255) 1
+П (500;160) 800 (500;70) (500;160) -1</value>
   </data>
   <data name="MainMenuControlItem" xml:space="preserve">
     <value>Главное меню</value>
@@ -155,6 +237,12 @@
   </data>
   <data name="RecordsControlItem" xml:space="preserve">
     <value>Рекорды</value>
+  </data>
+  <data name="RecordsFileName" xml:space="preserve">
+    <value>records.txt</value>
+  </data>
+  <data name="Score" xml:space="preserve">
+    <value>Финальное количество смертей - </value>
   </data>
   <data name="TitlePassiveItem" xml:space="preserve">
     <value>TOUGH GROWTH</value>

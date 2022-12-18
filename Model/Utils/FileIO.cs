@@ -12,27 +12,32 @@ namespace Model.Utils
 
         public static void FileWriter(string parFileName, string parText)
         {
-
+            File.AppendAllText(parFileName, parText);
         }
 
-        public static List<string> FileReader(string parFileName)
+        public static List<Tuple<string, int>> RecordsFileReader(string parFileName)
         {
-            List<string> fileContent = new List<string>();
-            try
+            List<Tuple<string, int>> fileContent = new List<Tuple<string, int>>();
+
+            if (File.Exists(parFileName))
             {
-                using (StreamReader reader = new StreamReader(parFileName))
+                try
                 {
-                    string line;
-                    while ((line = reader.ReadLine()) != null)
+                    using (StreamReader reader = new StreamReader(parFileName))
                     {
-                        fileContent.Add(line);
+                        string line;
+                        while ((line = reader.ReadLine()) != null)
+                        {
+                            string[] records = line.Split(' ');
+                            fileContent.Add(new Tuple<string, int>(records[0], int.Parse(records[1])));
+                        }
                     }
+
                 }
-                    
-            }
-            catch(FileNotFoundException e)
-            {
-                Console.WriteLine(e.Message);
+                catch (FileNotFoundException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
             }
             
             return fileContent;

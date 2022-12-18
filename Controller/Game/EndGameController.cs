@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Controller.Game
 {
-    public abstract class GameController : Controller
+    public abstract class EndGameController : Controller
     {
-        public Model.Game.GameScreen Game { get; set; }
 
-        public GameController() : base()
+        public Model.Game.EndGameScreen End { get; set; }
+
+        public EndGameController() : base()
         {
 
         }

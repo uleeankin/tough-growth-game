@@ -16,6 +16,8 @@ namespace Model.Menu
 
         private List<PassiveItem> _passiveItems = new List<PassiveItem>();
 
+        private List<InputItem> _inputItems = new List<InputItem>();
+
         public int FocusedItemIndex
         {
             get { return _focusedItemIndex; }
@@ -43,6 +45,14 @@ namespace Model.Menu
             get
             {
                 return _passiveItems.ToArray();
+            }
+        }
+
+        public InputItem[] InputItems
+        {
+            get
+            {
+                return _inputItems.ToArray();
             }
         }
 
@@ -110,6 +120,16 @@ namespace Model.Menu
         protected void AddPassiveItem(PassiveItem parPassiveItem)
         {
             _passiveItems.Add(parPassiveItem);
+        }
+
+        protected void AddInputItem(InputItem parInputItem)
+        {
+            _inputItems.Add(parInputItem);
+        }
+
+        protected void DeletePassiveItems()
+        {
+            _passiveItems.Clear();
         }
     }
 }

@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,6 +50,7 @@
     <Compile Include="Enums\GameObjectTypes.cs" />
     <Compile Include="Enums\MotionType.cs" />
     <Compile Include="Enums\States.cs" />
+    <Compile Include="Game\EndGameScreen.cs" />
     <Compile Include="Game\GameObjects\Circle.cs" />
     <Compile Include="Game\GameObjects\GameObject.cs" />
     <Compile Include="Game\GameObjects\GameSquare.cs" />
@@ -59,6 +61,7 @@
     <Compile Include="Game\GameObjects\Square.cs" />
     <Compile Include="Game\GameObjects\Triangle.cs" />
     <Compile Include="Game\GameScreen.cs" />
+    <Compile Include="Items\InputItem.cs" />
     <Compile Include="Items\Item.cs" />
     <Compile Include="Items\PassiveItem.cs" />
     <Compile Include="Menu\Info.cs" />
@@ -84,18 +87,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Properties\Level1.txt" />
-    <Content Include="Properties\Level10.txt" />
-    <Content Include="Properties\Level2.txt" />
-    <Content Include="Properties\Level3.txt" />
-    <Content Include="Properties\Level4.txt" />
-    <Content Include="Properties\Level5.txt" />
-    <Content Include="Properties\Level6.txt" />
-    <Content Include="Properties\Level7.txt" />
-    <Content Include="Properties\Level8.txt" />
-    <Content Include="Properties\Level9.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

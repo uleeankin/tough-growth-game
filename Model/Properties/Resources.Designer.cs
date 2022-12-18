@@ -61,6 +61,15 @@ namespace Model.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Спасибо за игру.
+        /// </summary>
+        internal static string EndGame {
+            get {
+                return ResourceManager.GetString("EndGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Выход.
         /// </summary>
         internal static string ExitControlItem {
@@ -103,11 +112,150 @@ namespace Model.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на ../../../Model/Properties/Level.
+        ///   Ищет локализованную строку, похожую на Введите своё имя для сохранения рекорда.
         /// </summary>
-        internal static string LevelsFilesPath {
+        internal static string InputPhrase {
             get {
-                return ResourceManager.GetString("LevelsFilesPath", resourceCulture);
+                return ResourceManager.GetString("InputPhrase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на ИК (50;450) 625
+        ///ПСК (900;70) 400
+        ///КВ (320;270) 1600
+        ///КВ (612;162) 2500.
+        /// </summary>
+        internal static string Level1 {
+            get {
+                return ResourceManager.GetString("Level1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на ИК (475;250) 625
+        ///ПСК (800;50) 400
+        ///П (567;115) 900 (390;115) (567;115) 1
+        ///П (390;398) 900 (390;398) (567;398) 1
+        ///П (344;195) 800 (344;195) (356;315) -1
+        ///П (613;315) 800 (613;195) (613;315) -1.
+        /// </summary>
+        internal static string Level10 {
+            get {
+                return ResourceManager.GetString("Level10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на ИК (50;450) 625
+        ///ПСК (900;70) 400
+        ///Ш (500;230) 900.
+        /// </summary>
+        internal static string Level2 {
+            get {
+                return ResourceManager.GetString("Level2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на ИК (50;450) 625
+        ///ПСК (900;70) 400
+        ///КР (470;240) 2500.
+        /// </summary>
+        internal static string Level3 {
+            get {
+                return ResourceManager.GetString("Level3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на ИК (900;450) 625
+        ///ПСК (50;50) 400
+        ///Ш (500;230) 900
+        ///Ш (690;150) 900
+        ///Ш (310;300) 900.
+        /// </summary>
+        internal static string Level4 {
+            get {
+                return ResourceManager.GetString("Level4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на ИК (900;450) 625
+        ///ПСК (50;50) 400
+        ///КР (912;60) 2500
+        ///Ш (600;200) 400
+        ///КВ (600;135) 2500
+        ///КВ (600;265) 2500
+        ///КВ (535;205) 2500
+        ///КВ (665;205) 2500
+        ///Ш (230;295) 400
+        ///КВ (165;300) 2500
+        ///КВ (295;300) 2500
+        ///КВ (230;235) 2500
+        ///КВ (230;365) 2500.
+        /// </summary>
+        internal static string Level5 {
+            get {
+                return ResourceManager.GetString("Level5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на ИК (500;235) 625
+        ///ПСК (50;50) 400
+        ///КР (500;55) 2500
+        ///КР (925;235) 2500
+        ///КР (500;435) 2500
+        ///КР (55;235) 2500.
+        /// </summary>
+        internal static string Level6 {
+            get {
+                return ResourceManager.GetString("Level6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на ИК (900;450) 625
+        ///ПСК (50;50) 400
+        ///Ш (500;230) 900
+        ///Т (690;150) 1600
+        ///Т (310;300) 1600.
+        /// </summary>
+        internal static string Level7 {
+            get {
+                return ResourceManager.GetString("Level7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на ИК (900;450) 625
+        ///ПСК (50;50) 400
+        ///Ш (300;400) 900
+        ///Т (300;200) 1600
+        ///Т (700;300) 1600
+        ///КР (700;115) 2500.
+        /// </summary>
+        internal static string Level8 {
+            get {
+                return ResourceManager.GetString("Level8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на ИК (50;450) 625
+        ///ПСК (900;70) 400
+        ///КР (500;255) 2500
+        ///Ш (180;150) 800
+        ///Т (70;70) 900
+        ///П (70;255) 900 (70;255) (400;255) 1
+        ///П (915;255) 900 (600;255) (915;255) 1
+        ///П (500;160) 800 (500;70) (500;160) -1.
+        /// </summary>
+        internal static string Level9 {
+            get {
+                return ResourceManager.GetString("Level9", resourceCulture);
             }
         }
         
@@ -141,6 +289,24 @@ namespace Model.Properties {
         internal static string RecordsControlItem {
             get {
                 return ResourceManager.GetString("RecordsControlItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на records.txt.
+        /// </summary>
+        internal static string RecordsFileName {
+            get {
+                return ResourceManager.GetString("RecordsFileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Финальное количество смертей - .
+        /// </summary>
+        internal static string Score {
+            get {
+                return ResourceManager.GetString("Score", resourceCulture);
             }
         }
         

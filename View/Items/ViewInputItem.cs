@@ -1,18 +1,17 @@
-﻿using System;
+﻿using Model.Items;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Model;
-using Model.Items;
 
 namespace View.Items
 {
-    public abstract class ViewControlItem : View
+    public abstract class ViewInputItem : View
     {
-        private ControlItem _item = null;
+        private InputItem _item = null;
 
-        public ControlItem Item
+        public InputItem Item
         {
             get
             {
@@ -25,7 +24,7 @@ namespace View.Items
         public int Width { get; protected set; }
         public int Height { get; protected set; }
 
-        public ViewControlItem(ControlItem parItem)
+        public ViewInputItem(InputItem parItem)
         {
             _item = parItem;
             _item.RedrawItem += RedrawItem;
