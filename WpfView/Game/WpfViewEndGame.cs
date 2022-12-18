@@ -16,7 +16,7 @@ namespace WpfView.Game
 {
     public class WpfViewEndGame : ViewEndGame
     {
-        public const int TEXT_FONT_SIZE = 14;
+        public const int TEXT_FONT_SIZE = 24;
 
         private MainScreen _screen = MainScreen.GetInstance();
 
@@ -40,21 +40,23 @@ namespace WpfView.Game
                     elViewControlItem.Draw();
                 }
 
-                /*foreach (ViewInputItem elInputItem in Input)
+                foreach (ViewInputItem elInputItem in Input)
                 {
                     elInputItem.Draw();
-                }*/
+                }
                 this.SetParentControl(_screen.Screen);
             });
         }
 
         private void Init()
         {
+            int y = TEXT_FONT_SIZE * 2;
             foreach (ViewPassiveItem elPassiveItem in Info)
             {
-                elPassiveItem.Y = 30;
+                elPassiveItem.Y = y;
                 elPassiveItem.Height = TEXT_FONT_SIZE;
-                elPassiveItem.X = 0;
+                elPassiveItem.X = (int)_screen.Screen.Width / 2 - y * 2;
+                y += TEXT_FONT_SIZE * 2;
             }
 
             foreach (ViewControlItem elControlItem in BackToMenu)
