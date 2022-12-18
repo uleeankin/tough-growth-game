@@ -15,7 +15,7 @@ namespace WpfView.Menu
     public class WpfViewRecords : ViewRecords
     {
 
-        public const int TEXT_FONT_SIZE = 14;
+        public const int TEXT_FONT_SIZE = 16;
 
         private MainScreen _screen = MainScreen.GetInstance();
 
@@ -40,11 +40,14 @@ namespace WpfView.Menu
 
         private void Init()
         {
+            int y = TEXT_FONT_SIZE * 2;
             foreach (ViewPassiveItem elPassiveItem in Records)
             {
-                elPassiveItem.Y = 30;
+                elPassiveItem.Y = y;
                 elPassiveItem.Height = TEXT_FONT_SIZE;
-                elPassiveItem.X = 0;
+                elPassiveItem.X = (int)_screen.Width / 2 
+                    - elPassiveItem.Item.Text.Length / 2 * (int)(TEXT_FONT_SIZE / 1.5);
+                y += (TEXT_FONT_SIZE * 2);
             }
 
             foreach (ViewControlItem elMenuItem in BackToMenu)

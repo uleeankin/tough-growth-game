@@ -39,6 +39,7 @@ namespace WpfController.Menu
             {
                 _instance = new WpfRecordsController();
             }
+            
             return _instance;
         }
 
@@ -54,6 +55,8 @@ namespace WpfController.Menu
 
         public override void Start()
         {
+            ((Records)Records).GetRecords();
+            _viewRecords = new WpfView.Menu.WpfViewRecords(Records);
             _screen.KeyDown += OnKeyDownHandler;
             _viewRecords.Draw();
         }
