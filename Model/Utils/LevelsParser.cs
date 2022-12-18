@@ -4,23 +4,47 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Model.Utils
 {
     public class LevelsParser
     {
+
+        private static volatile Dictionary<int, List<GameObject>> _levels 
+                                        = new Dictionary<int, List<GameObject>>();
+        private static volatile Dictionary<int, string> _levelsDescription 
+                                        = GetLevelsDescription();
+
+        private static List<Thread> _threads = new List<Thread>();
+
+        private static int _levelNumber = 1;
+        private static Object _locker = new Object();
+
         public static Dictionary<int, List<GameObject>> GetLevels(int parLevelsNumber)
         {
-            Dictionary<int, List<GameObject>> levels = new Dictionary<int, List<GameObject>>();
-            Dictionary<int, string> levelsDescription = GetLevelsDescription();
 
             for (int i = 1; i <= parLevelsNumber; i++)
             {
-                levels.Add(i, GetLevel(levelsDescription[i]));
+                _threads.Add(new Thread(() =>
+                {
+                    AddLevel();
+                }));
             }
 
-            return levels;
+            _threads.ForEach(elThread => elThread.Start());
+            _threads.ForEach(elThread => elThread.Join());
+            return _levels;
+        }
+
+        private static void AddLevel()
+        {
+            lock(_locker)
+            {
+                _levels.Add(_levelNumber, GetLevel(_levelsDescription[_levelNumber]));
+                _levelNumber++;
+            }
         }
 
         private static List<GameObject> GetLevel(string parLevelString)
