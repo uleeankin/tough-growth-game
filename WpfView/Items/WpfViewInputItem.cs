@@ -16,6 +16,7 @@ namespace WpfView.Items
 
         public const int HEIGHT = 60;
         public const int WIDTH = 300;
+        public const int FONT_SIZE = 14;
 
         private Label _label = null;
         private Utils.CastomOutput _output = new Utils.CastomOutput();
@@ -28,12 +29,22 @@ namespace WpfView.Items
 
         public override void Draw()
         {
-            
+            Init();
         }
 
         public void SetParentControl(FrameworkElement parControl)
         {
-            //((IAddChild)parControl).AddChild(_button);
+            ((IAddChild)parControl).AddChild(_label);
+        }
+
+        protected override void RedrawItem()
+        {
+            _label.Content = Item.Text;
+        }
+
+        private void Init()
+        {
+            _label = _output.InitLabel(FONT_SIZE, X, Y, Height, Width);
         }
     }
 }

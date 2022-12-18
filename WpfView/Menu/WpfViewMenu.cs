@@ -41,7 +41,6 @@ namespace WpfView.Menu
         {
             Application.Current.Dispatcher.Invoke(() => {
                 _screen.Screen.Children.Clear();
-                Console.WriteLine("i'm here");
                 foreach (ViewPassiveItem elPassiveItem in Title)
                 {
                     elPassiveItem.Draw();

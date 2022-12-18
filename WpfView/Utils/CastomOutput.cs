@@ -45,5 +45,23 @@ namespace WpfView.Utils
             Canvas.SetLeft(textBlock, parX);
             return textBlock;
         }
+
+        public Label InitLabel(int parFontSize, int parX, int parY, int parHeight, int parWidth)
+        {
+            Label label = new Label();
+            label.Foreground = Brushes.White;
+            label.Background = Brushes.Black;
+            label.FontSize = parFontSize;
+            label.FontFamily = new FontFamily(Properties.Resources.FontFamily);
+            label.HorizontalContentAlignment = HorizontalAlignment.Stretch;
+            label.VerticalContentAlignment = VerticalAlignment.Center;
+            label.BorderBrush = Brushes.White;
+            label.BorderThickness = new Thickness(BUTTON_BORDER_WIDTH);
+            label.Height = parHeight;
+            label.Width = parWidth;
+            Canvas.SetTop(label, parY);
+            Canvas.SetLeft(label, parX);
+            return label;
+        }
     }
 }

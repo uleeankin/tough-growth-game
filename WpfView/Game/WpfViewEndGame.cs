@@ -67,8 +67,8 @@ namespace WpfView.Game
 
             foreach (ViewInputItem elInputItem in Input)
             {
-                elInputItem.X = 500;
-                elInputItem.Y = 275;
+                elInputItem.X = (int)_screen.Width / 2 - elInputItem.Width / 2;
+                elInputItem.Y = (int)_screen.Height / 2;
             }
         }
 
