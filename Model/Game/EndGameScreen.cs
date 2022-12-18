@@ -12,6 +12,8 @@ namespace Model.Game
     public class EndGameScreen : MenuScreen
     {
 
+        public int Score { get; set; }
+
         public EndGameScreen() : base()
         {
             this.AddPassiveItem(new PassiveItem(Properties.Resources.EndGame));
