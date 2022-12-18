@@ -28,7 +28,7 @@ namespace WpfView.Game
 
         public override void Draw()
         {
-            Info[2].Item.Text = EndScreen.Score.ToString();
+            Info[1].Item.Text += EndScreen.Score.ToString();
             Application.Current.Dispatcher.Invoke(() => {
                 _screen.Screen.Children.Clear();
                 foreach (ViewPassiveItem elPassiveItem in Info)
@@ -56,8 +56,8 @@ namespace WpfView.Game
             {
                 elPassiveItem.Y = y;
                 elPassiveItem.Height = TEXT_FONT_SIZE;
-                elPassiveItem.X = (int)_screen.Screen.Width / 2 
-                    - elPassiveItem.Item.Text.Length / 2;
+                elPassiveItem.X = (int)_screen.Screen.Width / 2
+                    - elPassiveItem.Item.Text.Length / 2 * TEXT_FONT_SIZE / 2;
                 y += TEXT_FONT_SIZE * 2;
             }
 

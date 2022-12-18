@@ -16,6 +16,9 @@ namespace WpfController.Game
     public class WpfEndGameController : EndGameController
     {
 
+        private const int A_LETTER_CODE = 65;
+        private const int Z_LETTER_CODE = 90;
+
         private static WpfEndGameController _instance;
 
         private ViewEndGame _viewEndGame = null;
@@ -47,6 +50,12 @@ namespace WpfController.Game
             {
                 case Key.Enter:
                     End.SelectFocusedItem();
+                    break;
+                case Key.Back:
+                    End.RemoveLastSymbol();
+                    break;
+                case Key key when (int)key >= A_LETTER_CODE && (int)key <= Z_LETTER_CODE:
+                    End.AddSymbol((int)key);
                     break;
             }
         }
