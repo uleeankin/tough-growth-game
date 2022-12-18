@@ -12,7 +12,7 @@ namespace Model.Utils
 
         public static void FileWriter(string parFileName, string parText)
         {
-
+            File.AppendAllText(parFileName, parText);
         }
 
         public static List<string> FileReader(string parFileName)
