@@ -8,6 +8,9 @@ namespace Model.Items
 {
     public class InputItem : Item
     {
+        public delegate void dRedrawItem();
+        public event dRedrawItem RedrawItem = null;
+
         public InputItem() : base("")
         {
 
