@@ -16,7 +16,7 @@ namespace Model.Game
         public delegate void dNeedRedraw();
         public event dNeedRedraw NeedRedraw = null;
 
-        public delegate void dEndGame();
+        public delegate void dEndGame(int parDeathsNumber);
         public event dEndGame EndGame = null;
 
         private bool _isNeedStop = false;
@@ -65,7 +65,6 @@ namespace Model.Game
 
         public GameScreen() : base()
         {
-            Deaths = 0;
             _levelObjects = LevelsParser.GetLevels(10);
             Init();
         }
@@ -74,7 +73,7 @@ namespace Model.Game
         {
             if (Level > 10)
             {
-                EndGame?.Invoke();
+                EndGame?.Invoke(Deaths);
             }
             else
             {
@@ -129,7 +128,15 @@ namespace Model.Game
 
         public void StartGame()
         {
-            Level = 1;
+            if (_level == 1 || _level > 10)
+            {
+                Level = 1;
+                Deaths = 0;
+            } else
+            {
+                Level = _level;
+            }
+            
             new Thread(() =>
             {
                 Stopwatch timer = new Stopwatch();

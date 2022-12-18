@@ -9,7 +9,7 @@ namespace Controller.Game
     public abstract class EndGameController : Controller
     {
 
-        protected Model.Game.EndGameScreen End { get; set; }
+        public Model.Game.EndGameScreen End { get; set; }
 
         public EndGameController() : base()
         {

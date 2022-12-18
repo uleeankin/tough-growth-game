@@ -8,7 +8,7 @@ namespace Controller.Game
 {
     public abstract class GameController : Controller
     {
-        protected Model.Game.GameScreen Game { get; set; }
+        public Model.Game.GameScreen Game { get; set; }
 
         public GameController() : base()
         {

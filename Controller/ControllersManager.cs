@@ -46,6 +46,7 @@ namespace Controller
                     break;
                 case ControlItemCode.EndGame:
                     CurrentController = EndGame;
+                    EndGame.End.Score = Game.Game.Deaths;
                     EndGame.Start();
                     break;
             }
