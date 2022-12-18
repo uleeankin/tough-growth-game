@@ -9,7 +9,7 @@ namespace Model.Items
     public abstract class Item
     {
 
-        public string Text { get; private set; }
+        public string Text { get; set; }
 
         public Item(string parText)
         {
