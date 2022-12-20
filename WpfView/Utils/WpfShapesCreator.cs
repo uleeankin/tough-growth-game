@@ -182,5 +182,94 @@ namespace WpfView.Utils
                 parShape.Stroke = BOUNDS_COLOR;
             }
         }
+
+        public static Shape CreateBarrierView(Barrier parBarrier)
+        {
+            Shape shape = null;
+            if (parBarrier.ID == BarrierType.ARROW)
+            {
+                shape = CreateEllipseGroup(parBarrier.Width,
+                                                parBarrier.Height,
+                                                parBarrier.X,
+                                                parBarrier.Y);
+            }
+
+            if (parBarrier.ID == BarrierType.SHORT_SHOT
+                || parBarrier.ID == BarrierType.LONG_SHOT)
+            {
+
+                shape = new Line();
+                shape = SetLineCoordinates(parBarrier, shape);
+
+
+                if (parBarrier.ID == BarrierType.SHORT_SHOT)
+                {
+                    shape.Stroke = HEXAGON_COLOR;
+                    shape.StrokeThickness = BOUNDS_THICKNESS;
+                }
+                if (parBarrier.ID == BarrierType.LONG_SHOT)
+                {
+                    shape.Stroke = TRIANGLE_COLOR;
+                    shape.StrokeThickness = BOUNDS_THICKNESS * 2;
+                }
+            }
+
+            return shape;
+        }
+
+
+        public static void SetBarrierColorByState(BarrierType parBarrierType,
+            GameObjectsStates parState, Shape parShape)
+        {
+            if (parState == GameObjectsStates.INACTIVE)
+            {
+                parShape.Fill = INACTIVE_EATEN_COLOR;
+                parShape.Stroke = EATEN_BOUNDS_COLOR;
+            }
+            else
+            {
+                if (parBarrierType == BarrierType.ARROW)
+                {
+                    parShape.Fill = CIRCLE_COLOR;
+                    parShape.Stroke = BOUNDS_COLOR;
+                }
+            }
+        }
+
+        public static Line SetLineCoordinates(Barrier parBarrier, Shape parShape)
+        {
+            double startX;
+            double startY;
+            double endX;
+            double endY;
+
+            if (parBarrier.StartX > parBarrier.EndX)
+            {
+                startX = parBarrier.X - parBarrier.Width / 2;
+                endX = parBarrier.X + parBarrier.Width / 2;
+            }
+            else
+            {
+                startX = parBarrier.X + parBarrier.Width / 2;
+                endX = parBarrier.X - parBarrier.Width / 2;
+            }
+
+            if (parBarrier.StartY > parBarrier.EndY)
+            {
+                startY = parBarrier.Y - parBarrier.Height / 2;
+                endY = parBarrier.Y + parBarrier.Height / 2;
+            }
+            else
+            {
+                startY = parBarrier.Y + parBarrier.Height / 2;
+                endY = parBarrier.Y - parBarrier.Height / 2;
+            }
+
+            ((Line)parShape).X1 = startX;
+            ((Line)parShape).Y1 = startY;
+            ((Line)parShape).X2 = endX;
+            ((Line)parShape).Y2 = endY;
+            return (Line)parShape;
+        }
     }
 }

@@ -77,7 +77,7 @@ namespace WpfController.Game
             Game.StopGame();
         }
 
-        private void EndGame(int parScore)
+        private void EndGame()
         {
             Game.StopGame();
             SwitchController(ControlItemCode.EndGame);
