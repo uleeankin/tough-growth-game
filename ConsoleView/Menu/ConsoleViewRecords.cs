@@ -18,17 +18,18 @@ namespace ConsoleView.Menu
         //изменить в базовом классе на MenuScreen
         public ConsoleViewRecords(Model.Menu.MenuScreen parRecords) : base(parRecords)
         {
-            Init();
+            
         }
 
         public override void Draw()
         {
+            Init();
             Console.BackgroundColor = ConsoleColor.Black;
             Console.Clear();
-            /*foreach (ViewPassiveItem elViewPassiveItem in Records)
+            foreach (ViewPassiveItem elViewPassiveItem in Records)
             {
                 elViewPassiveItem.Draw();
-            }*/
+            }
 
             BackToMenu[0].Draw();
         }
@@ -50,12 +51,22 @@ namespace ConsoleView.Menu
 
         private void Init()
         {
-            Console.WindowHeight = BUTTON_HEIGHT;
-            Console.WindowWidth = BUTTON_WIDTH;
-
+            
             Console.CursorVisible = false;
 
+            X = 2;
+            Y = 2;
+            int y = Y;
+            foreach (ViewPassiveItem elViewPassiveItem in Records)
+            {
+                elViewPassiveItem.X = X;
+                elViewPassiveItem.Y = y;
+                y++;
+            }
+
             //Init button
+            Console.WindowHeight = BUTTON_HEIGHT;
+            Console.WindowWidth = BUTTON_WIDTH;
             ViewControlItem[] button = BackToMenu;
             Height = button.Length;
             Width = button.Max(x => x.Width);

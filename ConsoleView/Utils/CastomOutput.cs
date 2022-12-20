@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Model.Enums;
+using Model.Game.GameObjects;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +13,7 @@ namespace ConsoleView.Utils
 
         private const int BUTTON_HEIGHT = 3;
         private const int BUTTON_WIDTH = 17;
+
 
         private List<List<int>> _titleCoordinates = new List<List<int>>()
         {

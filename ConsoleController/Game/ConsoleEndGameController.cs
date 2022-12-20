@@ -14,8 +14,8 @@ namespace ConsoleController.Game
     public class ConsoleEndGameController : EndGameController
     {
 
-        private const int A_LETTER_CODE = 44;
-        private const int Z_LETTER_CODE = 69;
+        private const int A_LETTER_CODE = 65;
+        private const int Z_LETTER_CODE = 90;
 
         private static ConsoleEndGameController _instance;
 
@@ -46,7 +46,7 @@ namespace ConsoleController.Game
         public override void Start()
         {
             IsExit = false;
-
+            _viewEndGame.Draw();
             do
             {
                 ConsoleKeyInfo keyInfo = Console.ReadKey();
@@ -60,7 +60,7 @@ namespace ConsoleController.Game
                         End.RemoveLastSymbol();
                         break;
                     case ConsoleKey key when (int)key >= A_LETTER_CODE && (int)key <= Z_LETTER_CODE:
-                        End.AddSymbol((int)key + 'A' - A_LETTER_CODE);
+                        End.AddSymbol((int)key);
                         break;
                 }
             } while (!IsExit);

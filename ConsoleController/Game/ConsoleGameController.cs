@@ -22,6 +22,8 @@ namespace ConsoleController.Game
         private ConsoleGameController() : base()
         {
             Game = new Model.Game.GameScreen();
+            Game.ScreenHeight = 550;
+            Game.ScreenWidth = 1000;
             _viewGame = new ConsoleViewGame(Game);
         }
 
@@ -73,7 +75,7 @@ namespace ConsoleController.Game
         private void EndGame()
         {
             Game.StopGame();
-            SwitchController(Model.Enums.ControlItemCode.EndGame);
+            SwitchController(ControlItemCode.EndGame);
         }
     }
 }

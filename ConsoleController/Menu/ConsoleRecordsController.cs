@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Controller.Menu;
 using View.Menu;
 using Model.Enums;
+using Model.Menu;
 
 namespace ConsoleController.Menu
 {
@@ -40,7 +41,10 @@ namespace ConsoleController.Menu
 
         public override void Start()
         {
+            ((Records)Records).GetRecords();
+            _viewRecords = new ConsoleView.Menu.ConsoleViewRecords(Records);
             _viewRecords.Draw();
+            
             IsExit = false;
             do
             {

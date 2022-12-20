@@ -23,6 +23,15 @@ namespace ConsoleView.Game
         {
             Console.BackgroundColor = ConsoleColor.Black;
             Console.Clear();
+            foreach (ViewGameObject elGameObject in Objects)
+            {
+                elGameObject.Draw();
+            }
+        }
+
+        protected override ViewBarrier CreateBarrier(Barrier parBarrier)
+        {
+            return new ConsoleViewBarrier(parBarrier);
         }
 
         protected override ViewGameObject CreateGameObject(GameObject parGameObject)
@@ -30,11 +39,24 @@ namespace ConsoleView.Game
             return new ConsoleViewGameObject(parGameObject);
         }
 
+        protected override void OnBarriersChange()
+        {
+            
+        }
+
         protected override void Redraw()
         {
             Console.BackgroundColor = ConsoleColor.Black;
             Console.Clear();
             ClearObjects();
+            foreach (GameObject elGameObject in Screen.GameObjects)
+            {
+                Objects.Add(CreateGameObject(elGameObject));
+            }
+            foreach (ViewGameObject elGameObject in Objects)
+            {
+                elGameObject.Draw();
+            }
         }
     }
 }
