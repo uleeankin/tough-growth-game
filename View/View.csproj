@@ -43,8 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Game\GameObjects\ViewBarrier.cs" />
     <Compile Include="Game\GameObjects\ViewGameObject.cs" />
-    <Compile Include="Game\GameObjects\ViewGameSquare.cs" />
     <Compile Include="Game\ViewEndGame.cs" />
     <Compile Include="Game\ViewGame.cs" />
     <Compile Include="Items\ViewInputItem.cs" />
