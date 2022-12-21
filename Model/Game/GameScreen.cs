@@ -40,6 +40,11 @@ namespace Model.Game
         private const double ARROW_BARRIER_SPEED = 70;
 
         /// <summary>
+        /// Общее количество уровней в игре
+        /// </summary>
+        private const int MAX_LEVELS_NUMBER = 10;
+
+        /// <summary>
         /// Делегат на перерисовку окна
         /// </summary>
         public delegate void dNeedRedraw();
@@ -202,7 +207,7 @@ namespace Model.Game
         /// </summary>
         private void Init()
         {
-            if (Level > 10)
+            if (Level > MAX_LEVELS_NUMBER)
             {
                 EndGame?.Invoke();
             }
@@ -301,7 +306,7 @@ namespace Model.Game
             _shortBarrierTimer.Enabled = true;
             _longBarrierTimer.Enabled = true;
             _isNeedStop = false;
-            if (_level == 1 || _level > 10)
+            if (_level == 1 || _level > MAX_LEVELS_NUMBER)
             {
                 Level = 1;
                 Deaths = 0;
@@ -471,7 +476,7 @@ namespace Model.Game
         private void EndLevel()
         {
             Deaths++;
-            Level = Level < 8 ? Level : Level - 1;
+            Level = Level < MAX_LEVELS_NUMBER - 2 ? Level : Level - 1;
             StartNewLevel();
         }
 
