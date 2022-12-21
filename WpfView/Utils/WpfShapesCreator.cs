@@ -12,20 +12,71 @@ using Model.Game.GameObjects;
 
 namespace WpfView.Utils
 {
+    /// <summary>
+    /// Создает графические фигуры для игры
+    /// </summary>
     public class WpfShapesCreator
     {
+        /// <summary>
+        /// Цвет игрового квадрата
+        /// </summary>
         private static readonly Brush GAME_SQUARE_COLOR = Brushes.Magenta;
+
+        /// <summary>
+        /// Цвет квадрата в состоянии препятствия
+        /// </summary>
         private static readonly Brush SQUARE_COLOR = Brushes.Red;
+
+        /// <summary>
+        /// Цвет шестиугольника в состоянии препятствия
+        /// </summary>
         private static readonly Brush HEXAGON_COLOR = Brushes.LightGreen;
+
+        /// <summary>
+        /// Цвет треугольника в состоянии препятствия
+        /// </summary>
         private static readonly Brush TRIANGLE_COLOR = Brushes.Orange;
+
+        /// <summary>
+        /// Цвет круга в состоянии препятствия
+        /// </summary>
         private static readonly Brush CIRCLE_COLOR = Brushes.LightSkyBlue;
+
+        /// <summary>
+        /// Цвет прямоугольника в состоянии препятствия
+        /// </summary>
         private static readonly Brush RECTANGLE_COLOR = Brushes.BlueViolet;
+
+        /// <summary>
+        /// Цвет границ фигур
+        /// </summary>
         private static readonly Brush BOUNDS_COLOR = Brushes.White;
+
+        /// <summary>
+        /// Цвет игровых объектов в съеденном или неактивном состоянии
+        /// </summary>
         private static readonly Brush INACTIVE_EATEN_COLOR = Brushes.Black;
+
+        /// <summary>
+        /// Цвет границ съеденных фигур
+        /// </summary>
         private static readonly Brush EATEN_BOUNDS_COLOR = Brushes.Black;
+
+        /// <summary>
+        /// Цвет фигуры, доступной для съедения
+        /// </summary>
         private static readonly Brush FOOD_STATE_COLOR = Brushes.Yellow;
+
+        /// <summary>
+        /// Толщина границ фигур
+        /// </summary>
         private static readonly int BOUNDS_THICKNESS = 3;
 
+        /// <summary>
+        /// Создаёт представление игрового объекта
+        /// </summary>
+        /// <param name="parGameObject">Модель игрового объекта</param>
+        /// <returns>Фигура игрового объекта</returns>
         public static Shape CreateGameObjectView(GameObject parGameObject)
         {
             Shape shape = null;
@@ -72,6 +123,14 @@ namespace WpfView.Utils
             return shape;
         }
 
+        /// <summary>
+        /// Создает фигуры относящиеся к прямоугольникам
+        /// </summary>
+        /// <param name="parWidth">Ширина</param>
+        /// <param name="parHeight">Высота</param>
+        /// <param name="parX">Координата X центра</param>
+        /// <param name="parY">Координата Y центра</param>
+        /// <returns></returns>
         private static Shape CreateRectangleGroup(double parWidth, double parHeight,
                                                     double parX, double parY)
         {
@@ -84,6 +143,11 @@ namespace WpfView.Utils
             return rectangle;
         }
 
+        /// <summary>
+        /// Создает фигуры относящиеся к многоугольникам
+        /// </summary>
+        /// <param name="parAnglesCoordinates">Координаты углов многоугольника</param>
+        /// <returns></returns>
         private static Shape CreatePolygonGroup(PointCollection parAnglesCoordinates)
         {
             Polygon polygon = new Polygon();
@@ -92,6 +156,14 @@ namespace WpfView.Utils
             return polygon;
         }
 
+        /// <summary>
+        /// Вычисляет координаты вершин труегольника по координатам центра
+        /// </summary>
+        /// <param name="parX">Координата X центра</param>
+        /// <param name="parY">Координата Y центра</param>
+        /// <param name="parHeight">Высота</param>
+        /// <param name="parWeight">Ширина</param>
+        /// <returns>Координаты вершин треугольника</returns>
         private static PointCollection GetTriangleVerticesCoordinates(
             double parX, double parY, double parHeight, double parWeight)
         {
@@ -102,6 +174,14 @@ namespace WpfView.Utils
             return coordinates;
         }
 
+        /// <summary>
+        /// Вычисляет координаты вершин шестиугольника по координатам центра
+        /// </summary>
+        /// <param name="parX">Координата X центра</param>
+        /// <param name="parY">Координата Y центра</param>
+        /// <param name="parHeight">Высота</param>
+        /// <param name="parWeight">Ширина</param>
+        /// <returns>Координаты вершин шестиугольника</returns>
         private static PointCollection GetHexagonVerticesCoordinates(
             double parX, double parY, double parHeight, double parWeight)
         {
@@ -115,6 +195,14 @@ namespace WpfView.Utils
             return coordinates;
         }
 
+        /// <summary>
+        /// Создает фигуры относящиеся к эллипсам
+        /// </summary>
+        /// <param name="parWidth">Ширина</param>
+        /// <param name="parHeight">Высота</param>
+        /// <param name="parX">Координата X центра</param>
+        /// <param name="parY">Координата Y центра</param>
+        /// <returns></returns>
         private static Shape CreateEllipseGroup(double parWidth, double parHeight,
                                                     double parX, double parY)
         {
@@ -127,6 +215,13 @@ namespace WpfView.Utils
             return ellipse;
         }
 
+        /// <summary>
+        /// Устанавливает цвет фигуры и цвет границ 
+        /// в соответствии с типом фигуры и её состоянием
+        /// </summary>
+        /// <param name="parObjectType"></param>
+        /// <param name="parState"></param>
+        /// <param name="parShape"></param>
         public static void SetColorByState(GameObjectTypes parObjectType,
             GameObjectsStates parState, Shape parShape)
         {
@@ -183,6 +278,11 @@ namespace WpfView.Utils
             }
         }
 
+        /// <summary>
+        /// Создает фигуру препятствия по её центру
+        /// </summary>
+        /// <param name="parBarrier">Модель препятствия</param>
+        /// <returns></returns>
         public static Shape CreateBarrierView(Barrier parBarrier)
         {
             Shape shape = null;
@@ -217,7 +317,12 @@ namespace WpfView.Utils
             return shape;
         }
 
-
+        /// <summary>
+        /// Установка цвета препятствия в соответствии с типом родителя
+        /// </summary>
+        /// <param name="parBarrierType">Тип препятствия</param>
+        /// <param name="parState">Состояние родителя</param>
+        /// <param name="parShape">Фигура</param>
         public static void SetBarrierColorByState(BarrierType parBarrierType,
             GameObjectsStates parState, Shape parShape)
         {
@@ -236,6 +341,13 @@ namespace WpfView.Utils
             }
         }
 
+        /// <summary>
+        /// Устанавливает координаты препятствия,
+        /// в соответствии с направлением движения
+        /// </summary>
+        /// <param name="parBarrier">Модель препятствия</param>
+        /// <param name="parShape">Фигура</param>
+        /// <returns></returns>
         public static Line SetLineCoordinates(Barrier parBarrier, Shape parShape)
         {
             double startX;

@@ -15,16 +15,29 @@ using WpfView.Items;
 
 namespace WpfView.Menu
 {
+    /// <summary>
+    /// Графическое представление окна галвного меню
+    /// </summary>
     public class WpfViewMenu : ViewMenu
     {
-
+        /// <summary>
+        /// Общее окно для всех окон приложения
+        /// </summary>
         private MainScreen _screen = MainScreen.GetInstance();
 
+        /// <summary>
+        /// Конструктор графического представления окна главного меню
+        /// </summary>
+        /// <param name="parMenu">Модель окна главного меню</param>
         public WpfViewMenu(MenuScreen parMenu) : base(parMenu)
         {
             Init();
         }
 
+        /// <summary>
+        /// Размещает все объекты окна на экране
+        /// </summary>
+        /// <param name="parParent"></param>
         private void SetParentControl(FrameworkElement parParent)
         {
             foreach (ViewPassiveItem elPassiveItem in Title)
@@ -37,6 +50,9 @@ namespace WpfView.Menu
             }
         }
 
+        /// <summary>
+        /// Обработчик события рисования окна главного меню
+        /// </summary>
         public override void Draw()
         {
             Application.Current.Dispatcher.Invoke(() => {
@@ -54,21 +70,38 @@ namespace WpfView.Menu
             
         }
 
+        /// <summary>
+        /// Обработчик события перерисовки окна главного меню
+        /// </summary>
         protected override void Redraw()
         {
 
         }
 
+        /// <summary>
+        /// Создает графическое представление кнопки
+        /// </summary>
+        /// <param name="parMenuItem">Модель кнопки</param>
+        /// <returns>Графическое представление кнопки</returns>
         protected override ViewControlItem CreateControlItem(ControlItem parMenuItem)
         {
             return new WpfViewControlItem(parMenuItem);
         }
 
+        /// <summary>
+        /// Создает графическое представление текстового поля
+        /// </summary>
+        /// <param name="parMenuTitle">Модель текстового поля</param>
+        /// <returns>Графическое представление текстового поля</returns>
         protected override ViewPassiveItem CreatePassiveItem(PassiveItem parMenuTitle)
         {
             return new WpfViewPassiveItem(parMenuTitle);
         }
 
+        /// <summary>
+        /// Устанавливает координаты объектов окна главного меню
+        /// для размещения на экране
+        /// </summary>
         private void Init()
         {
             foreach (ViewPassiveItem elPassiveItem in Title)

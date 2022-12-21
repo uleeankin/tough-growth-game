@@ -60,7 +60,6 @@
     <Compile Include="Menu\WpfViewMenu.cs" />
     <Compile Include="Menu\WpfViewRecords.cs" />
     <Compile Include="Utils\CastomOutput.cs" />
-    <Compile Include="Utils\WpfCoordinatesConverter.cs" />
     <Compile Include="Utils\WpfShapesCreator.cs" />
   </ItemGroup>
   <ItemGroup>

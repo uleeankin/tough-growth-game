@@ -49,7 +49,7 @@ namespace WpfView.Items
         /// <summary>
         /// Конструктор представления кнопки
         /// </summary>
-        /// <param name="parControlItem"></param>
+        /// <param name="parControlItem">Модель кнопки</param>
         public WpfViewControlItem(ControlItem parControlItem) : base(parControlItem)
         {
             Height = HEIGHT;
@@ -69,7 +69,7 @@ namespace WpfView.Items
         }
 
         /// <summary>
-        /// Рисует кнопку
+        /// Обработчик события рисования кнопки
         /// </summary>
         public override void Draw()
         {

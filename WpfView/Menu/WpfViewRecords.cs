@@ -12,18 +12,34 @@ using System.Windows;
 
 namespace WpfView.Menu
 {
+    /// <summary>
+    /// Графическое представление окна рекордов
+    /// </summary>
     public class WpfViewRecords : ViewRecords
     {
 
+        /// <summary>
+        /// Размер шрифта для текста рекордов
+        /// </summary>
         public const int TEXT_FONT_SIZE = 16;
 
+        /// <summary>
+        /// Общее окно для всех окон приложения
+        /// </summary>
         private MainScreen _screen = MainScreen.GetInstance();
 
+        /// <summary>
+        /// Конструктор графического представления окна рекорды
+        /// </summary>
+        /// <param name="parRecords">Модель окна рекордов</param>
         public WpfViewRecords(MenuScreen parRecords) : base(parRecords)
         {
             Init();
         }
 
+        /// <summary>
+        /// Обработчик события рисования окна рекордов
+        /// </summary>
         public override void Draw()
         {
             _screen.Screen.Children.Clear();
@@ -38,6 +54,10 @@ namespace WpfView.Menu
             this.SetParentControl(_screen.Screen);
         }
 
+        /// <summary>
+        /// Устанавливает координаты объектов окна рекордов 
+        /// для размещения на экране
+        /// </summary>
         private void Init()
         {
             int y = TEXT_FONT_SIZE * 2;
@@ -57,6 +77,10 @@ namespace WpfView.Menu
             }
         }
 
+        /// <summary>
+        /// Размещает все объекты окна на экране
+        /// </summary>
+        /// <param name="parParent"></param>
         private void SetParentControl(FrameworkElement parParent)
         {
             foreach (ViewPassiveItem elPassiveItem in Records)
@@ -69,16 +93,29 @@ namespace WpfView.Menu
             }
         }
 
+        /// <summary>
+        /// Создает графическое представление кнопки
+        /// </summary>
+        /// <param name="parControlItem">Модель кнопки</param>
+        /// <returns>Графическое представление кнопки</returns>
         protected override ViewControlItem CreateControlItem(ControlItem parControlItem)
         {
             return new WpfViewControlItem(parControlItem);
         }
 
+        /// <summary>
+        /// Создает графическое представление текстового поля
+        /// </summary>
+        /// <param name="parPassiveItem">Модель текстового поля</param>
+        /// <returns>Графическое представление текстового поля</returns>
         protected override ViewPassiveItem CreatePassiveItem(PassiveItem parPassiveItem)
         {
             return new WpfViewPassiveItem(parPassiveItem);
         }
 
+        /// <summary>
+        /// Обработчик события перерисовки окна рекордов
+        /// </summary>
         protected override void Redraw()
         {
 

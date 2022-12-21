@@ -14,18 +14,34 @@ using WpfView.Items;
 
 namespace WpfView.Game
 {
+    /// <summary>
+    /// Графическое представление окна окончания игры
+    /// </summary>
     public class WpfViewEndGame : ViewEndGame
     {
+        /// <summary>
+        /// Размер шрифта для текстовых полей и полей ввода
+        /// </summary>
         public const int TEXT_FONT_SIZE = 24;
 
+        /// <summary>
+        /// Общее окно для всех окон приложения
+        /// </summary>
         private MainScreen _screen = MainScreen.GetInstance();
 
+        /// <summary>
+        /// Конструктор графического представления окна окончания игры
+        /// </summary>
+        /// <param name="parEndGameScreen">Модель окна окончания игры</param>
         public WpfViewEndGame(EndGameScreen parEndGameScreen) : 
                                                 base(parEndGameScreen)
         {
             Init();
         }
 
+        /// <summary>
+        /// Обработчик события рисования окна окончания игры
+        /// </summary>
         public override void Draw()
         {
             Info[1].Item.Text += EndScreen.Score.ToString();
@@ -48,6 +64,10 @@ namespace WpfView.Game
             });
         }
 
+        /// <summary>
+        /// Устанавливает координаты объектов окна игры
+        /// для размещения на экране
+        /// </summary>
         private void Init()
         {
             int y = TEXT_FONT_SIZE * 2;
@@ -74,6 +94,10 @@ namespace WpfView.Game
             }
         }
 
+        /// <summary>
+        /// Размещает все объекты окна на экране
+        /// </summary>
+        /// <param name="parParent"></param>
         private void SetParentControl(FrameworkElement parParent)
         {
             foreach (ViewPassiveItem elPassiveItem in Info)
@@ -90,21 +114,39 @@ namespace WpfView.Game
             }
         }
 
+        /// <summary>
+        /// Создает графическое представление кнопки
+        /// </summary>
+        /// <param name="parControlItem">Модель кнопки</param>
+        /// <returns>Графическое представление кнопки</returns>
         protected override ViewControlItem CreateControlItem(ControlItem parControlItem)
         {
             return new WpfViewControlItem(parControlItem);
         }
 
+        /// <summary>
+        /// Создает графическое представление текстового поля
+        /// </summary>
+        /// <param name="parPassiveItem">Модель текстового поля</param>
+        /// <returns>Графическое представление текстового поля</returns>
         protected override ViewPassiveItem CreatePassiveItem(PassiveItem parPassiveItem)
         {
             return new WpfViewPassiveItem(parPassiveItem);
         }
 
+        /// <summary>
+        /// Обработчик события перерисовки окна окончания игры
+        /// </summary>
         protected override void Redraw()
         {
             
         }
 
+        /// <summary>
+        /// Создает графическое представление поля ввода
+        /// </summary>
+        /// <param name="parInputItem">Модель поля ввода</param>
+        /// <returns>Графическое представление поля ввода</returns>
         protected override ViewInputItem CreateInputItem(InputItem parInputItem)
         {
             return new WpfViewInputItem(parInputItem);

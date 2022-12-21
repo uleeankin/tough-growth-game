@@ -13,10 +13,19 @@ using WpfView.Utils;
 
 namespace WpfView.Game.GameObjects
 {
+    /// <summary>
+    /// Представление препятствий (wpf)
+    /// </summary>
     public class WpfViewBarrier : ViewBarrier
     {
+        /// <summary>
+        /// Фигура, представляющая препятствие
+        /// </summary>
         private Shape _shape = null;
 
+        /// <summary>
+        /// Фигура, представляющая препятствие
+        /// </summary>
         public Shape Shape
         {
             get
@@ -25,10 +34,17 @@ namespace WpfView.Game.GameObjects
             }
         }
 
+        /// <summary>
+        /// Конструктор прдставления препятствий графической версии
+        /// </summary>
+        /// <param name="parBarrier">Модель препятствия</param>
         public WpfViewBarrier(Barrier parBarrier) : base(parBarrier)
         {
         }
 
+        /// <summary>
+        /// Создает фигуры препятствия
+        /// </summary>
         private void Init()
         {
             Application.Current.Dispatcher.Invoke(() =>
@@ -37,11 +53,17 @@ namespace WpfView.Game.GameObjects
             });
         }
 
+        /// <summary>
+        /// Обработчик события рисования препятствия
+        /// </summary>
         public override void Draw()
         {
             Init();
         }
 
+        /// <summary>
+        /// Обработчик события перерисовки препятствия
+        /// </summary>
         protected override void RedrawBarrier()
         {
             if (Barrier.ID == Model.Enums.BarrierType.ARROW)
@@ -66,6 +88,10 @@ namespace WpfView.Game.GameObjects
 
         }
 
+        /// <summary>
+        /// Размещает фигуру на игровом поле
+        /// </summary>
+        /// <param name="parControl"></param>
         public void SetParentControl(FrameworkElement parControl)
         {
             Application.Current.Dispatcher.Invoke(() => {

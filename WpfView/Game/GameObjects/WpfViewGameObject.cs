@@ -13,26 +13,45 @@ using System.Windows.Controls;
 
 namespace WpfView.Game.GameObjects
 {
+    /// <summary>
+    /// Представление игрового объекта в графической версии
+    /// </summary>
     public class WpfViewGameObject : ViewGameObject
     {
 
+        /// <summary>
+        /// Фигура, представляющая игровой объект
+        /// </summary>
         private Shape _shape = null;
 
+        /// <summary>
+        /// Конструктор прдставления игровых объектов графической версии
+        /// </summary>
+        /// <param name="parGameObject">Модель игрового объекта</param>
         public WpfViewGameObject(GameObject parGameObject) : base(parGameObject)
         {
             
         }
 
+        /// <summary>
+        /// Создает фигуры игрового объекта
+        /// </summary>
         private void Init()
         {
             _shape = WpfShapesCreator.CreateGameObjectView(GameObject);
         }
 
+        /// <summary>
+        /// Обработчик события рисования игрового объекта
+        /// </summary>
         public override void Draw()
         {
             Init();
         }
 
+        /// <summary>
+        /// Обработчик события перерисовки игрового объекта
+        /// </summary>
         protected override void RedrawGameObject()
         {
             if (GameObject.ID != Model.Enums.GameObjectTypes.HEXAGON
@@ -61,6 +80,10 @@ namespace WpfView.Game.GameObjects
             }
         }
 
+        /// <summary>
+        /// Размещает фигуру на игровом поле
+        /// </summary>
+        /// <param name="parControl"></param>
         public void SetParentControl(FrameworkElement parControl)
         {
             ((IAddChild)parControl).AddChild(_shape);

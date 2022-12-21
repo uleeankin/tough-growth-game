@@ -11,22 +11,42 @@ using System.Windows.Controls;
 
 namespace WpfView.Items
 {
+    /// <summary>
+    /// Графическое представление текстового поля
+    /// </summary>
     public class WpfViewPassiveItem : ViewPassiveItem
     {
-
+        /// <summary>
+        /// Графический элемент - текстовое поле
+        /// </summary>
         private TextBlock _text;
+
+        /// <summary>
+        /// Выводитель
+        /// </summary>
         private Utils.CastomOutput _output = new Utils.CastomOutput();
 
+        /// <summary>
+        /// Конструктор представления текстового поля
+        /// </summary>
+        /// <param name="parPassiveItem">Модель текстового поля</param>
         public WpfViewPassiveItem(PassiveItem parPassiveItem) : base(parPassiveItem)
         {
 
         }
 
+        /// <summary>
+        /// Обработчик события рисования текстового поля
+        /// </summary>
         public override void Draw()
         {
             _text = _output.InitTextBlock(Item.Text, Height, X, Y);
         }
 
+        /// <summary>
+        /// Устанавливает текстовое поле на экран
+        /// </summary>
+        /// <param name="parControl"></param>
         public void SetParentControl(FrameworkElement parControl)
         {
             ((IAddChild)parControl).AddChild(_text);

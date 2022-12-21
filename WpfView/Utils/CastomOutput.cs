@@ -10,15 +10,32 @@ using System.Windows.Media;
 
 namespace WpfView.Utils
 {
+    /// <summary>
+    /// Создатель графических элементов
+    /// </summary>
     public class CastomOutput
     {
-        public const int BUTTON_BORDER_WIDTH = 3;
+        /// <summary>
+        /// Ширина границ объектов
+        /// </summary>
+        private const int BUTTON_BORDER_WIDTH = 3;
 
+        /// <summary>
+        /// Конструктор создателя графических элементов
+        /// </summary>
         public CastomOutput()
         {
 
         }
 
+        /// <summary>
+        /// Создает кнопки
+        /// </summary>
+        /// <param name="parX">Координата X центра кнопки</param>
+        /// <param name="parY">Координата Y центра кнопки</param>
+        /// <param name="parHeight"></param>
+        /// <param name="parWidth"></param>
+        /// <returns></returns>
         public Button InitButton(int parX, int parY, int parHeight, int parWidth)
         {
             Button button = new Button();   
@@ -32,6 +49,14 @@ namespace WpfView.Utils
             return button;
         }
 
+        /// <summary>
+        /// Создает текстовое поле
+        /// </summary>
+        /// <param name="parText">Текст поля</param>
+        /// <param name="parFontSize">Размер шрифта поля</param>
+        /// <param name="parX">Координата X центра поля</param>
+        /// <param name="parY">Координата Y центра поля</param>
+        /// <returns></returns>
         public TextBlock InitTextBlock(string parText, int parFontSize, int parX, int parY)
         {
             TextBlock textBlock = new TextBlock();
@@ -46,6 +71,15 @@ namespace WpfView.Utils
             return textBlock;
         }
 
+        /// <summary>
+        /// Создает текстовое поле
+        /// </summary>
+        /// <param name="parFontSize">Шрифт текста</param>
+        /// <param name="parX">Координата X</param>
+        /// <param name="parY">Координата Y</param>
+        /// <param name="parHeight">Высота поля</param>
+        /// <param name="parWidth">Ширина поля</param>
+        /// <returns></returns>
         public Label InitLabel(int parFontSize, int parX, int parY, int parHeight, int parWidth)
         {
             Label label = new Label();
