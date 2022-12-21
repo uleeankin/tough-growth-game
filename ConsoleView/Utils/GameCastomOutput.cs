@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Barrier = Model.Game.GameObjects.Barrier;
 
 namespace ConsoleView.Utils
 {
@@ -20,16 +21,13 @@ namespace ConsoleView.Utils
         private const ConsoleColor SQUARE_COLOR = ConsoleColor.DarkRed;
         private const ConsoleColor GAME_SQUARE_COLOR = ConsoleColor.Magenta;
 
-        private string[] _square = { "*****", "*****", "*****" };
-        private string[] _hexagon = { "  ***", " *****", "*******", " *****", "  ***" };
-        private string[] _circle = { " *****", "*******", "*******", " ***** " };
-        private string[] _triangle = { "*", "***", "*****", "***", "*" };
-
         private static GameCastomOutput _instance = null;
+
+        private Object _lock = null;
         
         private GameCastomOutput()
         {
-            
+            _lock = new Object();    
         }
 
         public static GameCastomOutput GetInstance()
@@ -47,14 +45,16 @@ namespace ConsoleView.Utils
             switch (parGameObject.ID)
             {
                 case GameObjectTypes.GAME_SQUARE:
-                    PrintActiveSquare(parX, parY, ConsoleColor.Magenta);
+                    PrintActiveSquare(parX, parY,
+                        GetColorByState(parGameObject.State, parGameObject.ID));
                     break;
                 case GameObjectTypes.PERMANENT_SQUARE:
-                    PrintActiveSquare(parX, parY, ConsoleColor.Yellow);
+                    PrintActiveSquare(parX, parY,
+                        GetColorByState(parGameObject.State, parGameObject.ID));
                     break;
                 case GameObjectTypes.SQUARE:
-                    PrintSquare(parX, parY, ConsoleColor.White);
-                        //GetColorByState(parGameObject.State, parGameObject.ID));
+                    PrintSquare(parX, parY, 
+                        GetColorByState(parGameObject.State, parGameObject.ID));
                     break;
                 case GameObjectTypes.HEXAGON:
                     PrintHexagon(parX, parY,
@@ -85,84 +85,79 @@ namespace ConsoleView.Utils
 
         private void PrintVerticalRectangle(int parX, int parY, ConsoleColor parColor)
         {
-            Console.ForegroundColor = parColor;
-            Console.SetCursorPosition(parX, parY);
-            Console.Write("***");
-            Console.SetCursorPosition(parX, parY + 1);
-            Console.Write("***");
-            Console.SetCursorPosition(parX, parY + 2);
-            Console.Write("***");
-            Console.SetCursorPosition(parX, parY + 3);
-            Console.Write("***");
-            Console.SetCursorPosition(parX, parY + 4);
-            Console.Write("***");
-            Console.ForegroundColor = ConsoleColor.White;
+            lock(_lock)
+            {
+                Console.ForegroundColor = parColor;
+                Console.SetCursorPosition(parX, parY);
+                Console.Write("▯");
+                Console.ForegroundColor = ConsoleColor.White;
+            }
         }
 
         private void PrintHorizantalRectangle(int parX, int parY, ConsoleColor parColor)
         {
-            Console.ForegroundColor = parColor;
-            Console.SetCursorPosition(parX, parY);
-            Console.Write("***********");
-            Console.SetCursorPosition(parX, parY + 1);
-            Console.Write("***********");
-            Console.ForegroundColor = ConsoleColor.White;
+            lock(_lock)
+            {
+                Console.ForegroundColor = parColor;
+                Console.SetCursorPosition(parX, parY);
+                Console.Write("▭");
+                Console.ForegroundColor = ConsoleColor.White;
+            }
         }
 
         private void PrintActiveSquare(int parX, int parY, ConsoleColor parColor)
         {
-            Console.SetCursorPosition(parX, parY);
-            Console.BackgroundColor = parColor;
-            Console.Write("  ");
-            Console.BackgroundColor = ConsoleColor.Black;
+            lock(_lock)
+            {
+                Console.ForegroundColor = parColor;
+                Console.SetCursorPosition(parX, parY);
+                Console.Write("□");
+                Console.ForegroundColor = ConsoleColor.Black;
+            }
         }
 
         private void PrintSquare(int parX, int parY, ConsoleColor parColor)
         {
-            Console.ForegroundColor = parColor;
-            Console.SetCursorPosition(parX, parY);
-            foreach (string elLine in _square)
+            lock(_lock)
             {
-                Console.Write(elLine);
-                Console.SetCursorPosition(parX, parY + 1);
+                Console.ForegroundColor = parColor;
+                Console.SetCursorPosition(parX, parY);
+                Console.Write("□");
+                Console.ForegroundColor = ConsoleColor.White;
             }
-            Console.ForegroundColor = ConsoleColor.White;
         }
 
         private void PrintHexagon(int parX, int parY, ConsoleColor parColor)
         {
-            Console.ForegroundColor = parColor;
-            Console.SetCursorPosition(parX, parY);
-            foreach (string elLine in _hexagon)
+            lock(_lock)
             {
-                Console.Write(elLine);
-                Console.SetCursorPosition(parX, parY + 1);
+                Console.ForegroundColor = parColor;
+                Console.SetCursorPosition(parX, parY);
+                Console.Write("#");
+                Console.ForegroundColor = ConsoleColor.White;
             }
-            Console.ForegroundColor = ConsoleColor.White;
         }
 
         private void PrintCircle(int parX, int parY, ConsoleColor parColor)
         {
-            Console.ForegroundColor = parColor;
-            Console.SetCursorPosition(parX, parY);
-            foreach (string elLine in _circle)
+            lock(_lock)
             {
-                Console.Write(elLine);
-                Console.SetCursorPosition(parX, parY + 1);
+                Console.ForegroundColor = parColor;
+                Console.SetCursorPosition(parX, parY);
+                Console.Write("o");
+                Console.ForegroundColor = ConsoleColor.White;
             }
-            Console.ForegroundColor = ConsoleColor.White;
         }
 
         private void PrintTriangle(int parX, int parY, ConsoleColor parColor)
         {
-            Console.ForegroundColor = parColor;
-            Console.SetCursorPosition(parX, parY);
-            foreach (string elLine in _triangle)
+            lock(_lock)
             {
-                Console.Write(elLine);
-                Console.SetCursorPosition(parX, parY + 1);
+                Console.ForegroundColor = parColor;
+                Console.SetCursorPosition(parX, parY);
+                Console.Write("▷");
+                Console.ForegroundColor = ConsoleColor.White;
             }
-            Console.ForegroundColor = ConsoleColor.White;
         }
 
         public void RedrawObject(GameObject parGameObject,
@@ -172,16 +167,12 @@ namespace ConsoleView.Utils
             switch (parGameObject.ID)
             {
                 case GameObjectTypes.GAME_SQUARE:
-                    if (parNewXCoordinate > 0 && parNewYCoordinate > 0
-                    && parNewXCoordinate < 120 && parNewYCoordinate < 30)
-                    {
-                        ClearActiveSquare(parOldXCoordinate, parOldYCoordinate);
-                        PrintActiveSquare(parNewXCoordinate, parNewYCoordinate,
-                            GetColorByState(parGameObject.State, parGameObject.ID));
-                    }
+                    Clear(parOldXCoordinate, parOldYCoordinate);
+                    PrintActiveSquare(parNewXCoordinate, parNewYCoordinate,
+                        GetColorByState(parGameObject.State, parGameObject.ID));
                     break;
                 case GameObjectTypes.PERMANENT_SQUARE:
-                    ClearActiveSquare(parOldXCoordinate, parOldYCoordinate);
+                    Clear(parOldXCoordinate, parOldYCoordinate);
                     PrintActiveSquare(parNewXCoordinate, parNewYCoordinate,
                         GetColorByState(parGameObject.State, parGameObject.ID));
                     break;
@@ -216,11 +207,14 @@ namespace ConsoleView.Utils
             }
         }
 
-        private void ClearActiveSquare(int parX, int parY)
+        public void Clear(int parX, int parY)
         {
-            Console.SetCursorPosition(parX, parY);
-            Console.BackgroundColor = ConsoleColor.Black;
-            Console.Write("  ");
+            lock (_lock)
+            {
+                Console.SetCursorPosition(parX, parY);
+                Console.BackgroundColor = ConsoleColor.Black;
+                Console.Write(" ");
+            }
         }
 
         private ConsoleColor GetColorByState(GameObjectsStates parState, GameObjectTypes parType)
@@ -234,8 +228,7 @@ namespace ConsoleView.Utils
             if (parState == GameObjectsStates.INACTIVE
                 || parState == GameObjectsStates.EATEN)
             {
-                //return INACTIVE_COLOR;
-                return ConsoleColor.White;
+                return INACTIVE_COLOR;
             }
 
             if (parState == GameObjectsStates.BARRIER)
@@ -263,6 +256,42 @@ namespace ConsoleView.Utils
             }
 
             return INACTIVE_COLOR;
+        }
+
+        public void CreateBarrierView(Barrier parBarrier, int parX, int parY)
+        {
+            lock (_lock)
+            {
+                Console.ForegroundColor = GetColorByState(
+                    GameObjectsStates.BARRIER, parBarrier.Parent.ID);
+                Console.SetCursorPosition(parX, parY);
+                Console.Write("◦");
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+        }
+
+        public void RedrawBarrier(Barrier parBarrier,
+            int parOldXCoordinate, int parOldYCoordinate,
+            int parNewXCoordinate, int parNewYCoordinate)
+        {
+            lock (_lock)
+            {
+                Console.ForegroundColor = GetColorByState(
+                    GameObjectsStates.BARRIER, parBarrier.Parent.ID);
+                Console.SetCursorPosition(parNewXCoordinate, parNewYCoordinate);
+                Console.Write("*");
+                if (parOldXCoordinate == ConsoleCoordinatesConverter.ConvertX(parBarrier.Parent.X)
+                    && parOldYCoordinate == ConsoleCoordinatesConverter.ConvertY(parBarrier.Parent.Y))
+                {
+                    CreateGameObjectView(parBarrier.Parent, parOldXCoordinate, parOldYCoordinate);
+                }
+                else
+                {
+                    Clear(parOldXCoordinate, parOldYCoordinate);
+                }
+
+                Console.ForegroundColor = ConsoleColor.White;
+            }
         }
     }
 }

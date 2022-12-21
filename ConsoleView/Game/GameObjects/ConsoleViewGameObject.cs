@@ -21,39 +21,32 @@ namespace ConsoleView.Game.GameObjects
 
         public override void Draw()
         {
-            /*X = ConsoleCoordinatesConverter.ConvertX(Object.X - Object.Width / 2);
-            Y = ConsoleCoordinatesConverter.ConvertY(Object.Y - Object.Height / 2);
-            _output.CreateGameObjectView(Object, (int)X, (int)Y);*/
-            Console.SetBufferSize(120, 30);
+            Console.OutputEncoding = Encoding.Unicode;
+            X = ConsoleCoordinatesConverter.ConvertX(GameObject.X);
+            Y = ConsoleCoordinatesConverter.ConvertY(GameObject.Y);
+            _output.CreateGameObjectView(GameObject, (int)X, (int)Y);
         }
             
 
         protected override void RedrawGameObject()
         {
-            /*int newX = ConsoleCoordinatesConverter.ConvertX(Object.X - Object.Width / 2);
-            int newY = ConsoleCoordinatesConverter.ConvertY(Object.Y - Object.Height / 2);
-            if (Object.ID == Model.Enums.GameObjectTypes.GAME_SQUARE)
+            Console.OutputEncoding = Encoding.Unicode;
+            int newX = ConsoleCoordinatesConverter.ConvertX(GameObject.X);
+            int newY = ConsoleCoordinatesConverter.ConvertY(GameObject.Y);
+            if (GameObject.ID == Model.Enums.GameObjectTypes.GAME_SQUARE
+                || GameObject.ID == Model.Enums.GameObjectTypes.PERMANENT_SQUARE)
             {
-                if (Math.Abs(X - newX) > 2 || newY != Y)
+                if ((newX != X || newY != Y) && newX >= 0 && newY >= 0)
                 {
-                    _output.RedrawObject(Object, (int)X, (int)Y, newX, newY);
-                    X = newX;
-                    Y = newY;
-                }
-            }
-            else if (Object.ID == Model.Enums.GameObjectTypes.PERMANENT_SQUARE)
-            {
-                if (newX != X || newY != Y)
-                {
-                    _output.RedrawObject(Object, (int)X, (int)Y, newX, newY);
+                    _output.RedrawObject(GameObject, (int)X, (int)Y, newX, newY);
                     X = newX;
                     Y = newY;
                 }
             }
             else
             {
-                _output.RedrawObject(Object, (int)X, (int)Y, newX, newY);
-            }*/
+                _output.RedrawObject(GameObject, (int)X, (int)Y, newX, newY);
+            }
         }
     }
 }
