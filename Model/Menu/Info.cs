@@ -9,8 +9,14 @@ using Model.Utils;
 
 namespace Model.Menu
 {
+    /// <summary>
+    /// Окно справки
+    /// </summary>
     public class Info : MenuScreen
     {
+        /// <summary>
+        /// Конструктор
+        /// </summary>
         public Info() : base()
         {
             this.AddPassiveItem(new PassiveItem(Properties.Resources.GameRules));

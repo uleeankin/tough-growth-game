@@ -9,8 +9,14 @@ using Model.Utils;
 
 namespace Model.Menu
 {
+    /// <summary>
+    /// Окно рекордов
+    /// </summary>
     public class Records : MenuScreen
     {
+        /// <summary>
+        /// Конструктор
+        /// </summary>
         public Records() : base()
         {
             this.GetRecords();
@@ -19,6 +25,9 @@ namespace Model.Menu
             this.FocusItemById((int)ControlItemCode.MainMenu);
         }
 
+        /// <summary>
+        /// Получает рекорды из файла
+        /// </summary>
         public void GetRecords()
         {
             this.DeletePassiveItems();

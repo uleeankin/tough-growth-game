@@ -7,33 +7,78 @@ using System.Threading.Tasks;
 
 namespace Model.Game.GameObjects
 {
+    /// <summary>
+    /// Класс выдаваемого препятствия
+    /// </summary>
     public class Barrier
     {
+        /// <summary>
+        /// Делегат на перерисовку
+        /// </summary>
         public delegate void dRedraw();
+        /// <summary>
+        /// Событие перерисовки
+        /// </summary>
         public event dRedraw Redraw = null;
 
+        /// <summary>
+        /// Состояние объекта на поле (активен/неактивен)
+        /// </summary>
         private GameObjectsStates _state;
 
+        /// <summary>
+        /// Тип препятствия
+        /// </summary>
         public BarrierType ID { get; set; }
 
+        /// <summary>
+        /// Текущее положение на оси X
+        /// </summary>
         public double X { get; set; }
 
+        /// <summary>
+        /// Текущее положение на оси Y 
+        /// </summary>
         public double Y { get; set; }
 
+        /// <summary>
+        /// Координата начала движения по оси Х
+        /// </summary>
         public double StartX { get; set; }
 
+        /// <summary>
+        /// Координата начала движения по оси Y
+        /// </summary>
         public double StartY { get; set; }
 
+        /// <summary>
+        /// Координата конца движения по оси Х
+        /// </summary>
         public double EndX { get; set; }
 
+        /// <summary>
+        /// Координата конца движения по оси Y
+        /// </summary>
         public double EndY { get; set; }
 
+        /// <summary>
+        /// Ширина препятствия
+        /// </summary>
         public double Width { get; set; }
 
+        /// <summary>
+        /// Высота препятствия
+        /// </summary>
         public double Height { get; set; }
 
+        /// <summary>
+        /// Родительский объект (выпускающий препятствие)
+        /// </summary>
         public GameObject Parent { get; set; }
 
+        /// <summary>
+        /// Состояние объекта на поле (активен/неактивен) 
+        /// </summary>
         public GameObjectsStates State
         {
             get
@@ -47,6 +92,15 @@ namespace Model.Game.GameObjects
             }
         }
 
+        /// <summary>
+        /// Конструктор для препятствий вида - преследующая стрелка
+        /// </summary>
+        /// <param name="parBarrierType">Вид препятствия</param>
+        /// <param name="parEndX">Конечная координата X</param>
+        /// <param name="parEndY">Конечная координата Y</param>
+        /// <param name="parWidth">Ширина</param>
+        /// <param name="parHeight">Высота</param>
+        /// <param name="parParent">Родитель</param>
         public Barrier(BarrierType parBarrierType,
             double parEndX, double parEndY,
             double parWidth, double parHeight,
@@ -65,6 +119,17 @@ namespace Model.Game.GameObjects
             Parent = parParent;
         }
 
+        /// <summary>
+        /// Конструктор для препятствий вида - короткий / длинный выстрел
+        /// </summary>
+        /// <param name="parBarrierType">Вид препятствия</param>
+        /// <param name="parEndX">Конечная координата X</param>
+        /// <param name="parEndY">Конечная координата Y</param>
+        /// <param name="parWidth">Ширина</param>
+        /// <param name="parHeight">Высота</param>
+        /// <param name="parParent">Родитель</param>
+        /// <param name="parScreenHeight">Высота поля игры</param>
+        /// <param name="parScreenWidth">Ширина поля игры</param>
         public Barrier(BarrierType parBarrierType,
             double parEndX, double parEndY,
             double parWidth, double parHeight,
@@ -85,6 +150,11 @@ namespace Model.Game.GameObjects
             Parent = parParent;
         }
 
+        /// <summary>
+        /// Установка конечных координат короткого и длинного выстрелов
+        /// </summary>
+        /// <param name="parScreenHeight">Высота игрового поля</param>
+        /// <param name="parScreenWidth">Ширина игрового поля</param>
         private void GetEndCoordinates(double parScreenHeight, double parScreenWidth)
         {
             if (X > EndX)
@@ -105,6 +175,10 @@ namespace Model.Game.GameObjects
             }
         }
 
+        /// <summary>
+        /// Движение препятствия по полю
+        /// </summary>
+        /// <param name="parSpeed"></param>
         public void MoveByStep(double parSpeed)
         {
 

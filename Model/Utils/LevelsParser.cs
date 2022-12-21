@@ -9,19 +9,41 @@ using System.Threading.Tasks;
 
 namespace Model.Utils
 {
+    /// <summary>
+    /// Класс для получения данных уровней из файла 
+    /// и их преобразования в объекты
+    /// </summary>
     public class LevelsParser
     {
-
+        /// <summary>
+        /// Уровни и объекты уровней
+        /// </summary>
         private static volatile Dictionary<int, List<GameObject>> _levels 
                                         = new Dictionary<int, List<GameObject>>();
+        /// <summary>
+        /// Текстовое описание уровней
+        /// </summary>
         private static volatile Dictionary<int, string> _levelsDescription 
                                         = GetLevelsDescription();
-
+        /// <summary>
+        /// Потоки
+        /// </summary>
         private static List<Thread> _threads = new List<Thread>();
 
+        /// <summary>
+        /// Текущий считываемый уровень
+        /// </summary>
         private static int _levelNumber = 1;
+        /// <summary>
+        /// Заглушка для синхронизации потоков
+        /// </summary>
         private static Object _locker = new Object();
 
+        /// <summary>
+        /// Преобразует текстовое описание уровней в объекты
+        /// </summary>
+        /// <param name="parLevelsNumber">Количество получаемых уровней</param>
+        /// <returns>Список объектов всех уровней</returns>
         public static Dictionary<int, List<GameObject>> GetLevels(int parLevelsNumber)
         {
 
@@ -38,6 +60,9 @@ namespace Model.Utils
             return _levels;
         }
 
+        /// <summary>
+        /// Добавляет объекты уровня в список всех уровней
+        /// </summary>
         private static void AddLevel()
         {
             lock(_locker)
@@ -47,6 +72,11 @@ namespace Model.Utils
             }
         }
 
+        /// <summary>
+        /// Преобразует текстовое описание уровня в объекты
+        /// </summary>
+        /// <param name="parLevelString">Текстовое описание уровня</param>
+        /// <returns>Объекты уровня</returns>
         private static List<GameObject> GetLevel(string parLevelString)
         {
             List<string> fileContent = parLevelString.Split('\n').ToList();
@@ -61,6 +91,11 @@ namespace Model.Utils
             return gameObjects;
         }
 
+        /// <summary>
+        /// Получает объект по его описанию
+        /// </summary>
+        /// <param name="parDescription">Описание объекта</param>
+        /// <returns>Игровой объект</returns>
         private static GameObject GetObject(string parDescription)
         {
             GameObject gameObject = null;
@@ -115,6 +150,11 @@ namespace Model.Utils
             return gameObject;
         }
 
+        /// <summary>
+        /// Получает тип объекта по его описанию
+        /// </summary>
+        /// <param name="parStringType">Описание типа</param>
+        /// <returns>Тип объекта</returns>
         private static GameObjectTypes GetObjectType(string parStringType)
         {
             switch (parStringType)
@@ -138,6 +178,11 @@ namespace Model.Utils
             }
         }
 
+        /// <summary>
+        /// Получает пару координат X, Y из строки
+        /// </summary>
+        /// <param name="parCoordinates"></param>
+        /// <returns>Пара координат</returns>
         private static Tuple<double, double> GetCoordinates(string parCoordinates)
         {
             List<string> coordinatesList = parCoordinates.Substring(1, parCoordinates.Length - 2).Split(';').ToList();
@@ -146,6 +191,10 @@ namespace Model.Utils
                                             Double.Parse(coordinatesList[1]));
         }
 
+        /// <summary>
+        /// Получает описания уровней из ресурсов
+        /// </summary>
+        /// <returns>Описания уровней</returns>
         private static Dictionary<int, string> GetLevelsDescription()
         {
             Dictionary<int, string> levels = new Dictionary<int, string>();

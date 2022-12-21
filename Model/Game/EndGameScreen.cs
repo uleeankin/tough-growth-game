@@ -10,14 +10,28 @@ using System.Threading.Tasks;
 
 namespace Model.Game
 {
+    /// <summary>
+    /// Окно окончания игры
+    /// </summary>
     public class EndGameScreen : MenuScreen
     {
-
+        /// <summary>
+        /// Число игроков (увеличивается, если игрок не задал имя)
+        /// </summary>
         private int _playersNumber = 0;
 
+        /// <summary>
+        /// Имя игрока
+        /// </summary>
         public string PlayerName { get; set; }
+        /// <summary>
+        /// Количество смертей игрока
+        /// </summary>
         public int Score { get; set; }
 
+        /// <summary>
+        /// Конструктор
+        /// </summary>
         public EndGameScreen() : base()
         {
             PlayerName = "";
@@ -30,16 +44,26 @@ namespace Model.Game
             this.FocusItemById((int)ControlItemCode.MainMenu);
         }
 
+        /// <summary>
+        /// Удаляет последний символ строки имени
+        /// </summary>
         public void RemoveLastSymbol()
         {
             this.InputItems[0].ChangeText(this.InputItems[0].Text.Remove(this.InputItems[0].Text.Length - 1));
         }
 
+        /// <summary>
+        /// Добавляет символ в строку имени
+        /// </summary>
+        /// <param name="parLetterCode"></param>
         public void AddSymbol(int parLetterCode)
         {
             this.InputItems[0].ChangeText(this.InputItems[0].Text += (char)parLetterCode);
         }
 
+        /// <summary>
+        /// Сохраняет рекорд в файл
+        /// </summary>
         public void SaveRecord()
         {
             _playersNumber++;

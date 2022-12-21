@@ -8,22 +8,43 @@ using Model.Items;
 
 namespace Model.Menu
 {
+    /// <summary>
+    /// Базовое окно
+    /// </summary>
     public class MenuScreen : Screen
     {
+        /// <summary>
+        /// Текущая кнопка в фокусе
+        /// </summary>
         private int _focusedItemIndex = -1;
 
+        /// <summary>
+        /// Кнопки
+        /// </summary>
         private Dictionary<int, ControlItem> _controlItem = new Dictionary<int, ControlItem>();
 
+        /// <summary>
+        /// Текстовые поля
+        /// </summary>
         private List<PassiveItem> _passiveItems = new List<PassiveItem>();
 
+        /// <summary>
+        /// Поля ввода
+        /// </summary>
         private List<InputItem> _inputItems = new List<InputItem>();
 
+        /// <summary>
+        /// Текущая кнопка в фокусе
+        /// </summary>
         public int FocusedItemIndex
         {
             get { return _focusedItemIndex; }
             protected set { _focusedItemIndex = value; }
         }
 
+        /// <summary>
+        /// Кнопки
+        /// </summary>
         public ControlItem[] ControlItems
         {
             get
@@ -32,6 +53,11 @@ namespace Model.Menu
             }
         }
 
+        /// <summary>
+        /// Кнопка по коду её назначение
+        /// </summary>
+        /// <param name="parId">Код назначение</param>
+        /// <returns>Кнопка с заданным кодом</returns>
         public ControlItem this[int parId]
         {
             get
@@ -40,6 +66,9 @@ namespace Model.Menu
             }
         }
 
+        /// <summary>
+        /// Текстовые поля
+        /// </summary>
         public PassiveItem[] PassiveItems
         {
             get
@@ -48,6 +77,9 @@ namespace Model.Menu
             }
         }
 
+        /// <summary>
+        /// Поля ввода
+        /// </summary>
         public InputItem[] InputItems
         {
             get
@@ -56,11 +88,17 @@ namespace Model.Menu
             }
         }
 
+        /// <summary>
+        /// Конструктор
+        /// </summary>
         public MenuScreen()
         {
 
         }
 
+        /// <summary>
+        /// Фокусирует кнопку с кодом больше текущей
+        /// </summary>
         public void FocusNext()
         {
             int currentFocusedIndex = _focusedItemIndex;
@@ -77,6 +115,9 @@ namespace Model.Menu
             ControlItems[currentFocusedIndex].State = States.Normal;
         }
 
+        /// <summary>
+        /// Фокусирует кнопку с кодом меньше текущей
+        /// </summary>
         public void FocusPrevious()
         {
             int currentFocusedIndex = _focusedItemIndex;
@@ -93,6 +134,10 @@ namespace Model.Menu
             ControlItems[currentFocusedIndex].State = States.Normal;
         }
 
+        /// <summary>
+        /// Фокусирует кнопку по коду
+        /// </summary>
+        /// <param name="parId">Код</param>
         public void FocusItemById(int parId)
         {
             int currentFocusedIndex = _focusedItemIndex;
@@ -107,26 +152,44 @@ namespace Model.Menu
             ControlItems[_focusedItemIndex].State = States.Focused;
         }
 
+        /// <summary>
+        /// Выбирает кнопку, находящуюся в фокусе
+        /// </summary>
         public void SelectFocusedItem()
         {
             ControlItems[_focusedItemIndex].State = States.Selected;
         }
 
+        /// <summary>
+        /// Добавляет кнопку
+        /// </summary>
+        /// <param name="parControlItem">Кнопка</param>
         protected void AddControlItem(ControlItem parControlItem)
         {
             _controlItem.Add(parControlItem.ID, parControlItem);
         }
 
+        /// <summary>
+        /// Добавляет текстовое поле
+        /// </summary>
+        /// <param name="parPassiveItem">Текстовое поле</param>
         protected void AddPassiveItem(PassiveItem parPassiveItem)
         {
             _passiveItems.Add(parPassiveItem);
         }
 
+        /// <summary>
+        /// Добавляет поле ввода
+        /// </summary>
+        /// <param name="parInputItem">Поле ввода</param>
         protected void AddInputItem(InputItem parInputItem)
         {
             _inputItems.Add(parInputItem);
         }
 
+        /// <summary>
+        /// Удаляет текстовые поля
+        /// </summary>
         protected void DeletePassiveItems()
         {
             _passiveItems.Clear();
