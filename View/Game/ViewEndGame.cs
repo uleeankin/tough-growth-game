@@ -7,16 +7,36 @@ using View.Items;
 
 namespace View.Game
 {
+    /// <summary>
+    /// Базовое представление окна окончания игры
+    /// </summary>
     public abstract class ViewEndGame : View
     {
+        /// <summary>
+        /// Представления кнопок
+        /// </summary>
+        private Dictionary<int, ViewControlItem> _backToMenu = null;
+        /// <summary>
+        /// Представления тестовых полей
+        /// </summary>
+        private List<ViewPassiveItem> _info = null;
+        /// <summary>
+        /// Представления полей ввода
+        /// </summary>
+        private List<ViewInputItem> _input = null;
 
-        private Dictionary<int, ViewControlItem> _controlItems = null;
-        private List<ViewPassiveItem> _passiveItems = null;
-        private List<ViewInputItem> _inputItems = null;
-
-        protected ViewControlItem[] BackToMenu => _controlItems.Values.ToArray();
-        protected ViewPassiveItem[] Info => _passiveItems.ToArray();
-        protected ViewInputItem[] Input => _inputItems.ToArray();
+        /// <summary>
+        /// Представления кнопок
+        /// </summary>
+        protected ViewControlItem[] BackToMenu => _backToMenu.Values.ToArray();
+        /// <summary>
+        /// Представления текстовых полей
+        /// </summary>
+        protected ViewPassiveItem[] Info => _info.ToArray();
+        /// <summary>
+        /// Представления полей ввода
+        /// </summary>
+        protected ViewInputItem[] Input => _input.ToArray();
         protected Model.Game.EndGameScreen EndScreen { get; set; }
 
         public int X { get; set; }
@@ -28,30 +48,30 @@ namespace View.Game
         {
             get
             {
-                return _controlItems[parId];
+                return _backToMenu[parId];
             }
         }
 
         public ViewEndGame(Model.Game.EndGameScreen parEndGame)
         {
             EndScreen = parEndGame;
-            _controlItems = new Dictionary<int, ViewControlItem>();
-            _passiveItems = new List<ViewPassiveItem>();
-            _inputItems = new List<ViewInputItem>();
+            _backToMenu = new Dictionary<int, ViewControlItem>();
+            _info = new List<ViewPassiveItem>();
+            _input = new List<ViewInputItem>();
 
             foreach (Model.Items.PassiveItem elPassiveItem in parEndGame.PassiveItems)
             {
-                _passiveItems.Add(CreatePassiveItem(elPassiveItem));
+                _info.Add(CreatePassiveItem(elPassiveItem));
             }
 
             foreach (Model.Items.ControlItem elControlItem in parEndGame.ControlItems)
             {
-                _controlItems.Add(elControlItem.ID, CreateControlItem(elControlItem));
+                _backToMenu.Add(elControlItem.ID, CreateControlItem(elControlItem));
             }
 
             foreach (Model.Items.InputItem elInputItem in parEndGame.InputItems)
             {
-                _inputItems.Add(CreateInputItem(elInputItem));
+                _input.Add(CreateInputItem(elInputItem));
             }
         }
 

@@ -8,9 +8,14 @@ using Model.Items;
 
 namespace Model.Menu
 {
+    /// <summary>
+    /// Главное меню
+    /// </summary>
     public class MainMenu : MenuScreen
     {
-
+        /// <summary>
+        /// Конструктор
+        /// </summary>
         public MainMenu() : base()
         {
             this.AddPassiveItem(new PassiveItem(Properties.Resources.TitlePassiveItem));

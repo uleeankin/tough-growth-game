@@ -13,47 +13,128 @@ using Barrier = Model.Game.GameObjects.Barrier;
 
 namespace Model.Game
 {
+    /// <summary>
+    /// Окно игры
+    /// </summary>
     public class GameScreen : Screen
     {
+        /// <summary>
+        /// Скорость игрового квадрата
+        /// </summary>
         private const double PLAYER_SPEED = 200;
+        /// <summary>
+        /// Скорость прямоугольника
+        /// </summary>
         private const double RECTANGLE_SPEED = 100;
+        /// <summary>
+        /// Скорость короткого выстрела
+        /// </summary>
         private const double SHORT_BARRIER_SPEED = 150;
+        /// <summary>
+        /// Скорость длинного выстрела
+        /// </summary>
         private const double LONG_BARRIER_SPEED = 50;
+        /// <summary>
+        /// Скорость преследующей стрелки
+        /// </summary>
         private const double ARROW_BARRIER_SPEED = 70;
 
+        /// <summary>
+        /// Делегат на перерисовку окна
+        /// </summary>
         public delegate void dNeedRedraw();
+        /// <summary>
+        /// Событие на перерисовку окна
+        /// </summary>
         public event dNeedRedraw NeedRedraw = null;
 
+        /// <summary>
+        /// Делегат на завершение игры
+        /// </summary>
         public delegate void dEndGame();
+        /// <summary>
+        /// Событие на завершение игры
+        /// </summary>
         public event dEndGame EndGame = null;
 
+        /// <summary>
+        /// Делегат на изменение количества препятствий
+        /// </summary>
         public delegate void dOnBarriersChange();
+        /// <summary>
+        /// Событие на изменение количества препятствий
+        /// </summary>
         public event dOnBarriersChange OnBarriersChange = null;
 
+        /// <summary>
+        /// Определяет завершение / запуск игрового цикла
+        /// </summary>
         private bool _isNeedStop = false;
+        /// <summary>
+        /// Временной коэффициент для передвижения объектов
+        /// </summary>
         private double _timeCoefficient = 0;
+        /// <summary>
+        /// Количество неактивных объектов
+        /// </summary>
         private volatile int _inactiveObjectsNumber = 0;
+        /// <summary>
+        /// Количество съеденных объектов
+        /// </summary>
         private volatile int _eatenObjectsNumber = 0;
 
+        /// <summary>
+        /// Таймер на создание коротких выстрелов
+        /// </summary>
         private System.Timers.Timer _shortBarrierTimer = new System.Timers.Timer(2000);
+        /// <summary>
+        /// Таймер на создание длинных выстрелов
+        /// </summary>
         private System.Timers.Timer _longBarrierTimer = new System.Timers.Timer(3000);
 
+        /// <summary>
+        /// Выдаваемые препятствия
+        /// </summary>
         private volatile List<Barrier> _barriers = new List<Barrier>();
 
+        /// <summary>
+        /// Игровые объекты текущего уровня
+        /// </summary>
         private List<GameObject> _gameObjects
             = new List<GameObject>();
 
+        /// <summary>
+        /// Игровые объекты всех уровней
+        /// </summary>
         private Dictionary<int, List<GameObject>> _levelObjects
             = new Dictionary<int, List<GameObject>>();
 
+        /// <summary>
+        /// Текущий уровень
+        /// </summary>
         private int _level = 1;
 
+        /// <summary>
+        /// Высота игрового поля
+        /// </summary>
         public double ScreenHeight { get; set; }
+        /// <summary>
+        /// Ширина игрового поля
+        /// </summary>
         public double ScreenWidth { get; set; }
 
+        /// <summary>
+        /// Наличие шестиугольников на уровне
+        /// </summary>
         public bool HasHexagons { get; set; }
+        /// <summary>
+        /// Наличие треугольников на уровне
+        /// </summary>
         public bool HasTriangles { get; set; }
 
+        /// <summary>
+        /// Выдаваемые препятствия
+        /// </summary>
         public List<Barrier> Barriers
         {
             get
@@ -62,6 +143,9 @@ namespace Model.Game
             }
         }
 
+        /// <summary>
+        /// Текущий уровень
+        /// </summary>
         public int Level
         {
             get
@@ -74,6 +158,9 @@ namespace Model.Game
             }
         }
 
+        /// <summary>
+        /// Игровые объекты текущего уровня
+        /// </summary>
         public GameObject[] GameObjects
         {
             get
@@ -82,6 +169,11 @@ namespace Model.Game
             }
         }
 
+        /// <summary>
+        /// Возвращает все объекта заданного типа
+        /// </summary>
+        /// <param name="parId">Код типа</param>
+        /// <returns>Все объекты заданного типа</returns>
         public List<GameObject> this[int parId]
         {
             get
@@ -90,8 +182,14 @@ namespace Model.Game
             }
         }
 
+        /// <summary>
+        /// Количество смертей
+        /// </summary>
         public int Deaths { get; set; }
 
+        /// <summary>
+        /// Конструктор
+        /// </summary>
         public GameScreen() : base()
         {
             _levelObjects = LevelsParser.GetLevels(10);
@@ -99,6 +197,9 @@ namespace Model.Game
             InitTimers();
         }
 
+        /// <summary>
+        /// Инициализация уровня
+        /// </summary>
         private void Init()
         {
             if (Level > 10)
@@ -137,6 +238,9 @@ namespace Model.Game
 
         }
 
+        /// <summary>
+        /// Инициализация таймеров
+        /// </summary>
         private void InitTimers()
         {
             _shortBarrierTimer.AutoReset = true;
@@ -146,6 +250,10 @@ namespace Model.Game
 
         }
 
+        /// <summary>
+        /// Обработчик события генерации новых координат для 
+        /// постоянного съедобного квадрата
+        /// </summary>
         private void SetPermanentSquareCoordinates()
         {
             double x;
@@ -185,6 +293,9 @@ namespace Model.Game
 
         }
 
+        /// <summary>
+        /// Запускает игровой цикл
+        /// </summary>
         public void StartGame()
         {
             _shortBarrierTimer.Enabled = true;
@@ -212,6 +323,9 @@ namespace Model.Game
             }).Start();
         }
 
+        /// <summary>
+        /// Останавливает игровой цикл
+        /// </summary>
         public void StopGame()
         {
             _shortBarrierTimer.Enabled = false;
@@ -219,6 +333,9 @@ namespace Model.Game
             _isNeedStop = true;
         }
 
+        /// <summary>
+        /// Перемещает все объекты
+        /// </summary>
         private void Move()
         {
 
@@ -261,6 +378,9 @@ namespace Model.Game
             DeleteInactiveBarrier();
         }
 
+        /// <summary>
+        /// Проверяет пересечение игрового квадрата с другими игровыми объектами
+        /// </summary>
         private void CheckIntersections()
         {
             GameObject gameSquare = GameObjects[(int)GameObjectTypes.GAME_SQUARE];
@@ -327,6 +447,9 @@ namespace Model.Game
             });
         }
 
+        /// <summary>
+        /// Проверяет пересечение игрового квадрата с препятствиями
+        /// </summary>
         private void CheckBarriersIntersections()
         {
             GameObject gameSquare = GameObjects[(int)GameObjectTypes.GAME_SQUARE];
@@ -342,6 +465,9 @@ namespace Model.Game
             }
         }
 
+        /// <summary>
+        /// Заканчивает уровень
+        /// </summary>
         private void EndLevel()
         {
             Deaths++;
@@ -349,6 +475,11 @@ namespace Model.Game
             StartNewLevel();
         }
 
+        /// <summary>
+        /// Возвращает скорость препятствия по его типу
+        /// </summary>
+        /// <param name="parBarrierType">Тип препятствия</param>
+        /// <returns>Скорость препятствия</returns>
         private double GetBarrierSpeed(BarrierType parBarrierType)
         {
             switch (parBarrierType)
@@ -364,6 +495,11 @@ namespace Model.Game
             }
         }
 
+        /// <summary>
+        /// Обработчик события таймера на создание коротких выстрелов
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="e"></param>
         private void OnShortShotsTimerEvent(Object source, ElapsedEventArgs e)
         {
             if (HasHexagons)
@@ -384,6 +520,11 @@ namespace Model.Game
             }
         }
 
+        /// <summary>
+        /// Обработчик события таймера на создание длинных выстрелов
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="e"></param>
         private void OnLongShotsTimerEvent(Object source, ElapsedEventArgs e)
         {
             if (HasTriangles)
@@ -405,6 +546,12 @@ namespace Model.Game
             }
         }
 
+        /// <summary>
+        /// Устанавливает новое состояние для игрового объекта
+        /// </summary>
+        /// <param name="parObject">Игровой объект</param>
+        /// <param name="parCurrentState">Текущее состояние</param>
+        /// <param name="parNewState">Новое состояние</param>
         private void SetNewState(GameObject parObject,
                                 GameObjectsStates parCurrentState,
                                 GameObjectsStates parNewState)
@@ -415,6 +562,11 @@ namespace Model.Game
             }
         }
 
+        /// <summary>
+        /// Запускает работу препятствий, не зависящих от таймера
+        /// </summary>
+        /// <param name="parGameObject">Игровой объект</param>
+        /// <param name="parGameSquare">Игровой квадрат</param>
         private void StartBarriers(GameObject parGameObject, GameObject parGameSquare)
         {
             if (parGameObject.ID == GameObjectTypes.RECTANGLE)
@@ -430,6 +582,10 @@ namespace Model.Game
             }
         }
 
+        /// <summary>
+        /// Останавливает работу препятствия, если родитель был съеден
+        /// </summary>
+        /// <param name="parParent">Родитель препятствия</param>
         private void StopBarrier(GameObject parParent)
         {
             _barriers.ForEach((elBarrier) =>
@@ -441,11 +597,19 @@ namespace Model.Game
             });
         }
 
+        /// <summary>
+        /// Останавливает работу препятствия, 
+        /// находящегося за пределами игрового поля
+        /// </summary>
+        /// <param name="parBarrier">Препятствие</param>
         private void StopBarrier(Barrier parBarrier)
         {
             parBarrier.State = GameObjectsStates.INACTIVE;
         }
 
+        /// <summary>
+        /// Удаляет неактивные препятствия из списка препятствий
+        /// </summary>
         private void DeleteInactiveBarrier()
         {
             if (Barriers.FindAll(elBarrier => elBarrier.State == GameObjectsStates.INACTIVE).Count != 0)
@@ -455,6 +619,12 @@ namespace Model.Game
             }
         }
 
+        /// <summary>
+        /// Проверяет пересечение игрового объекта и игрового квадрата
+        /// </summary>
+        /// <param name="parGameObject">Игровой объект</param>
+        /// <param name="parGameSquare">Игровой квадрат</param>
+        /// <returns>Наличие пересечения</returns>
         private bool IsIntersection(GameObject parGameObject, GameObject parGameSquare)
         {
             return GetXIntersection(parGameObject.X, parGameSquare.X,
@@ -463,6 +633,12 @@ namespace Model.Game
                             parGameSquare.Height / 2, parGameObject.Height / 2);
         }
 
+        /// <summary>
+        /// Проверяет пересечение препятствия и игрового квадрата
+        /// </summary>
+        /// <param name="parBarrier">Препятствие</param>
+        /// <param name="parGameSquare">Игровой квадрат</param>
+        /// <returns></returns>
         private bool IsIntersection(Barrier parBarrier, GameObject parGameSquare)
         {
             return GetXIntersection(parBarrier.X, parGameSquare.X,
@@ -471,6 +647,9 @@ namespace Model.Game
                             parGameSquare.Height / 2, parBarrier.Height / 2);
         }
 
+        /// <summary>
+        /// Начинает новый уровень
+        /// </summary>
         private void StartNewLevel()
         {
             ((PermanentSquare)_gameObjects[(int)GameObjectTypes.PERMANENT_SQUARE])
@@ -483,6 +662,14 @@ namespace Model.Game
             }
         }
 
+        /// <summary>
+        /// Проверяет пересечение по координате X
+        /// </summary>
+        /// <param name="parObjectX">Координата X объекта</param>
+        /// <param name="parGameSquareX">Координата X игрового квадрата</param>
+        /// <param name="parGameSquareDelta">Погрешность</param>
+        /// <param name="parObjectDelta">Погрешность</param>
+        /// <returns>Наличие пересечения</returns>
         private bool GetXIntersection(double parObjectX, double parGameSquareX,
             double parGameSquareDelta, double parObjectDelta)
         {
@@ -490,6 +677,14 @@ namespace Model.Game
                 && (parObjectX - parObjectDelta) < (parGameSquareX + parGameSquareDelta));
         }
 
+        /// <summary>
+        /// Проверяет пересечение по координате Y
+        /// </summary>
+        /// <param name="parObjectY">Координата Y объекта</param>
+        /// <param name="parGameSquareY">Координата Y игрового квадрата</param>
+        /// <param name="parGameSquareDelta">Погрешность</param>
+        /// <param name="parObjectDelta">Погрешность</param>
+        /// <returns>Наличие пересечения</returns>
         private bool GetYIntersection(double parObjectY, double parGameSquareY,
             double parGameSquareDelta, double parObjectDelta)
         {
@@ -497,19 +692,37 @@ namespace Model.Game
                 && (parObjectY - parObjectDelta) < (parGameSquareY + parGameSquareDelta));
         }
 
+        /// <summary>
+        /// Задает движение вверх игровому квадрату
+        /// </summary>
+        /// <param name="parGameSquare">Игровой квадрат</param>
         public void MoveUp(GameSquare parGameSquare)
         {
             parGameSquare.MotionDirection = MotionType.UP;
         }
 
+        /// <summary>
+        /// Задает движение вниз игровому квадрату
+        /// </summary>
+        /// <param name="parGameSquare">Игровой квадрат</param>
         public void MoveDown(GameSquare parGameSquare)
         {
             parGameSquare.MotionDirection = MotionType.DOWN;
         }
+
+        /// <summary>
+        /// Задает движение влево игровому квадрату
+        /// </summary>
+        /// <param name="parGameSquare">Игровой квадрат</param>
         public void MoveLeft(GameSquare parGameSquare)
         {
             parGameSquare.MotionDirection = MotionType.LEFT;
         }
+
+        /// <summary>
+        /// Задает движение вправо игровому квадрату
+        /// </summary>
+        /// <param name="parGameSquare">Игровой квадрат</param>
         public void MoveRight(GameSquare parGameSquare)
         {
             parGameSquare.MotionDirection = MotionType.RIGHT;

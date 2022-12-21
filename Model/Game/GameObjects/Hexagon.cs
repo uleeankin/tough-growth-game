@@ -7,15 +7,29 @@ using Model.Enums;
 
 namespace Model.Game.GameObjects
 {
+    /// <summary>
+    /// Игровой объект Шестиугольник
+    /// </summary>
     public class Hexagon : GameObject
     {
-
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        /// <param name="parID">Тип объекта</param>
+        /// <param name="parIDName">Наименование типа</param>
+        /// <param name="parX">Координата X</param>
+        /// <param name="parY">Координата Y</param>
+        /// <param name="parArea">Площадь</param>
         public Hexagon(GameObjectTypes parID, string parIDName, double parX,
             double parY, double parArea) : base(parID, parIDName, parX, parY, parArea)
         {
 
         }
 
+        /// <summary>
+        /// Клонирует объект
+        /// </summary>
+        /// <returns>Возвращает копию объекта</returns>
         public override GameObject Clone()
         {
             Hexagon hexagon = new Hexagon(ID, IDName, X, Y, Area);
