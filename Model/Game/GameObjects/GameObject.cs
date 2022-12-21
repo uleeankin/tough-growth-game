@@ -7,20 +7,43 @@ using Model.Enums;
 
 namespace Model.Game.GameObjects
 {
+    /// <summary>
+    /// Базовый класс игровых объектов
+    /// </summary>
     public abstract class GameObject
     {
-
+        /// <summary>
+        /// Делегат на перерисовку
+        /// </summary>
         public delegate void dRedraw();
+        /// <summary>
+        /// Событие на перерисовку
+        /// </summary>
         public event dRedraw Redraw = null;
 
+        /// <summary>
+        /// Координата X
+        /// </summary>
         private double _x;
+        /// <summary>
+        /// Координата Y
+        /// </summary>
         private double _y;
+        /// <summary>
+        /// Площадь
+        /// </summary>
         private double _area;
+        /// <summary>
+        /// Состояние объекта в игре
+        /// </summary>
         private GameObjectsStates _state = GameObjectsStates.INACTIVE;
 
         public GameObjectTypes ID { get; set; }
         public string IDName { get; set; }
 
+        /// <summary>
+        /// Координата X
+        /// </summary>
         public double X
         {
             get
@@ -33,6 +56,10 @@ namespace Model.Game.GameObjects
                 Redraw?.Invoke();
             }
         }
+
+        /// <summary>
+        /// Координата Y
+        /// </summary>
         public double Y
         {
             get
@@ -46,6 +73,9 @@ namespace Model.Game.GameObjects
             }
         }
 
+        /// <summary>
+        /// Площадь
+        /// </summary>
         public double Area
         {
             get
@@ -61,6 +91,9 @@ namespace Model.Game.GameObjects
             }
         }
 
+        /// <summary>
+        /// Состояние объекта в игре
+        /// </summary>
         public virtual GameObjectsStates State
         {
             get
@@ -73,10 +106,27 @@ namespace Model.Game.GameObjects
                 Redraw?.Invoke();
             }
         }
+
+        /// <summary>
+        /// Высота объекта
+        /// </summary>
         public double Height { get; protected set; }
+
+        /// <summary>
+        /// Ширина объекта
+        /// </summary>
         public double Width { get; protected set; }
         
-        public GameObject(GameObjectTypes parID, string parIDName, double parX, double parY, double parArea)
+        /// <summary>
+        /// Базовый конструктор
+        /// </summary>
+        /// <param name="parID">Тип объекта</param>
+        /// <param name="parIDName">Наименование типа</param>
+        /// <param name="parX">Координата X</param>
+        /// <param name="parY">Координата Y</param>
+        /// <param name="parArea">Площадь</param>
+        public GameObject(GameObjectTypes parID, string parIDName, 
+                        double parX, double parY, double parArea)
         {
             ID = parID;
             IDName = parIDName;
@@ -85,8 +135,18 @@ namespace Model.Game.GameObjects
             Area = parArea;
         }
 
+        /// <summary>
+        /// Клонировать объект
+        /// </summary>
+        /// <returns></returns>
         public abstract GameObject Clone();
+        /// <summary>
+        /// Установить высоту
+        /// </summary>
         public abstract void SetHeight();
+        /// <summary>
+        /// Установить ширину
+        /// </summary>
         public abstract void SetWidth();
     }
 }

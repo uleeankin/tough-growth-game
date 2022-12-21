@@ -9,20 +9,53 @@ using Model.Enums;
 
 namespace Controller
 {
+    /// <summary>
+    /// Базовый класс для передачи управления между контроллерами
+    /// </summary>
     public abstract class ControllersManager
     {
+        /// <summary>
+        /// Текущий работающий контроллер
+        /// </summary>
         protected Controller CurrentController { get; set; }
+
+        /// <summary>
+        /// Контроллер окна главного меню
+        /// </summary>
         protected MenuController Menu { get; set; }
+
+        /// <summary>
+        /// Контроллер окна справки
+        /// </summary>
         protected InfoController Info { get; set; }
+
+        /// <summary>
+        /// Контроллер окна рекордов
+        /// </summary>
         protected RecordsController Records { get; set; }
+
+        /// <summary>
+        /// Контроллер окна игры
+        /// </summary>
         protected GameController Game { get; set; }
+
+        /// <summary>
+        /// Контроллер окна конца игры
+        /// </summary>
         protected EndGameController EndGame { get; set; }
 
+        /// <summary>
+        /// Конструктор
+        /// </summary>
         public ControllersManager()
         {
 
         }
 
+        /// <summary>
+        /// Передача управления между контроллерами
+        /// </summary>
+        /// <param name="parCode">Код контроллера, которому передается управление</param>
         public void GetMove(ControlItemCode parCode)
         {
             CurrentController.Stop();
@@ -52,6 +85,9 @@ namespace Controller
             }
         }
 
+        /// <summary>
+        /// Запуск работы контроллеров
+        /// </summary>
         public void Start()
         {
             InitControllers();
@@ -60,6 +96,9 @@ namespace Controller
             CurrentController.Start();
         }
 
+        /// <summary>
+        /// Определение обработчика событий передачи управления
+        /// </summary>
         private void SubscribeToEvents()
         {
             Menu.ChangeController += GetMove;
@@ -69,6 +108,9 @@ namespace Controller
             EndGame.ChangeController += GetMove;
         }
 
+        /// <summary>
+        /// Инициализация всех контроллеров приложения
+        /// </summary>
         private void InitControllers()
         {
             Menu = this.GetMenuController();
@@ -78,14 +120,34 @@ namespace Controller
             EndGame = this.GetEndGameController();
         }
 
+        /// <summary>
+        /// Получение контроллера главного меню
+        /// </summary>
+        /// <returns>Контроллер главного меню</returns>
         protected abstract MenuController GetMenuController();
 
+        /// <summary>
+        /// Получение контроллера справки
+        /// </summary>
+        /// <returns>Контроллер справки</returns>
         protected abstract InfoController GetInfoController();
 
+        /// <summary>
+        /// Получение контроллера рекордов
+        /// </summary>
+        /// <returns>Контроллер рекордов</returns>
         protected abstract RecordsController GetRecordsController();
 
+        /// <summary>
+        /// Получение контроллера игры
+        /// </summary>
+        /// <returns>Контроллер игры</returns>
         protected abstract GameController GetGameController();
 
+        /// <summary>
+        /// Получение контроллера конца игры
+        /// </summary>
+        /// <returns>Контроллер окна окончания игры</returns>
         protected abstract EndGameController GetEndGameController();
     }
 }

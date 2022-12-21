@@ -7,14 +7,27 @@ using System.IO;
 
 namespace Model.Utils
 {
+    /// <summary>
+    /// Класс для считывания / записи данных в файл
+    /// </summary>
     public class FileIO
     {
 
+        /// <summary>
+        /// Записывает текст в файл
+        /// </summary>
+        /// <param name="parFileName">Имя файла</param>
+        /// <param name="parText">Текст</param>
         public static void FileWriter(string parFileName, string parText)
         {
             File.AppendAllText(parFileName, parText);
         }
 
+        /// <summary>
+        /// Получает рекорды из файла
+        /// </summary>
+        /// <param name="parFileName">Имя файла</param>
+        /// <returns>Возвращает список пар: имя игрока - количество смертей</returns>
         public static List<Tuple<string, int>> RecordsFileReader(string parFileName)
         {
             List<Tuple<string, int>> fileContent = new List<Tuple<string, int>>();

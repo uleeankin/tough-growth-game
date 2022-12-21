@@ -7,23 +7,59 @@ using Model.Enums;
 
 namespace Model.Game.GameObjects
 {
+    /// <summary>
+    /// Игровой объект прямоугольник
+    /// </summary>
     public class Rectangle : GameObject
     {
 
+        /// <summary>
+        /// Начальная координата X для передвижения
+        /// </summary>
         public double StartX { get; set; }
+        /// <summary>
+        /// Начальная координата Y для передвижения
+        /// </summary>
         public double StartY { get; set; }
+        /// <summary>
+        /// Конечная координата X для передвижения
+        /// </summary>
         public double EndX { get; set; }
+        /// <summary>
+        /// Конечная координата Y для передвижения
+        /// </summary>
         public double EndY { get; set; }
+        /// <summary>
+        /// Ориентация прямоугольника на игровом поле 
+        /// (вертикальная/горизонтальная)
+        /// </summary>
         public int Orientation { get; set; }
+        /// <summary>
+        /// Флаг наличия движения
+        /// </summary>
         public bool IsActiveMotion { get; set; }
+        /// <summary>
+        /// Направление движения
+        /// </summary>
         public MotionType MotionDirection { get; set; }
 
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        /// <param name="parID">Тип объекта</param>
+        /// <param name="parIDName">Наименование типа</param>
+        /// <param name="parX">Координата X</param>
+        /// <param name="parY">Координата Y</param>
+        /// <param name="parArea">Площадь</param>
         public Rectangle(GameObjectTypes parID, string parIDName, double parX,
             double parY, double parArea) : base(parID, parIDName, parX, parY, parArea)
         {
             IsActiveMotion = false;
         }
 
+        /// <summary>
+        /// Устанавливает высоту объекта
+        /// </summary>
         public override void SetHeight()
         {
             if (Orientation == 1)
@@ -37,6 +73,9 @@ namespace Model.Game.GameObjects
 
         }
 
+        /// <summary>
+        /// Устанавливает ширину объекта
+        /// </summary>
         public override void SetWidth()
         {
             if (Orientation == 1)
@@ -49,6 +88,10 @@ namespace Model.Game.GameObjects
             }
         }
 
+        /// <summary>
+        /// Клонирует объект
+        /// </summary>
+        /// <returns>Возвращает копию объекта</returns>
         public override GameObject Clone()
         {
             Rectangle rectangle = new Rectangle(ID, IDName, X, Y, Area);
@@ -61,6 +104,10 @@ namespace Model.Game.GameObjects
             return rectangle;
         }
 
+        /// <summary>
+        /// Двигает прямоугольник на заданный шаг
+        /// </summary>
+        /// <param name="parSpeed">Шаг</param>
         public void MoveByStep(double parSpeed)
         {
             if (IsActiveMotion)
@@ -97,6 +144,9 @@ namespace Model.Game.GameObjects
             }
         }
 
+        /// <summary>
+        /// Проверяет направление движения
+        /// </summary>
         private void CheckMotionDirection()
         {
             if (Orientation == 1)
