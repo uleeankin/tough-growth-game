@@ -26,7 +26,7 @@ namespace WpfView.Game
         public override void Draw()
         {
             _screen.Screen.Children.Clear();
-            foreach (ViewGameObject elGameObject in Objects)
+            foreach (ViewGameObject elGameObject in GameObjects)
             {
                 elGameObject.Draw();
             }
@@ -104,9 +104,9 @@ namespace WpfView.Game
                 ClearObjects();
                 foreach (GameObject elGameObject in Screen.GameObjects)
                 {
-                    Objects.Add(CreateGameObject(elGameObject));
+                    GameObjects.Add(CreateGameObject(elGameObject));
                 }
-                foreach (ViewGameObject elGameObject in Objects)
+                foreach (ViewGameObject elGameObject in GameObjects)
                 {
                     elGameObject.Draw();
                 }
@@ -116,7 +116,7 @@ namespace WpfView.Game
 
         private void SetParentControl(FrameworkElement parParent)
         {
-            foreach (ViewGameObject elGameObject in Objects)
+            foreach (ViewGameObject elGameObject in GameObjects)
             {
                 ((WpfViewGameObject)elGameObject).SetParentControl(parParent);
             }

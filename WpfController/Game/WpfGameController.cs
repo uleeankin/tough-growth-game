@@ -15,14 +15,30 @@ using System.Windows;
 
 namespace WpfController.Game
 {
+    /// <summary>
+    /// Контроллер игры (wpf)
+    /// </summary>
     public class WpfGameController : GameController
     {
 
+        /// <summary>
+        /// Сущность контроллера игры
+        /// </summary>
         private static WpfGameController _instance;
 
+        /// <summary>
+        /// Общее wpf окно для всех окон
+        /// </summary>
         private MainScreen _screen = null;
+
+        /// <summary>
+        /// Представление игры
+        /// </summary>
         private ViewGame _viewGame = null;
 
+        /// <summary>
+        /// Конструктор контроллера игры
+        /// </summary>
         private WpfGameController() : base()
         {
             _screen = MainScreen.GetInstance();
@@ -32,6 +48,10 @@ namespace WpfController.Game
             _viewGame = new WpfView.Game.WpfViewGame(Game);
         }
 
+        /// <summary>
+        /// Получает сущность контроллера игры
+        /// </summary>
+        /// <returns></returns>
         public static WpfGameController GetInstance()
         {
             if (_instance == null)
@@ -41,6 +61,11 @@ namespace WpfController.Game
             return _instance;
         }
 
+        /// <summary>
+        /// Обработчик события нажатия на клавиши клавиатуры
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void OnKeyDownHandler(object sender, KeyEventArgs e)
         {
             switch (e.Key)
@@ -63,6 +88,9 @@ namespace WpfController.Game
             }
         }
 
+        /// <summary>
+        /// Запускает работу MVC игры
+        /// </summary>
         public override void Start()
         {
             _screen.KeyDown += OnKeyDownHandler;
@@ -71,12 +99,18 @@ namespace WpfController.Game
             Game.StartGame();
         }
 
+        /// <summary>
+        /// Останавливает работу MVC игры
+        /// </summary>
         public override void Stop()
         {
             _screen.KeyDown -= OnKeyDownHandler;
             Game.StopGame();
         }
 
+        /// <summary>
+        /// Останавливает игровой цикл и  переключает контроллер
+        /// </summary>
         private void EndGame()
         {
             Game.StopGame();

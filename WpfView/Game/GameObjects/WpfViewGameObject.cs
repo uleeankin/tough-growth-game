@@ -25,7 +25,7 @@ namespace WpfView.Game.GameObjects
 
         private void Init()
         {
-            _shape = WpfShapesCreator.CreateGameObjectView(Object);
+            _shape = WpfShapesCreator.CreateGameObjectView(GameObject);
         }
 
         public override void Draw()
@@ -35,18 +35,18 @@ namespace WpfView.Game.GameObjects
 
         protected override void RedrawGameObject()
         {
-            if (Object.ID != Model.Enums.GameObjectTypes.HEXAGON
-                && Object.ID != Model.Enums.GameObjectTypes.TRIANGLE)
+            if (GameObject.ID != Model.Enums.GameObjectTypes.HEXAGON
+                && GameObject.ID != Model.Enums.GameObjectTypes.TRIANGLE)
             {
-                X = Object.X - Object.Width / 2;
-                Y = Object.Y - Object.Height / 2;
-                Height = Object.Height;
-                Width = Object.Width;
+                X = GameObject.X - GameObject.Width / 2;
+                Y = GameObject.Y - GameObject.Height / 2;
+                Height = GameObject.Height;
+                Width = GameObject.Width;
                 Application.Current.Dispatcher.Invoke(() =>
                 {
                     _shape.Width = Width;
                     _shape.Height = Height;
-                    WpfShapesCreator.SetColorByState(Object.ID, Object.State, _shape);
+                    WpfShapesCreator.SetColorByState(GameObject.ID, GameObject.State, _shape);
                     Canvas.SetLeft(_shape, X);
                     Canvas.SetTop(_shape, Y);
                 });
@@ -56,7 +56,7 @@ namespace WpfView.Game.GameObjects
                 Application.Current.Dispatcher.Invoke(() =>
                 {
 
-                    WpfShapesCreator.SetColorByState(Object.ID, Object.State, _shape);
+                    WpfShapesCreator.SetColorByState(GameObject.ID, GameObject.State, _shape);
                 });
             }
         }
