@@ -10,17 +10,34 @@ using ConsoleView.Items;
 
 namespace ConsoleView.Menu
 {
+    /// <summary>
+    /// Консольное представление окна рекордов
+    /// </summary>
     public class ConsoleViewRecords : ViewRecords
     {
-        public int BUTTON_WIDTH = 120;
-        public int BUTTON_HEIGHT = 30;
 
-        //изменить в базовом классе на MenuScreen
+        /// <summary>
+        /// Ширина окна
+        /// </summary>
+        private const int WIDTH = 120;
+
+        /// <summary>
+        /// Высота окна
+        /// </summary>
+        private const int HEIGHT = 30;
+
+        /// <summary>
+        /// Конструктор консольного представления окна рекордов
+        /// </summary>
+        /// <param name="parRecords"></param>
         public ConsoleViewRecords(Model.Menu.MenuScreen parRecords) : base(parRecords)
         {
             
         }
 
+        /// <summary>
+        /// Обработчик события рисования окна рекордов
+        /// </summary>
         public override void Draw()
         {
             Init();
@@ -34,21 +51,37 @@ namespace ConsoleView.Menu
             BackToMenu[0].Draw();
         }
 
+        /// <summary>
+        /// Создает консольное представление кнопки
+        /// </summary>
+        /// <param name="parMenuItem">Модель кнопки</param>
+        /// <returns>Консольное представление кнопки</returns>
         protected override ViewControlItem CreateControlItem(ControlItem parMenuItem)
         {
             return new ConsoleViewControlItem(parMenuItem);
         }
 
+        /// <summary>
+        /// Создает консольное представление текстового поля
+        /// </summary>
+        /// <param name="parMenuTitle">Модель текстового поля</param>
+        /// <returns>Консольное представление текстового поля</returns>
         protected override ViewPassiveItem CreatePassiveItem(PassiveItem parMenuTitle)
         {
             return new ConsoleViewPassiveItem(parMenuTitle);
         }
 
+        /// <summary>
+        /// Обработчик события перерисовки окна рекордов
+        /// </summary>
         protected override void Redraw()
         {
             
         }
 
+        /// <summary>
+        /// Задает координаты объектов в окне
+        /// </summary>
         private void Init()
         {
             
@@ -64,9 +97,8 @@ namespace ConsoleView.Menu
                 y++;
             }
 
-            //Init button
-            Console.WindowHeight = BUTTON_HEIGHT;
-            Console.WindowWidth = BUTTON_WIDTH;
+            Console.WindowHeight = HEIGHT;
+            Console.WindowWidth = WIDTH;
             ViewControlItem[] button = BackToMenu;
             Height = button.Length;
             Width = button.Max(x => x.Width);

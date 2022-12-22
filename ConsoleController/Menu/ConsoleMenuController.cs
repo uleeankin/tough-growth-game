@@ -10,15 +10,29 @@ using View.Menu;
 
 namespace ConsoleController.Menu
 {
+    /// <summary>
+    /// Консольный контроллер главного меню
+    /// </summary>
     public class ConsoleMenuController : MenuController
     {
-
+        /// <summary>
+        /// Сущность консольного контроллера главного меню
+        /// </summary>
         private static ConsoleMenuController _instance;
 
-        protected bool IsExit { get; set; }
-
+        /// <summary>
+        /// Представление окна главного меню
+        /// </summary>
         private ViewMenu _viewMenu = null;
 
+        /// <summary>
+        /// Флаг состояния работы контроллера главного меню
+        /// </summary>
+        protected bool IsExit { get; set; }
+
+        /// <summary>
+        /// Конструктор консольного контроллера главного меню
+        /// </summary>
         private ConsoleMenuController() : base()
         {
             Menu = new Model.Menu.MainMenu();
@@ -29,6 +43,10 @@ namespace ConsoleController.Menu
             }
         }
 
+        /// <summary>
+        /// Получает или создает консольный контроллер главного меню
+        /// </summary>
+        /// <returns>Контроллер главного меню</returns>
         public static ConsoleMenuController GetInstance()
         {
             if (_instance == null)
@@ -39,6 +57,9 @@ namespace ConsoleController.Menu
             return _instance;
         }
 
+        /// <summary>
+        /// Запускает работу контроллера главного меню
+        /// </summary>
         public override void Start()
         {
             _viewMenu.Draw();
@@ -63,6 +84,9 @@ namespace ConsoleController.Menu
             } while (!IsExit);
         }
 
+        /// <summary>
+        /// Останавливает работу контроллера главного меню
+        /// </summary>
         public override void Stop()
         {
             IsExit = !IsExit;

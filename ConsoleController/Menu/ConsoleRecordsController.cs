@@ -10,15 +10,29 @@ using Model.Menu;
 
 namespace ConsoleController.Menu
 {
+    /// <summary>
+    /// Консольный контроллер окна рекордов
+    /// </summary>
     public class ConsoleRecordsController : RecordsController
     {
-
+        /// <summary>
+        /// Сущность контроллера окна рекордов
+        /// </summary>
         private static ConsoleRecordsController _instance;
 
-        protected bool IsExit { get; set; }
-
+        /// <summary>
+        /// Представление окна рекордов
+        /// </summary>
         private ViewRecords _viewRecords = null;
 
+        /// <summary>
+        /// Флаг состояния работы контроллера
+        /// </summary>
+        protected bool IsExit { get; set; }
+
+        /// <summary>
+        /// Конструктор консольного контроллера окна рекордов
+        /// </summary>
         private ConsoleRecordsController() : base()
         {
             Records = new Model.Menu.Records();
@@ -29,6 +43,10 @@ namespace ConsoleController.Menu
             }
         }
 
+        /// <summary>
+        /// Получает или создает консольный контроллер окна рекордов
+        /// </summary>
+        /// <returns>Консольный контроллер окна рекордов</returns>
         public static ConsoleRecordsController GetInstance()
         {
             if (_instance == null)
@@ -39,6 +57,9 @@ namespace ConsoleController.Menu
             return _instance;
         }
 
+        /// <summary>
+        /// Запускает работу консольного контроллера окна рекордов
+        /// </summary>
         public override void Start()
         {
             ((Records)Records).GetRecords();
@@ -59,6 +80,9 @@ namespace ConsoleController.Menu
 
         }
 
+        /// <summary>
+        /// Останавливает работу консольного контроллера окна рекордов
+        /// </summary>
         public override void Stop()
         {
             IsExit = !IsExit;

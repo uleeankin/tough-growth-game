@@ -11,19 +11,39 @@ using ConsoleView.Items;
 
 namespace ConsoleView.Menu
 {
+    /// <summary>
+    /// Консольное представление окна главного меню
+    /// </summary>
     public class ConsoleViewMenu : ViewMenu
     {
 
-        public int WIDTH = 120;
-        public int HEIGHT = 30;
+        /// <summary>
+        /// Ширина окна
+        /// </summary>
+        private const int WIDTH = 120;
 
-        private ConsoleView.Utils.CastomOutput _output = new Utils.CastomOutput();
+        /// <summary>
+        /// Высота окна
+        /// </summary>
+        private const int HEIGHT = 30;
 
+        /// <summary>
+        /// Выводитель
+        /// </summary>
+        private ConsoleView.Utils.CustomOutput _output = new Utils.CustomOutput();
+
+        /// <summary>
+        /// Конструктор консольного представления окна главного меню
+        /// </summary>
+        /// <param name="parMenu">Модель главного меню</param>
         public ConsoleViewMenu(MenuScreen parMenu) : base(parMenu)
         {
             Init();
         }
 
+        /// <summary>
+        /// Обработчик события рисования окна главного меню
+        /// </summary>
         public override void Draw()
         {
             Console.BackgroundColor = ConsoleColor.Black;
@@ -35,21 +55,37 @@ namespace ConsoleView.Menu
             }
         }
 
+        /// <summary>
+        /// Создает консольное представление кнопки
+        /// </summary>
+        /// <param name="parMenuItem">Модель кнопки</param>
+        /// <returns>Консольное представление кнопки</returns>
         protected override ViewControlItem CreateControlItem(ControlItem parMenuItem)
         {
             return new ConsoleViewControlItem(parMenuItem);
         }
 
+        /// <summary>
+        /// Создает консольное представление текстового поля
+        /// </summary>
+        /// <param name="parMenuTitle">Модель текстового поля</param>
+        /// <returns>Консольное представление текстового поля</returns>
         protected override ViewPassiveItem CreatePassiveItem(PassiveItem parMenuTitle)
         {
             return new ConsoleViewPassiveItem(parMenuTitle);
         }
 
+        /// <summary>
+        /// Обработчик события перерисовки окна главного меню
+        /// </summary>
         protected override void Redraw()
         {
-            //this.Draw();
+            
         }
 
+        /// <summary>
+        /// Инициализация координат объектов главного меню
+        /// </summary>
         private void Init()
         {
             Console.WindowHeight = HEIGHT;

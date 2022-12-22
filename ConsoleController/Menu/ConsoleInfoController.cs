@@ -10,14 +10,29 @@ using Model.Enums;
 
 namespace ConsoleController.Menu
 {
+    /// <summary>
+    /// Контроллер окна справки (консоль)
+    /// </summary>
     public class ConsoleInfoController : InfoController
     {
-
+        /// <summary>
+        /// Сущность консольного контроллера справки
+        /// </summary>
         private static ConsoleInfoController _instance;
-        protected bool IsExit { get; set; }
 
+        /// <summary>
+        /// Представление окна справки
+        /// </summary>
         private ViewInfo _viewInfo = null;
 
+        /// <summary>
+        /// Флаг состояния работы контроллера
+        /// </summary>
+        protected bool IsExit { get; set; }
+
+        /// <summary>
+        /// Конструктор контроллера справки
+        /// </summary>
         private ConsoleInfoController() : base()
         {
             Info = new Info();
@@ -28,6 +43,10 @@ namespace ConsoleController.Menu
             }
         }
         
+        /// <summary>
+        /// Получает или создает консольный контроллер справки
+        /// </summary>
+        /// <returns>Контроллер справки</returns>
         public static ConsoleInfoController GetInstance()
         {
             if (_instance == null)
@@ -37,6 +56,9 @@ namespace ConsoleController.Menu
             return _instance;
         }
 
+        /// <summary>
+        /// Запускает работу консольного контроллера справки
+        /// </summary>
         public override void Start()
         {
             _viewInfo.Draw();
@@ -54,6 +76,9 @@ namespace ConsoleController.Menu
             
         }
 
+        /// <summary>
+        /// Останавливает работу консольного контроллера справки
+        /// </summary>
         public override void Stop()
         {
             IsExit = !IsExit;

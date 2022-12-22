@@ -11,14 +11,29 @@ using View.Game;
 
 namespace ConsoleController.Game
 {
+    /// <summary>
+    /// Контроллер окна игры (консоль)
+    /// </summary>
     public class ConsoleGameController : GameController
     {
-
+        /// <summary>
+        /// Сущность контроллера игры
+        /// </summary>
         private static ConsoleGameController _instance;
 
+        /// <summary>
+        /// Представление окна игры
+        /// </summary>
         private ViewGame _viewGame = null;
+
+        /// <summary>
+        /// Флаг состояния контроллера игры
+        /// </summary>
         protected bool IsExit { get; set; }
 
+        /// <summary>
+        /// Конструктор контроллера игры
+        /// </summary>
         private ConsoleGameController() : base()
         {
             Game = new Model.Game.GameScreen();
@@ -27,6 +42,10 @@ namespace ConsoleController.Game
             _viewGame = new ConsoleViewGame(Game);
         }
 
+        /// <summary>
+        /// Получает или создает сущность контроллера игры
+        /// </summary>
+        /// <returns>Контроллер игры</returns>
         public static ConsoleGameController GetInstance()
         {
             if (_instance == null)
@@ -36,6 +55,9 @@ namespace ConsoleController.Game
             return _instance;
         }
 
+        /// <summary>
+        /// Запускает работу контроллера игры
+        /// </summary>
         public override void Start()
         {
             IsExit = false;
@@ -66,12 +88,18 @@ namespace ConsoleController.Game
             } while (!IsExit);
         }
 
+        /// <summary>
+        /// Останавливает работу контроллера игры
+        /// </summary>
         public override void Stop()
         {
             Game.StopGame();
             IsExit = true;
         }
 
+        /// <summary>
+        /// Завершает процесс игры
+        /// </summary>
         private void EndGame()
         {
             Game.StopGame();

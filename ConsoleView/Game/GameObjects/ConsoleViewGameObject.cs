@@ -9,16 +9,29 @@ using View.Game.GameObjects;
 
 namespace ConsoleView.Game.GameObjects
 {
+    /// <summary>
+    /// Консольное представление игрового объекта
+    /// </summary>
     public class ConsoleViewGameObject : ViewGameObject
     {
 
-        private Utils.GameCastomOutput _output = GameCastomOutput.GetInstance();
+        /// <summary>
+        /// Выводитель
+        /// </summary>
+        private GameCustomOutput _output = GameCustomOutput.GetInstance();
 
+        /// <summary>
+        /// Конструктор консольного представления игрового объекта
+        /// </summary>
+        /// <param name="parGameObject">Модель игрового объекта</param>
         public ConsoleViewGameObject(GameObject parGameObject) : base(parGameObject)
         {
 
         }
 
+        /// <summary>
+        /// Обработчик события рисования игрового объекта
+        /// </summary>
         public override void Draw()
         {
             Console.OutputEncoding = Encoding.Unicode;
@@ -27,7 +40,9 @@ namespace ConsoleView.Game.GameObjects
             _output.CreateGameObjectView(GameObject, (int)X, (int)Y);
         }
             
-
+        /// <summary>
+        /// Обработчик события перерисовки игрового объекта
+        /// </summary>
         protected override void RedrawGameObject()
         {
             Console.OutputEncoding = Encoding.Unicode;

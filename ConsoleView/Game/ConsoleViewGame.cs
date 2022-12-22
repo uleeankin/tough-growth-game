@@ -13,16 +13,29 @@ using View.Game.GameObjects;
 
 namespace ConsoleView.Game
 {
+    /// <summary>
+    /// Консольное представление окна игры
+    /// </summary>
     public class ConsoleViewGame : ViewGame
     {
 
-        private GameCastomOutput _output = GameCastomOutput.GetInstance();
+        /// <summary>
+        /// Выводитель
+        /// </summary>
+        private GameCustomOutput _output = GameCustomOutput.GetInstance();
 
+        /// <summary>
+        /// Конструктор консольного представления окна игры
+        /// </summary>
+        /// <param name="parGameScreen">Модель окна игры</param>
         public ConsoleViewGame(GameScreen parGameScreen) : base(parGameScreen)
         {
  
         }
 
+        /// <summary>
+        /// Обработчик события рисования окна игры
+        /// </summary>
         public override void Draw()
         {
             Console.BackgroundColor = ConsoleColor.Black;
@@ -33,16 +46,29 @@ namespace ConsoleView.Game
             }
         }
 
+        /// <summary>
+        /// Создает консольное представление препятствия
+        /// </summary>
+        /// <param name="parBarrier">Модель препятствия</param>
+        /// <returns>Консольное представление препятствия</returns>
         protected override ViewBarrier CreateBarrier(Barrier parBarrier)
         {
             return new ConsoleViewBarrier(parBarrier);
         }
 
+        /// <summary>
+        /// Создает консольное представление игрового объекта
+        /// </summary>
+        /// <param name="parGameObject">Модель игрового объекта</param>
+        /// <returns>Консольное представление игрового объекта</returns>
         protected override ViewGameObject CreateGameObject(GameObject parGameObject)
         {
             return new ConsoleViewGameObject(parGameObject);
         }
 
+        /// <summary>
+        /// Обработчик события изменения количества препятсвий на поле
+        /// </summary>
         protected override void OnBarriersChange()
         {
             if (Barriers.Count != 0)
@@ -89,6 +115,9 @@ namespace ConsoleView.Game
             }
         }
 
+        /// <summary>
+        /// Обработчик события перерисовки окна игры
+        /// </summary>
         protected override void Redraw()
         {
             Console.BackgroundColor = ConsoleColor.Black;

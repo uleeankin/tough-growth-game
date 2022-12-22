@@ -9,16 +9,28 @@ using View.Game.GameObjects;
 
 namespace ConsoleView.Game.GameObjects
 {
+    /// <summary>
+    /// Консольное представление препятствия
+    /// </summary>
     public class ConsoleViewBarrier : ViewBarrier
     {
+        /// <summary>
+        /// Выводитель
+        /// </summary>
+        private Utils.GameCustomOutput _output = GameCustomOutput.GetInstance();
 
-        private Utils.GameCastomOutput _output = GameCastomOutput.GetInstance();
-
+        /// <summary>
+        /// Конструктор консольного представления препятствия
+        /// </summary>
+        /// <param name="parBarrier">Модель препятствия</param>
         public ConsoleViewBarrier(Barrier parBarrier) : base(parBarrier)
         {
 
         }
 
+        /// <summary>
+        /// Обработчик события рисования препятствия
+        /// </summary>
         public override void Draw()
         {
             Console.OutputEncoding = Encoding.Unicode;
@@ -27,6 +39,9 @@ namespace ConsoleView.Game.GameObjects
             _output.CreateBarrierView(Barrier, (int)X, (int)Y);
         }
 
+        /// <summary>
+        /// Обработчик события перерисовки препятствия
+        /// </summary>
         protected override void RedrawBarrier()
         {
             Console.OutputEncoding = Encoding.Unicode;

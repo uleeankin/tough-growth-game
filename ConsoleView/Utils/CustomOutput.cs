@@ -8,13 +8,24 @@ using System.Threading.Tasks;
 
 namespace ConsoleView.Utils
 {
-    public class CastomOutput
+    /// <summary>
+    /// Выводитель
+    /// </summary>
+    public class CustomOutput
     {
-
+        /// <summary>
+        /// Высота кнопки
+        /// </summary>
         private const int BUTTON_HEIGHT = 3;
+
+        /// <summary>
+        /// Ширина кнопки
+        /// </summary>
         private const int BUTTON_WIDTH = 17;
 
-
+        /// <summary>
+        /// Координаты отрисовки заголовка игры
+        /// </summary>
         private List<List<int>> _titleCoordinates = new List<List<int>>()
         {
             new List<int>() {1, 2, 3, 4, 5, 8, 9, 12, 15, 18, 19, 22, 25, 
@@ -29,26 +40,43 @@ namespace ConsoleView.Utils
                 34, 37, 40, 43, 44, 48, 50, 55, 59, 62}
         };
 
-        protected static Dictionary<Model.Enums.States, ConsoleColor> BackgroundColorByState { get; private set; }
-        protected static Dictionary<Model.Enums.States, ConsoleColor> FontColorByState { get; private set; }
+        /// <summary>
+        /// Список цветов фонов объектов по состояниям
+        /// </summary>
+        protected static Dictionary<States, ConsoleColor> BackgroundColorByState { get; private set; }
 
-        public CastomOutput()
+        /// <summary>
+        /// Список цветов объектов по состояниям
+        /// </summary>
+        protected static Dictionary<States, ConsoleColor> FontColorByState { get; private set; }
+
+        /// <summary>
+        /// Конструктор выводителя
+        /// </summary>
+        public CustomOutput()
         {
-            BackgroundColorByState = new Dictionary<Model.Enums.States, ConsoleColor>();
-            BackgroundColorByState[Model.Enums.States.Focused] = ConsoleColor.White;
-            BackgroundColorByState[Model.Enums.States.Normal] = ConsoleColor.Black;
-            BackgroundColorByState[Model.Enums.States.Selected] = ConsoleColor.Black;
+            BackgroundColorByState = new Dictionary<States, ConsoleColor>();
+            BackgroundColorByState[States.Focused] = ConsoleColor.White;
+            BackgroundColorByState[States.Normal] = ConsoleColor.Black;
+            BackgroundColorByState[States.Selected] = ConsoleColor.Black;
 
-            FontColorByState = new Dictionary<Model.Enums.States, ConsoleColor>();
-            FontColorByState[Model.Enums.States.Focused] = ConsoleColor.Black;
-            FontColorByState[Model.Enums.States.Normal] = ConsoleColor.White;
-            FontColorByState[Model.Enums.States.Selected] = ConsoleColor.Black;
+            FontColorByState = new Dictionary<States, ConsoleColor>();
+            FontColorByState[States.Focused] = ConsoleColor.Black;
+            FontColorByState[States.Normal] = ConsoleColor.White;
+            FontColorByState[States.Selected] = ConsoleColor.Black;
         }
 
+        /// <summary>
+        /// Выводит кнопку
+        /// </summary>
+        /// <param name="parText">Текст на кнопке</param>
+        /// <param name="parCursorXPosition">Координата X кнопки</param>
+        /// <param name="parCursorYPosition">Координата Y кнопки</param>
+        /// <param name="parState">Состояние кнопки</param>
         public void OutputButton(string parText,
             int parCursorXPosition, 
             int parCursorYPosition,
-            Model.Enums.States parState)
+            States parState)
         {
             string[] buttonBorder = GetBorder(parState);
             Console.BackgroundColor = BackgroundColorByState[parState];
@@ -71,11 +99,16 @@ namespace ConsoleView.Utils
             Console.Write(parText);
         }
 
-        private string[] GetBorder(Model.Enums.States parState)
+        /// <summary>
+        /// Получает границы кнопок
+        /// </summary>
+        /// <param name="parState">Состояние кнопки</param>
+        /// <returns>Элементы границ кнопки</returns>
+        private string[] GetBorder(States parState)
         {
             List<string> buttonBorders = new List<string>();
 
-            if (parState == Model.Enums.States.Normal)
+            if (parState == States.Normal)
             {
                 buttonBorders.Add(new StringBuilder().Append("┌")
                                                     .Append('─', BUTTON_WIDTH - 2)
@@ -98,6 +131,10 @@ namespace ConsoleView.Utils
             return buttonBorders.ToArray();
         }
 
+        /// <summary>
+        /// Выводит заголовок игры
+        /// </summary>
+        /// <param name="parConsoleWidth">Ширина окна консоли</param>
         public void PrintGameTitle(int parConsoleWidth)
         {
             int offset = GetOffset(parConsoleWidth);
@@ -123,6 +160,11 @@ namespace ConsoleView.Utils
             }
         }
 
+        /// <summary>
+        /// Вычисляет отступы между буквами заголовка
+        /// </summary>
+        /// <param name="parConsoleWidth">Ширина окна консоли</param>
+        /// <returns></returns>
         private int GetOffset(int parConsoleWidth)
         {
             int length = _titleCoordinates.Max(x => x.Max());
@@ -130,6 +172,12 @@ namespace ConsoleView.Utils
             return parConsoleWidth / 2 - length / 2;
         }
 
+        /// <summary>
+        /// Выводит строку в консоль
+        /// </summary>
+        /// <param name="parString">Строка</param>
+        /// <param name="parCursorXPosition">Координата X</param>
+        /// <param name="parCursorYPosition">Координата Y</param>
         public void OutputString(
             string parString,
             int parCursorXPosition,

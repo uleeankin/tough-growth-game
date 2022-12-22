@@ -11,19 +11,39 @@ using View.Game;
 
 namespace ConsoleController.Game
 {
+    /// <summary>
+    /// Контроллер окна окончания игры (консоль)
+    /// </summary>
     public class ConsoleEndGameController : EndGameController
     {
-
+        /// <summary>
+        /// Код буквы A
+        /// </summary>
         private const int A_LETTER_CODE = 65;
+
+        /// <summary>
+        /// Код буквы Z
+        /// </summary>
         private const int Z_LETTER_CODE = 90;
 
+        /// <summary>
+        /// Сущность контроллера окончания игры
+        /// </summary>
         private static ConsoleEndGameController _instance;
 
+        /// <summary>
+        /// Представление окна окончания игры
+        /// </summary>
         private ViewEndGame _viewEndGame = null;
 
+        /// <summary>
+        /// Флаг статуса работы контроллера
+        /// </summary>
         protected bool IsExit { get; set; }
 
-
+        /// <summary>
+        /// Коструктор котроллера окончания игры
+        /// </summary>
         private ConsoleEndGameController() : base()
         {
             End = new Model.Game.EndGameScreen();
@@ -34,6 +54,10 @@ namespace ConsoleController.Game
             }
         }
 
+        /// <summary>
+        /// Получает сущность контроллера окна окончания игры
+        /// </summary>
+        /// <returns>Сущность контроллера окна окончания игры (консоль)</returns>
         public static ConsoleEndGameController GetInstance()
         {
             if (_instance == null)
@@ -43,6 +67,9 @@ namespace ConsoleController.Game
             return _instance;
         }
 
+        /// <summary>
+        /// Запускает работу контроллера
+        /// </summary>
         public override void Start()
         {
             IsExit = false;
@@ -66,6 +93,9 @@ namespace ConsoleController.Game
             } while (!IsExit);
         }
 
+        /// <summary>
+        /// Останавливает работу контроллера
+        /// </summary>
         public override void Stop()
         {
             IsExit = true;

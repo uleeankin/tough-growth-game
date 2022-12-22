@@ -8,19 +8,39 @@ using Model.Items;
 
 namespace ConsoleView.Items
 {
+    /// <summary>
+    /// Консольное представление кнопки
+    /// </summary>
     public class ConsoleViewControlItem : ViewControlItem
     {
-        public const int HEIGHT = 3;
-        public const int WIDTH = 20;
+        /// <summary>
+        /// Высота кнопки
+        /// </summary>
+        private const int HEIGHT = 3;
 
-        private Utils.CastomOutput _output = new Utils.CastomOutput();
+        /// <summary>
+        /// Ширина кнопки
+        /// </summary>
+        private const int WIDTH = 20;
 
+        /// <summary>
+        /// Выводитель
+        /// </summary>
+        private Utils.CustomOutput _output = new Utils.CustomOutput();
+
+        /// <summary>
+        /// Конструктор представление кнопки
+        /// </summary>
+        /// <param name="parControlItem">Модель кнопки</param>
         public ConsoleViewControlItem(ControlItem parControlItem) : base(parControlItem)
         {
             Height = HEIGHT;
             Width = WIDTH;
         } 
 
+        /// <summary>
+        /// Обработчик события рисования кнопки
+        /// </summary>
         public override void Draw()
         {
             _output.OutputButton(Item.Text,
@@ -29,6 +49,9 @@ namespace ConsoleView.Items
             
         }
 
+        /// <summary>
+        /// Обработчик события перерисовки кнопки
+        /// </summary>
         protected override void RedrawItem()
         {
             Draw();
