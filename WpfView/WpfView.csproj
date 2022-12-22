@@ -59,7 +59,7 @@
     <Compile Include="Menu\WpfViewInfo.cs" />
     <Compile Include="Menu\WpfViewMenu.cs" />
     <Compile Include="Menu\WpfViewRecords.cs" />
-    <Compile Include="Utils\CastomOutput.cs" />
+    <Compile Include="Utils\CustomOutput.cs" />
     <Compile Include="Utils\WpfShapesCreator.cs" />
   </ItemGroup>
   <ItemGroup>

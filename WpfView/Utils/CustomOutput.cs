@@ -13,7 +13,7 @@ namespace WpfView.Utils
     /// <summary>
     /// Создатель графических элементов
     /// </summary>
-    public class CastomOutput
+    public class CustomOutput
     {
         /// <summary>
         /// Ширина границ объектов
@@ -23,7 +23,7 @@ namespace WpfView.Utils
         /// <summary>
         /// Конструктор создателя графических элементов
         /// </summary>
-        public CastomOutput()
+        public CustomOutput()
         {
 
         }

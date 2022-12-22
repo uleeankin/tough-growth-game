@@ -24,7 +24,7 @@ namespace WpfView.Items
         /// <summary>
         /// Выводитель
         /// </summary>
-        private Utils.CastomOutput _output = new Utils.CastomOutput();
+        private Utils.CustomOutput _output = new Utils.CustomOutput();
 
         /// <summary>
         /// Конструктор представления текстового поля
