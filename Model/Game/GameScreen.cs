@@ -453,9 +453,15 @@ namespace Model.Game
                                 }
 
                                 gameSquare.Area += elGameObject.Area;
-                                SetNewState(elGameObject, 
-                                    GameObjectsStates.BARRIER, 
-                                    GameObjectsStates.FOOD);
+
+                                if (elGameObject.State != GameObjectsStates.FOOD)
+                                {
+                                    elGameObject.State = GameObjectsStates.FOOD;
+                                    lock(_gameObjectsNeedRedrawing)
+                                    {
+                                        _gameObjectsNeedRedrawing.Add(elGameObject);
+                                    }
+                                }
 
                                 if (_barriers.Count != 0)
                                 {
@@ -480,9 +486,9 @@ namespace Model.Game
                                 }
                             }
 
-                        } else
-                            SetNewState(elGameObject,
-                                GameObjectsStates.BARRIER, GameObjectsStates.FOOD);
+                        }
+                        SetNewState(elGameObject,
+                            GameObjectsStates.BARRIER, GameObjectsStates.FOOD);
                     }
                     else
                     {
