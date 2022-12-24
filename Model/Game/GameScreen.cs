@@ -475,7 +475,7 @@ namespace Model.Game
                                             GameObjectsStates.INACTIVE, GameObjectsStates.BARRIER);
                                         lock (_gameObjectsNeedRedrawing)
                                         {
-                                            _gameObjectsNeedRedrawing.Add(elGameObject);
+                                            _gameObjectsNeedRedrawing.Add(elObject);
                                         }
                                     });
                                     _inactiveObjectsNumber = 0;
