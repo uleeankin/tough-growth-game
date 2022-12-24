@@ -88,7 +88,6 @@ namespace Model.Game.GameObjects
             set
             {
                 _state = value;
-                Redraw?.Invoke();
             }
         }
 
@@ -200,8 +199,15 @@ namespace Model.Game.GameObjects
                 {
                     Y += parSpeed;
                 }
-                Redraw?.Invoke();
             }
+        }
+
+        /// <summary>
+        /// Вызывает событие перерисовки препятствия
+        /// </summary>
+        public void RedrawBarrier()
+        {
+            Redraw?.Invoke();
         }
     }
 }
