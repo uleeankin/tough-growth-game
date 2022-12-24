@@ -53,7 +53,6 @@ namespace Model.Game.GameObjects
             set
             {
                 _x = value;
-                Redraw?.Invoke();
             }
         }
 
@@ -69,7 +68,6 @@ namespace Model.Game.GameObjects
             set
             {
                 _y = value;
-                Redraw?.Invoke();
             }
         }
 
@@ -87,7 +85,6 @@ namespace Model.Game.GameObjects
                 _area = value;
                 SetHeight();
                 SetWidth();
-                Redraw?.Invoke();
             }
         }
 
@@ -103,7 +100,6 @@ namespace Model.Game.GameObjects
             set
             {
                 _state = value;
-                Redraw?.Invoke();
             }
         }
 
@@ -148,5 +144,13 @@ namespace Model.Game.GameObjects
         /// Установить ширину
         /// </summary>
         public abstract void SetWidth();
+
+        /// <summary>
+        /// Вызывает событие перерисовки игрового объекта
+        /// </summary>
+        public void RedrawGameObject()
+        {
+            Redraw?.Invoke();
+        }
     }
 }
