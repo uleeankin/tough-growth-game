@@ -319,9 +319,12 @@ namespace ConsoleView.Utils
         {
             lock (_lock)
             {
-                Console.SetCursorPosition(parX, parY);
-                Console.BackgroundColor = ConsoleColor.Black;
-                Console.Write(" ");
+                if (parX >= 0 && parY >= 0)
+                {
+                    Console.SetCursorPosition(parX, parY);
+                    Console.BackgroundColor = ConsoleColor.Black;
+                    Console.Write(" ");
+                }
             }
         }
 
