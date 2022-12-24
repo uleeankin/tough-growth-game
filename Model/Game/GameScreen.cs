@@ -453,15 +453,9 @@ namespace Model.Game
                                 }
 
                                 gameSquare.Area += elGameObject.Area;
-
-                                if (elGameObject.State != GameObjectsStates.FOOD)
-                                {
-                                    elGameObject.State = GameObjectsStates.FOOD;
-                                    lock(_gameObjectsNeedRedrawing)
-                                    {
-                                        _gameObjectsNeedRedrawing.Add(elGameObject);
-                                    }
-                                }
+                                SetNewState(elGameObject, 
+                                    GameObjectsStates.FOOD, 
+                                    GameObjectsStates.EATEN);
 
                                 if (_barriers.Count != 0)
                                 {
