@@ -205,6 +205,21 @@ namespace Model.Game
         public int Deaths { get; set; }
 
         /// <summary>
+        /// Временной коэффициент для движения объектов
+        /// </summary>
+        public double TimeCoefficient
+        {
+            get
+            {
+                return _timeCoefficient;
+            }
+            set
+            {
+                _timeCoefficient = value;
+            }
+        }
+
+        /// <summary>
         /// Конструктор
         /// </summary>
         public GameScreen() : base()
@@ -357,9 +372,8 @@ namespace Model.Game
         /// <summary>
         /// Перемещает все объекты
         /// </summary>
-        private void Move()
+        public void Move()
         {
-
             GameSquare gameSquare = ((GameSquare)_gameObjects[(int)GameObjectTypes.GAME_SQUARE]);
             gameSquare.MoveByStep(PLAYER_SPEED * _timeCoefficient, ScreenHeight, ScreenWidth);
             _gameObjectsNeedRedrawing.Add(gameSquare);
@@ -430,7 +444,7 @@ namespace Model.Game
         /// <summary>
         /// Проверяет пересечение игрового квадрата с другими игровыми объектами
         /// </summary>
-        private void CheckIntersections()
+        public void CheckIntersections()
         {
             GameObject gameSquare = GameObjects[(int)GameObjectTypes.GAME_SQUARE];
             Parallel.ForEach(GameObjects, elGameObject =>
@@ -705,7 +719,7 @@ namespace Model.Game
         /// <summary>
         /// Начинает новый уровень
         /// </summary>
-        private void StartNewLevel()
+        public void StartNewLevel()
         {
             ((PermanentSquare)_gameObjects[(int)GameObjectTypes.PERMANENT_SQUARE])
                                 .NeedNewPosition -= SetPermanentSquareCoordinates;
