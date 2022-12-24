@@ -473,6 +473,10 @@ namespace Model.Game
                                         StartBarriers(elObject, gameSquare);
                                         SetNewState(elObject,
                                             GameObjectsStates.INACTIVE, GameObjectsStates.BARRIER);
+                                        lock (_gameObjectsNeedRedrawing)
+                                        {
+                                            _gameObjectsNeedRedrawing.Add(elGameObject);
+                                        }
                                     });
                                     _inactiveObjectsNumber = 0;
                                 }
