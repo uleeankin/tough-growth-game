@@ -362,11 +362,16 @@ namespace Model.Game
 
             GameSquare gameSquare = ((GameSquare)_gameObjects[(int)GameObjectTypes.GAME_SQUARE]);
             gameSquare.MoveByStep(PLAYER_SPEED * _timeCoefficient, ScreenHeight, ScreenWidth);
+            _gameObjectsNeedRedrawing.Add(gameSquare);
 
             Parallel.ForEach(GameObjects, elGameObject => {
                 if (elGameObject.ID == GameObjectTypes.RECTANGLE)
                 {
                     ((Rectangle)elGameObject).MoveByStep(RECTANGLE_SPEED * _timeCoefficient);
+                    lock(_gameObjectsNeedRedrawing)
+                    {
+                        _gameObjectsNeedRedrawing.Add(elGameObject);
+                    }
                 }
             });
 
@@ -392,6 +397,10 @@ namespace Model.Game
                 }
 
                 elBarrier.MoveByStep(GetBarrierSpeed(elBarrier.ID) * _timeCoefficient);
+                lock(_barriersNeedRedrawing)
+                {
+                    _barriersNeedRedrawing.Add(elBarrier);
+                }
             }
 
             CheckIntersections();
@@ -413,6 +422,9 @@ namespace Model.Game
             {
                 elBarrier.RedrawBarrier();
             }
+
+            _gameObjectsNeedRedrawing.Clear();
+            _barriersNeedRedrawing.Clear();
         }
 
         /// <summary>
