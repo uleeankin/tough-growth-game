@@ -120,6 +120,18 @@ namespace Model.Game
         private int _level = 1;
 
         /// <summary>
+        /// Список игровых объектов, требующих перерисовки
+        /// </summary>
+        private List<GameObject> _gameObjectsNeedRedrawing =
+            new List<GameObject>();
+
+        /// <summary>
+        /// Список препятствий, требующих перерисовки
+        /// </summary>
+        private List<Barrier> _barriersNeedRedrawing =
+            new List<Barrier>();
+
+        /// <summary>
         /// Высота игрового поля
         /// </summary>
         public double ScreenHeight { get; set; }
@@ -296,6 +308,10 @@ namespace Model.Game
             GameObjects[(int)GameObjectTypes.PERMANENT_SQUARE].X = x;
             GameObjects[(int)GameObjectTypes.PERMANENT_SQUARE].Y = y;
 
+            lock(_gameObjectsNeedRedrawing)
+            {
+                _gameObjectsNeedRedrawing.Add(GameObjects[(int)GameObjectTypes.PERMANENT_SQUARE]);
+            }
         }
 
         /// <summary>
@@ -346,11 +362,16 @@ namespace Model.Game
 
             GameSquare gameSquare = ((GameSquare)_gameObjects[(int)GameObjectTypes.GAME_SQUARE]);
             gameSquare.MoveByStep(PLAYER_SPEED * _timeCoefficient, ScreenHeight, ScreenWidth);
+            _gameObjectsNeedRedrawing.Add(gameSquare);
 
             Parallel.ForEach(GameObjects, elGameObject => {
                 if (elGameObject.ID == GameObjectTypes.RECTANGLE)
                 {
                     ((Rectangle)elGameObject).MoveByStep(RECTANGLE_SPEED * _timeCoefficient);
+                    lock(_gameObjectsNeedRedrawing)
+                    {
+                        _gameObjectsNeedRedrawing.Add(elGameObject);
+                    }
                 }
             });
 
@@ -376,11 +397,34 @@ namespace Model.Game
                 }
 
                 elBarrier.MoveByStep(GetBarrierSpeed(elBarrier.ID) * _timeCoefficient);
+                lock(_barriersNeedRedrawing)
+                {
+                    _barriersNeedRedrawing.Add(elBarrier);
+                }
             }
 
             CheckIntersections();
             CheckBarriersIntersections();
             DeleteInactiveBarrier();
+            RedrawAll();
+        }
+
+        /// <summary>
+        /// Вызывает события перерисовки всех объектов на игровом поле
+        /// </summary>
+        private void RedrawAll()
+        {
+            foreach(GameObject elGameObject in _gameObjectsNeedRedrawing) {
+                elGameObject.RedrawGameObject();
+            }
+
+            foreach(Barrier elBarrier in _barriersNeedRedrawing)
+            {
+                elBarrier.RedrawBarrier();
+            }
+
+            _gameObjectsNeedRedrawing.Clear();
+            _barriersNeedRedrawing.Clear();
         }
 
         /// <summary>
@@ -429,6 +473,10 @@ namespace Model.Game
                                         StartBarriers(elObject, gameSquare);
                                         SetNewState(elObject,
                                             GameObjectsStates.INACTIVE, GameObjectsStates.BARRIER);
+                                        lock (_gameObjectsNeedRedrawing)
+                                        {
+                                            _gameObjectsNeedRedrawing.Add(elObject);
+                                        }
                                     });
                                     _inactiveObjectsNumber = 0;
                                 }
@@ -437,6 +485,11 @@ namespace Model.Game
                         }
                         SetNewState(elGameObject,
                             GameObjectsStates.BARRIER, GameObjectsStates.FOOD);
+
+                        lock (_gameObjectsNeedRedrawing)
+                        {
+                            _gameObjectsNeedRedrawing.Add(elGameObject);
+                        }
                     }
                     else
                     {
