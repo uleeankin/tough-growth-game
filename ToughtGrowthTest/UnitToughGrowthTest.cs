@@ -9,24 +9,45 @@ using System.Threading;
 
 namespace ToughtGrowthTest
 {
+    /// <summary>
+    /// Класс тестов для тестирования класса GameScreen
+    /// </summary>
     [TestClass]
     public class UnitToughGrowthTest
     {
+        /// <summary>
+        /// Временной коэффициент для определения шага игровых объектов
+        /// </summary>
         private const double TIME_COEFFICIENT = 0.001;
+        /// <summary>
+        /// Высота поля
+        /// </summary>
         private const int SCREEN_HEIGHT = 550;
+        /// <summary>
+        /// Ширина поля
+        /// </summary>
         private const int SCREEN_WIDTH = 1000;
+        /// <summary>
+        /// Скорость игрового квадрата
+        /// </summary>
         private const int GAME_SQUARE_SPEED = 200;
         /// <summary>
         /// Значение таймера для коротких выстрелов
         /// </summary>
-        private const int SHORT_SHOT_TIMER = 2020;
+        private const int SHORT_SHOT_TIMER = 2500;
         /// <summary>
         /// Значение таймера для длинных выстрелов
         /// </summary>
-        private const int LONG_SHOT_TIMER = 3030;
+        private const int LONG_SHOT_TIMER = 3500;
 
+        /// <summary>
+        /// Тестируемый класс, предоставляющий методы игрового процесса
+        /// </summary>
         private static GameScreen _gameScreen = new GameScreen();
 
+        /// <summary>
+        /// Настраивает игру на 1 уровнь
+        /// </summary>
         private void InitFirstLevelGameScreen()
         {
             _gameScreen.Level = 1;
@@ -37,6 +58,9 @@ namespace ToughtGrowthTest
             _gameScreen.Deaths = 0;
         }
 
+        /// <summary>
+        /// Настраивает игру на 8 уровень
+        /// </summary>
         private void InitEightLevelGameScreen()
         {
             _gameScreen.Level = 8;
@@ -47,6 +71,9 @@ namespace ToughtGrowthTest
             _gameScreen.Deaths = 0;
         }
 
+        /// <summary>
+        /// Настраивает игру на 2 уровень
+        /// </summary>
         private void InitSecondLevelGameScreen()
         {
             _gameScreen.Level = 2;
@@ -57,6 +84,9 @@ namespace ToughtGrowthTest
             _gameScreen.Deaths = 0;
         }
 
+        /// <summary>
+        /// Настраивает игру на 3 уровень
+        /// </summary>
         private void InitThirdLevelGameScreen()
         {
             _gameScreen.Level = 3;
@@ -67,6 +97,9 @@ namespace ToughtGrowthTest
             _gameScreen.Deaths = 0;
         }
 
+        /// <summary>
+        /// Настраивает игру на 7 уровень
+        /// </summary>
         private void InitSevenLevelGameScreen()
         {
             _gameScreen.Level = 7;
@@ -77,6 +110,10 @@ namespace ToughtGrowthTest
             _gameScreen.Deaths = 0;
         }
 
+        /// <summary>
+        /// Устанавливает координаты игрового квадрата на постоянный съедобный квадрат,
+        /// чтобы перевести другие игровые объекты на поле в активное состояние
+        /// </summary>
         private void ActivateGameObjects()
         {
             _gameScreen.GameObjects[(int)GameObjectTypes.GAME_SQUARE].X =
@@ -85,6 +122,9 @@ namespace ToughtGrowthTest
                 _gameScreen.GameObjects[(int)GameObjectTypes.PERMANENT_SQUARE].Y;
         }
 
+        /// <summary>
+        /// Тестирует движение игрового квадрата вверх
+        /// </summary>
         [TestMethod]
         public void TestGameSquareMotionUp()
         {
@@ -96,6 +136,9 @@ namespace ToughtGrowthTest
             Assert.AreEqual(expectedValue, _gameScreen.GameObjects[(int)GameObjectTypes.GAME_SQUARE].Y);
         }
 
+        /// <summary>
+        /// Тестирует движение игрового квадрата вниз
+        /// </summary>
         [TestMethod]
         public void TestGameSquareMotionDown()
         {
@@ -107,6 +150,9 @@ namespace ToughtGrowthTest
             Assert.AreEqual(expectedValue, _gameScreen.GameObjects[(int)GameObjectTypes.GAME_SQUARE].Y);
         }
 
+        /// <summary>
+        /// Тестирует движение игрового квадрата влево
+        /// </summary>
         [TestMethod]
         public void TestGameSquareMotionLeft()
         {
@@ -118,6 +164,9 @@ namespace ToughtGrowthTest
             Assert.AreEqual(expectedValue, _gameScreen.GameObjects[(int)GameObjectTypes.GAME_SQUARE].X);
         }
 
+        /// <summary>
+        /// Тестирует движение игрового квадрата вправо
+        /// </summary>
         [TestMethod]
         public void TestGameSquareMotionRight()
         {
@@ -129,6 +178,9 @@ namespace ToughtGrowthTest
             Assert.AreEqual(expectedValue, _gameScreen.GameObjects[(int)GameObjectTypes.GAME_SQUARE].X);
         }
 
+        /// <summary>
+        /// Тестирует рост игрового квадрата при съедении
+        /// </summary>
         [TestMethod]
         public void TestGameSquareGrowth()
         {
@@ -143,6 +195,10 @@ namespace ToughtGrowthTest
             Assert.AreEqual(expectedArea, ((GameSquare)_gameScreen.GameObjects[(int)GameObjectTypes.GAME_SQUARE]).Area);
         }
 
+        /// <summary>
+        /// Тестирует перевод всех игровых объектов в состояние препятствия
+        /// при первом съедении постоянного игрового квадрата
+        /// </summary>
         [TestMethod]
         public void TestGameObjectStateChangingFromInactiveToBarrier()
         {
@@ -155,6 +211,9 @@ namespace ToughtGrowthTest
                 _gameScreen.GameObjects.ToList().FindAll(x => x.State == GameObjectsStates.BARRIER).Count);
         }
 
+        /// <summary>
+        /// Тестирует появление постоянного съедобного квадрата в новом месте при его съедении
+        /// </summary>
         [TestMethod]
         public void TestPermanentSquareNewCoordinatesGeneration()
         {
@@ -171,6 +230,9 @@ namespace ToughtGrowthTest
                     || y != _gameScreen.GameObjects[(int)GameObjectTypes.PERMANENT_SQUARE].Y);
         }
 
+        /// <summary>
+        /// Тестирует движение игрового квадрата вверх за пределы поля
+        /// </summary>
         [TestMethod]
         public void TestGameSquareMotionUpBehindField()
         {
@@ -185,6 +247,9 @@ namespace ToughtGrowthTest
                     _gameScreen.GameObjects[(int)GameObjectTypes.GAME_SQUARE].Y);
         }
 
+        /// <summary>
+        /// Тестирует движение игрового квадрата вниз за пределы поля
+        /// </summary>
         [TestMethod]
         public void TestGameSquareMotionDownBehindField()
         {
@@ -199,6 +264,9 @@ namespace ToughtGrowthTest
                     _gameScreen.GameObjects[(int)GameObjectTypes.GAME_SQUARE].Y);
         }
 
+        /// <summary>
+        /// Тестирует движение игрового квадрата влево за пределы поля
+        /// </summary>
         [TestMethod]
         public void TestGameSquareMotionLeftBehindField()
         {
@@ -213,6 +281,9 @@ namespace ToughtGrowthTest
                     _gameScreen.GameObjects[(int)GameObjectTypes.GAME_SQUARE].X);
         }
 
+        /// <summary>
+        /// Тестирует движение игрового квадрата вправо за пределы поля
+        /// </summary>
         [TestMethod]
         public void TestGameSquareMotionRightBehindField()
         {
@@ -227,6 +298,10 @@ namespace ToughtGrowthTest
                     _gameScreen.GameObjects[(int)GameObjectTypes.GAME_SQUARE].X);
         }
 
+        /// <summary>
+        /// Тестирует изменение состояния игровых объектов в состояние еды
+        /// при площади игрового квадрата большей площади остальных объектов
+        /// </summary>
         [TestMethod]
         public void TestGameObjectStatusChangingToFood()
         {
@@ -243,6 +318,10 @@ namespace ToughtGrowthTest
                 _gameScreen.GameObjects.ToList().FindAll(x => x.State == GameObjectsStates.FOOD).Count);
         }
 
+        /// <summary>
+        /// Тестирует изменение состояния игровых объектов в состояние съеден
+        /// при пересечении их с игровым квадратом
+        /// </summary>
         [TestMethod]
         public void TestGameObjectStatusChangingToEaten()
         {
@@ -270,6 +349,10 @@ namespace ToughtGrowthTest
                 _gameScreen.GameObjects.ToList().FindAll(x => x.State == GameObjectsStates.EATEN).Count);
         }
 
+        /// <summary>
+        /// Тестирует увеличение количества смертей при пересечении
+        /// игровым квадратом объекта в состоянии препятствия с большей площадью
+        /// </summary>
         [TestMethod]
         public void TestDeathsIncreasing()
         {
@@ -290,6 +373,9 @@ namespace ToughtGrowthTest
             Assert.AreEqual(1, _gameScreen.Deaths);
         }
 
+        /// <summary>
+        /// Тестирует переход на следующий уровень
+        /// </summary>
         [TestMethod]
         public void TestSwichingToNextLevel()
         {
@@ -320,6 +406,10 @@ namespace ToughtGrowthTest
             Assert.AreEqual(2, _gameScreen.Level);
         }
 
+        /// <summary>
+        /// Тестирует переход на предыдущий уровень
+        /// (Наступает в случае смерти игрового квадрата на 8 уровне и больше)
+        /// </summary>
         [TestMethod]
         public void TestSwichingPreviousLevel()
         {
@@ -344,6 +434,10 @@ namespace ToughtGrowthTest
             Assert.AreEqual(expectedValue, _gameScreen.Level);
         }
 
+        /// <summary>
+        /// Тестирует начало текущего уровня при смерти игрового квадрата
+        /// меньше, чем на 8 уровне
+        /// </summary>
         [TestMethod]
         public void TestStartingCurrentLevel()
         {
@@ -370,6 +464,9 @@ namespace ToughtGrowthTest
                     .FindAll(x => x.State == GameObjectsStates.INACTIVE).Count);
         }
 
+        /// <summary>
+        /// Тестирует генерацию препятствия, генерируемого кругом
+        /// </summary>
         [TestMethod]
         public void TestArrowBarrierGenerating()
         {
@@ -381,6 +478,9 @@ namespace ToughtGrowthTest
                 && _gameScreen.Barriers[0].ID == BarrierType.ARROW);
         }
 
+        /// <summary>
+        /// Тестирует генерацию препятствия, генерируемого шестиугольником
+        /// </summary>
         [TestMethod]
         public void TestShortBarrierGenerating()
         {
@@ -396,6 +496,9 @@ namespace ToughtGrowthTest
             _gameScreen.HasHexagons = false;
         }
 
+        /// <summary>
+        /// Тестирует генерацию препятствия, генерируемого треугольником
+        /// </summary>
         [TestMethod]
         public void TestLongShotBarrierGenerating()
         {
