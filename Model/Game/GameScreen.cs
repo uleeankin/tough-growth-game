@@ -38,6 +38,14 @@ namespace Model.Game
         /// Скорость преследующей стрелки
         /// </summary>
         private const double ARROW_BARRIER_SPEED = 70;
+        /// <summary>
+        /// Значение таймера для коротких выстрелов
+        /// </summary>
+        private const int SHORT_SHOT_TIMER = 2000;
+        /// <summary>
+        /// Значение таймера для длинных выстрелов
+        /// </summary>
+        private const int LONG_SHOT_TIMER = 3000;
 
         /// <summary>
         /// Общее количество уровней в игре
@@ -91,11 +99,13 @@ namespace Model.Game
         /// <summary>
         /// Таймер на создание коротких выстрелов
         /// </summary>
-        private System.Timers.Timer _shortBarrierTimer = new System.Timers.Timer(2000);
+        private System.Timers.Timer _shortBarrierTimer 
+                = new System.Timers.Timer(SHORT_SHOT_TIMER);
         /// <summary>
         /// Таймер на создание длинных выстрелов
         /// </summary>
-        private System.Timers.Timer _longBarrierTimer = new System.Timers.Timer(3000);
+        private System.Timers.Timer _longBarrierTimer 
+                = new System.Timers.Timer(LONG_SHOT_TIMER);
 
         /// <summary>
         /// Выдаваемые препятствия
@@ -148,6 +158,28 @@ namespace Model.Game
         /// Наличие треугольников на уровне
         /// </summary>
         public bool HasTriangles { get; set; }
+
+        /// <summary>
+        /// Таймер на создание коротких выстрелов
+        /// </summary>
+        public System.Timers.Timer ShortBarrierTimer
+        {
+            get
+            {
+                return _shortBarrierTimer;
+            }
+        }
+
+        /// <summary>
+        /// Таймер на создание длинных выстрелов
+        /// </summary>
+        public System.Timers.Timer LongBarrierTimer
+        {
+            get
+            {
+                return _longBarrierTimer;
+            }
+        }
 
         /// <summary>
         /// Выдаваемые препятствия
@@ -203,6 +235,21 @@ namespace Model.Game
         /// Количество смертей
         /// </summary>
         public int Deaths { get; set; }
+
+        /// <summary>
+        /// Временной коэффициент для движения объектов
+        /// </summary>
+        public double TimeCoefficient
+        {
+            get
+            {
+                return _timeCoefficient;
+            }
+            set
+            {
+                _timeCoefficient = value;
+            }
+        }
 
         /// <summary>
         /// Конструктор
@@ -341,6 +388,7 @@ namespace Model.Game
                     double end = timer.ElapsedMilliseconds;
                     _timeCoefficient = (end - start) / 1000;
                 }
+                timer.Stop();
             }).Start();
         }
 
@@ -357,9 +405,8 @@ namespace Model.Game
         /// <summary>
         /// Перемещает все объекты
         /// </summary>
-        private void Move()
+        public void Move()
         {
-
             GameSquare gameSquare = ((GameSquare)_gameObjects[(int)GameObjectTypes.GAME_SQUARE]);
             gameSquare.MoveByStep(PLAYER_SPEED * _timeCoefficient, ScreenHeight, ScreenWidth);
             _gameObjectsNeedRedrawing.Add(gameSquare);
@@ -430,7 +477,7 @@ namespace Model.Game
         /// <summary>
         /// Проверяет пересечение игрового квадрата с другими игровыми объектами
         /// </summary>
-        private void CheckIntersections()
+        public void CheckIntersections()
         {
             GameObject gameSquare = GameObjects[(int)GameObjectTypes.GAME_SQUARE];
             Parallel.ForEach(GameObjects, elGameObject =>
@@ -705,7 +752,7 @@ namespace Model.Game
         /// <summary>
         /// Начинает новый уровень
         /// </summary>
-        private void StartNewLevel()
+        public void StartNewLevel()
         {
             ((PermanentSquare)_gameObjects[(int)GameObjectTypes.PERMANENT_SQUARE])
                                 .NeedNewPosition -= SetPermanentSquareCoordinates;
