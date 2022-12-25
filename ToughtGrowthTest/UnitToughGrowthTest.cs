@@ -508,7 +508,8 @@ namespace ToughtGrowthTest
             _gameScreen.HasTriangles = true;
             _gameScreen.LongBarrierTimer.Enabled = true;
             Thread.Sleep(LONG_SHOT_TIMER);
-            Assert.IsTrue(_gameScreen.Barriers.Count == 
+            Assert.IsTrue(_gameScreen.Barriers.ToList()
+                    .FindAll(x => x.ID == BarrierType.LONG_SHOT).Count ==
                 _gameScreen.GameObjects.ToList()
                     .FindAll(x => x.ID == GameObjectTypes.TRIANGLE).Count);
             _gameScreen.LongBarrierTimer.Enabled = false;
